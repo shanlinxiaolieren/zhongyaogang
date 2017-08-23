@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <RelativeLayout
+        android:id="@+id/top_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:background="#9A0000"
+        android:orientation="horizontal" >
+        <ImageView
+            android:id="@+id/wodezhongxin_left_xieyi"
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/app_name"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@mipmap/btn_back_normal"
+            />
+        <TextView
+            android:id="@+id/index_search_yaocaiwang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="东盟·大宗药材网协议"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+        <ImageView
+            android:id="@+id/wodezhongxin_right_xieyi"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/app_name"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@mipmap/gongqiuright"
+            />
+
+
+    </RelativeLayout>
+
+    <WebView
+        android:id="@+id/webview_xieyi"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/top_relativelayout"
+        android:layout_height="wrap_content"
+        />
+
+
+</RelativeLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        >
+        <ImageView
+            android:id="@+id/imageView2_lishi"
+            android:layout_marginTop="5dp"
+            android:contentDescription="@string/app_name"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/shopping1"
+            android:layout_alignParentLeft="true"
+            />
+
+        <TextView
+            android:id="@+id/tv_merchandisename"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/imageView2_lishi"
+            android:text="三七/田七"
+            android:textColor="#636363"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/textview_price_lishi"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:text="¥100.0"
+            android:textColor="#4C4A4B"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/textview_pricesingle_line_lishi"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/textview_price_lishi"
+            android:paddingTop="5dp"
+            android:layout_marginRight="10dp"
+            android:text="¥120.0"
+            android:textColor="#4C4A4B"
+            android:background="@drawable/textview_single_line"
+            android:textSize="18sp" />
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/tv_quantity"
+            android:layout_below="@+id/textview_pricesingle_line_lishi"
+            android:text="×"
+            android:textColor="#ADAEAE"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/tv_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/textview_pricesingle_line_lishi"
+            android:text="1"
+            android:textColor="#ADAEAE"
+            android:textSize="18sp" />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E1E1E1" />
+</LinearLayout>

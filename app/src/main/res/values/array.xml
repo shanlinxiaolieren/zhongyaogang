@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spingarr">
+     <item>吨</item>  
+    <item>千克</item>  
+    <item>克</item>  
+    <item>毫克</item>  
+    </string-array>
+</resources>

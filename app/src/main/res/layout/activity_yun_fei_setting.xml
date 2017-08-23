@@ -1,0 +1,62 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:id="@+id/top_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:background="#9A0000"
+        >
+        <ImageView
+            android:id="@+id/wodezhongxin_left"
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/app_name"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@mipmap/btn_back_normal"
+            />
+        <TextView
+            android:id="@+id/index_search_yaocaiwang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="运费设置"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+        <ImageView
+            android:id="@+id/wodezhongxin_right"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/app_name"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@mipmap/gongqiuright"
+            />
+    </RelativeLayout>
+    <ListView
+        android:id="@+id/listview_yunfei"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:dividerHeight="8dp" />
+
+    <Button
+        android:id="@+id/button_addressadd"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#940000"
+        android:textColor="@color/white"
+        android:text="添加运费"
+        />
+
+</LinearLayout>

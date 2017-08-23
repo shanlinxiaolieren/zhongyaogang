@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <com.zhongyaogang.widgets.SearchView
+        android:id="@+id/search_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:singleLine="true"
+        />
+
+    <TextView
+        android:id="@+id/rl_save_textview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#940000"
+        android:clickable="true"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white"
+        android:text="保存"
+        />
+
+</RelativeLayout>

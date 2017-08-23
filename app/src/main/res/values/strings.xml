@@ -1,0 +1,127 @@
+<resources>
+    <string name="app_name">中药港</string>
+
+    <string name="bottom_tab_search">首页</string>
+    <string name="bottom_tab_change">市场</string>
+    <string name="bottom_tab_more">供求发布</string>
+    <string name="bottom_tab_shopping">购物车</string>
+    <string name="bottom_tab_centre">我的中心</string>
+    <!-- 个人信息 -->
+    <string name="touxiang">头像</string>
+    <string name="nicheng">昵称</string>
+    <string name="shantou">山头</string>
+    <string name="xingbie">性别</string>
+    <string name="nu">女</string>
+    <string name="zhenshixingming">真实姓名</string>
+    <string name="lisi">李四</string>
+    <string name="shoujihaoma">手机号码</string>
+    <string name="shoujihaomaright">13625542545</string>
+    <string name="shouzaidi">所在地</string>
+    <string name="guangxiyulin">广西玉林</string>
+    <!-- 修改密码 -->
+    <string name="xiugaimima">修改密码</string>
+    <string name="wancheng">完成</string>
+    <string name="yuanshimima">原始密码</string>
+    <string name="qingshuruyuanshimima">请输入原始密码</string>
+    <string name="xinmima">新密码</string>
+    <string name="qingshuruxinshimima">请输入新密码</string>
+    <string name="zaicixinshimima">再次新密码</string>
+    <string name="zaicishurushimima">再次输入新密码</string>
+    <!-- 登录 -->
+    <string name="denglu">登录</string>
+    <string name="qingshurunideshoujihaomahuoyonghuming">请输入您的手机号码或用户名</string>
+    <string name="denglumima">登录密码</string>
+    <string name="qingshurudenglumima">请输入登录密码</string>
+    <string name="jizhumima">记住密码</string>
+    <string name="yangjimima">忘记密码？</string>
+    <!-- 供求发布 -->
+    <string name="daishouhuo">待收货</string>
+    <string name="huansheng">还剩15天9时自动确认收货</string>
+    <string name="zhouzhang">周张三</string>
+    <string name="guangxi">广西壮族自治区玉林市玉州区广场东路25号某某大厦</string>
+    <string name="wuliugongsi">物流公司：</string>
+    <string name="tiantiankuaidi">天天快递</string>
+    <string name="yundanhaoma">运单号码：</string>
+    <string name="fuzidanhao">复制单号</string>
+    <string name="zhangshandian">张三店</string>
+    <string name="xiadanshijian">下单时间：</string>
+    <string name="number">325125</string>
+    <string name="tuikuan">退款</string>
+    <string name="zhongji">总计：</string>
+    <string name="querenshouhuo">确认收货</string>
+    <string name="lianxikefu">联系客服</string>
+    <string name="shangpinyunfei">商品运费：</string>
+    <string name="yingfujine">应付金额：</string>
+    <string name="dianpuheji">店铺合计：</string>
+    <string name="plus1">×  1</string>
+    <string name="priceshi">¥10.0</string>
+    <string name="pricebai">¥100.0</string>
+    <string name="pricebaishi">¥110.0</string>
+    <string name="pricebaiershi">¥120.0</string>
+    <string name="shanqihetianqi">三七/田七</string>
+    <string name="dateheshijian">2017-01-12 12:00:00</string>
+    <string name="dingdanbianhao">订单编号：</string>
+    <string name="yundanbianhaonumber">667373760445</string>
+    <!-- 市场 -->
+    <string name="zhongyaogangyaocaibazaar">中药港药材批发市场</string>
+    <string name="yulinsi">玉林市中药材专业市场是经国家卫生部、国家医药局、国家中医药局、国家工商局首批获准开办的全国17家中药材市场之一，也是广西唯一的中药材专业市场。</string>
+    <string name="sichangchangpin">市场产品</string>
+    <string name="dongmingsichang">东盟·大宗药材网-市场</string>
+    <string name="gongqiu">供求</string>
+    <string name="yaocaimoumou">药材某某批发市场</string>
+    <string name="zhongyaocaibazaar">中药材批发市场</string>
+    <string name="zhongyaogang">中 药 港</string>
+    <string name="zhongyaogangweizi">zhong yao gang</string>
+    <string name="zhengzaijianlizhong">正在建立中医药电子</string>
+    <string name="yingxiaoshangwu">营销商务平台</string>
+    <string name="jinqukankan">进去看看》</string>
+    <string name="title_activity_wo_de_xiao_xi">WoDeXiaoXiActivity</string>
+    <!-- 我的消息 -->
+    <string name="xitongtongzhi">系统通知</string>
+    <string name="dingdanxiaoxi">订单消息</string>
+    <string name="dingdanxiaoxixia">您的订单已发出</string>
+    <string name="xitongtongzhixia">您没通商户申请，信息不对，请重新提交</string>
+    <string name="title_activity_address">AddressActivity</string>
+    <!-- 管理收货地址 -->
+    <string name="addressxingming">张生</string>
+    <string name="addressphone">15769662078</string>
+    <string name="address">广西壮族自治区南宁市青秀区民族大道136-5号华润大厦C座2903室 金拇指集团</string>
+    <string name="addressmoren">默认地址</string>
+    <string name="settingmoren">设置默认</string>
+    <string name="edit">编辑</string>
+    <string name="delete">删除</string>
+    <string name="menu_enter">完成</string>
+    <string name="menu_edit">编辑</string>
+    <string name="menu_sett">结算</string>
+    <string name="shopping_area_selection">所在地区</string>
+    <string name="register_input_auth_phone_hint">请输入正确的手机号</string>
+
+    <!-- 确认订单 -->
+    <string name="shouhuoren">收货人:</string>
+    <string name="shouhuoaddress">收货地址:</string>
+    <string name="zhelinaliyanshe">颜色：</string>
+    <string name="yanshe">蓝色</string>
+    <string name="tijiadingdan">提交订单</string>
+    <string name="xiaoji">小计：</string>
+    <string name="heji">合计：</string>
+    <string name="duibencijiayidishuoming">选填：对本次交易的说明（建议填写已经和卖家...</string>
+    <string name="maojialiuyan">买家留言：</string>
+    <string name="kuaidimianyou">快递免邮</string>
+    <string name="peisongfangshi">配送方式</string>
+    <string name="zhelinalinum">x1</string>
+    <string name="zhelinaliprice">¥100.00</string>
+    <string name="zhelinaliprice2">¥200.00</string>
+    <string name="zhelinaliprice3">¥300.00</string>
+    <string name="zhelinali">这礼那礼 </string>
+    <string name="address_edit_susse">提交成功</string>
+    <string name="address_edit_edit">修改成功</string>
+    <string name="login_error_password">密码不正确</string>
+    <string name="msg_neterror">连接服务器失败，请稍后重试</string>
+    <string name="login_user_name_hint">请输入用户名/手机号</string>
+    <string name="login_password_hint">请输入密码</string>
+
+    <string name="index_search_edit_hint">党参</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>

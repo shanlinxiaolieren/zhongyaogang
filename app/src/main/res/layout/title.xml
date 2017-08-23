@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="52dp"
+    android:background="#9A0000"
+    android:orientation="vertical" >
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="#9A0000"
+    >
+    
+	<TextView 
+	    android:id="@+id/tv_tittle"
+	    android:layout_width="fill_parent"
+    	android:layout_height="fill_parent"
+    	android:gravity="center"
+    	android:singleLine="true"
+    	android:paddingLeft="64dp"
+    	android:paddingRight="64dp"
+    	android:layout_alignBottom="@+id/btn_back"
+    	android:layout_alignTop="@+id/btn_back"
+    	android:textSize="16sp"
+    	android:textColor="@color/white"
+    	/>
+	<Button 
+	    android:id="@+id/btn_back"
+	    android:layout_width="wrap_content"
+    	android:layout_height="fill_parent"
+    	android:text="返回"
+    	android:drawableLeft="@mipmap/icon_back"
+    	android:textSize="16sp"
+    	android:textColor="@color/white"
+    	android:paddingLeft="4sp"
+    	android:background="#9A0000"/>
+	<Button 
+	    android:id="@+id/btn_right"
+	    android:layout_width="wrap_content"
+    	android:layout_height="fill_parent"
+    	android:textSize="16sp"
+    	android:layout_alignBottom="@+id/btn_back"
+    	android:layout_alignTop="@+id/btn_back"
+    	android:layout_alignParentRight="true"
+    	android:textColor="@color/white"
+    	android:paddingRight="8dp"
+    	android:background="#9A0000"
+    	/>
+	</RelativeLayout>
+	
+</LinearLayout>

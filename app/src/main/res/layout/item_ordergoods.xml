@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="65dp"
+            android:id="@+id/imageView"
+            android:src="@mipmap/suohuo"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XXXXXXXXXXXXXXXXXXXXXXX"
+            android:maxLines="2"
+            android:id="@+id/tvcontent"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/imageView"
+            android:layout_toEndOf="@+id/imageView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="颜色:蓝色"
+            android:id="@+id/tvcolour"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/tvcontent"
+            android:layout_alignLeft="@+id/tvcontent"
+            android:layout_alignStart="@+id/tvcontent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="￥300.00"
+            android:id="@+id/tvmoney"
+            android:textColor="#9A0000"
+            android:layout_below="@+id/tvcolour"
+            android:layout_alignLeft="@+id/tvcolour"
+            android:layout_alignStart="@+id/tvcolour" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="x 1"
+            android:textColor="#9A0000"
+            android:layout_marginRight="10dp"
+            android:id="@+id/tvnum"
+            android:layout_alignTop="@+id/tvmoney"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+</LinearLayout>

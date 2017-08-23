@@ -1,0 +1,103 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <RelativeLayout
+        android:id="@+id/top_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="#9A0000"
+        android:orientation="horizontal" >
+        <ImageView
+            android:id="@+id/wodezhongxin_left"
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:contentDescription="@string/app_name"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@mipmap/btn_back_normal"
+            />
+        <TextView
+            android:id="@+id/index_search_yaocaiwang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="确认订单"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
+    <com.zhongyaogang.widgets.CustomScrollView
+        android:id="@+id/customScrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_above="@+id/relativelayout_bottom"
+        android:layout_below="@+id/top_relativelayout"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+    <ListView
+        android:id="@+id/lvAddress_querendingdan"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mRecyclerView_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/lvAddress_querendingdan"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+    </com.zhongyaogang.widgets.CustomScrollView>
+    <RelativeLayout
+        android:id="@+id/relativelayout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        >
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/heji"
+            android:textSize="18sp"
+            android:layout_toLeftOf="@+id/textview_zhelinaliprice3"
+            />
+        <TextView
+            android:id="@+id/textview_zhelinaliprice3"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textColor="#AE4747"
+            android:text="@string/zhelinaliprice3"
+            android:layout_toLeftOf="@+id/textview_tijiadingdan"
+            />
+        <TextView
+            android:id="@+id/textview_tijiadingdan"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            android:background="#A81100"
+            android:clickable="true"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:text="@string/tijiadingdan"
+            android:textColor="@color/white"
+            />
+    </RelativeLayout>
+
+
+</RelativeLayout>

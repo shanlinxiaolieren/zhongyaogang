@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <!-- 透明 -->
+    <color name="transparent">#00000000</color>
+    <!-- 白色 -->
+    <color name="white">#ffffff</color>
+    <!-- 黑色 -->
+    <color name="black">#000000</color>
+    <!-- 红色 -->
+    <color name="red">#940000</color>
+    <!-- 浅红色 -->
+    <color name="qianred">#E2E2E2</color>
+    <!-- 暗灰色 -->
+    <color name="darkgray">#a9a9a9</color>
+    <!-- 灰色 -->
+    <color name="bg_Gray">#CCCCCC</color>
+    <!-- 浅色 -->
+    <color name="qiangshe">#C4D2BB</color>
+    <!-- 浅黄色 -->
+    <color name="qianghuangshe">#C9ED8F</color>
+    <!-- 黑色 -->
+    <color name="tv_Black">#000000</color>
+    <!-- 背景色 -->
+    <color name="bg_Black">#8CB54B</color>
+    <!-- 蓝色 -->
+    <color name="blue">#37CCEF</color>
+    <!-- 我求购-->
+    <color name="woqiugou">#C9CACA</color>
+    <!-- 上传照片的背景色-->
+    <color name="shangchuanpicture">#F1F1F2</color>
+    <!-- 供的背景色-->
+    <color name="gong">#3BCDF0</color>
+    <!-- 求的背景色-->
+    <color name="qiu">#CCCECD</color>
+    <!-- 紫色 -->
+    <color name="purple">#800080</color>
+    <!-- 暗深红色 -->
+    <color name="crimson">#dc143c</color>
+
+    <color name="orange">#EE4B4C</color>
+    <color name="white_color">#ffffff</color>
+    <color name="red_color">#ff3000</color>
+    <color name="black_one_color">#272636</color>
+    <color name="menu_item_press">#2e000000</color>
+    <color name="province_line_border">#C7C7C7</color>
+    <color name="black_two_color">#4d4d4d</color>
+    <color name="gray_back">#ffeeeeee</color>
+    <color name="grey_color2">#666666</color>
+
+    <color name="black_overlay">#66000000</color>
+</resources>

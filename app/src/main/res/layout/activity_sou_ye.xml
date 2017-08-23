@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_bottom_tabls_linearlayout"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    >
+    <!-- 首页 -->
+    <LinearLayout
+        android:id="@+id/ll_bottom_tabls_search"
+        style = "@style/bottom_tabs_ll"
+        >
+        <!--             android:background="@drawable/backgroundchange" -->
+
+        <ImageView
+            android:id="@+id/im_search"
+            style = "@style/bottom_tabs_image"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/home" />
+
+
+        <TextView
+            android:id="@+id/im_change_souye"
+            style = "@style/bottom_tabs_tv"
+            android:text="@string/bottom_tab_search"
+            />
+    </LinearLayout>
+    <!-- 市场 -->
+    <LinearLayout
+        android:id="@+id/ll_bottom_tabls_history"
+        style = "@style/bottom_tabs_ll"
+        >
+
+        <ImageView
+            android:id="@+id/im_history"
+            style = "@style/bottom_tabs_image"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/bazaar" />
+
+        <TextView
+            android:id="@+id/im_change_xuexi"
+            style = "@style/bottom_tabs_tv"
+            android:text="@string/bottom_tab_change"
+            />
+    </LinearLayout>
+    <!--供求发布 -->
+    <LinearLayout
+        android:id="@+id/ll_bottom_tabls_change"
+        style = "@style/bottom_tabs_ll"
+        >
+        <ImageView
+            android:id="@+id/im_change"
+            style = "@style/bottom_tabs_image"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/gongqiu"
+            />
+
+        <TextView
+            android:id="@+id/im_change_huodong"
+            style = "@style/bottom_tabs_tv"
+            android:text="@string/bottom_tab_more"
+            />
+    </LinearLayout>
+    <!-- 购物车-->
+    <LinearLayout
+        android:id="@+id/ll_bottom_tabls_shopping"
+        style = "@style/bottom_tabs_ll"
+        >
+        <ImageView
+            android:id="@+id/im_shopping"
+            style = "@style/bottom_tabs_image"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/shopping"
+            />
+
+        <TextView
+            android:id="@+id/im_change_shopping"
+            style = "@style/bottom_tabs_tv"
+            android:text="@string/bottom_tab_shopping"
+            />
+    </LinearLayout>
+    <!--我的中心-->
+    <LinearLayout
+        android:id="@+id/ll_bottom_tabls_centre"
+        style = "@style/bottom_tabs_ll"
+        >
+        <ImageView
+            android:id="@+id/im_centre"
+            style = "@style/bottom_tabs_image"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/centre"
+            />
+
+        <TextView
+            android:id="@+id/im_change_centre"
+            style = "@style/bottom_tabs_tv"
+            android:text="@string/bottom_tab_centre"
+            />
+    </LinearLayout>
+</LinearLayout>

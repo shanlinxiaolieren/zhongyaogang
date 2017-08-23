@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/index_top_gongqiufabu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/shangchuanpicture"
+    android:orientation="vertical"
+     >
+<RelativeLayout 
+    android:id="@+id/top_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:background="#9A0000"
+         >
+      
+        <TextView
+            android:id="@+id/index_search_yaocaiwang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             android:layout_centerInParent="true"
+            android:text="供求发布"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+         
+    
+
+</RelativeLayout>
+    
+    <LinearLayout 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+            <TextView 
+                android:id="@+id/button_wogonghuo"
+                android:layout_width="90dp"
+                android:layout_height="45dp"
+                 android:clickable="true"
+              android:gravity="center"
+                android:background="@color/blue"
+                android:text="我供货"
+                />
+            <TextView 
+                android:id="@+id/button_woqiuhuo"
+                android:layout_width="90dp"
+                android:layout_height="45dp"
+                 android:clickable="true"
+                android:gravity="center"
+                 android:background="@color/woqiugou"
+                 android:textColor="@color/white"
+                android:text="我求货"
+                />
+        </LinearLayout>
+         
+        <RelativeLayout 
+            android:id="@+id/show_cart_wogongqiu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+         </RelativeLayout> 
+      <android.support.v4.view.ViewPager  
+        android:id="@+id/id_page_vp"  
+        android:layout_width="match_parent"  
+        android:layout_height="0dp"  
+        android:layout_weight="1" >  
+    </android.support.v4.view.ViewPager> 
+    
+</LinearLayout>

@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <include layout="@layout/index_top_relativelayout"
+        android:id="@+id/top_relativelayout"/>
+    <ListView
+        android:id="@+id/shangpinxiangqing"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:dividerHeight="8dp" />
+
+    <LinearLayout
+        android:id="@+id/linearlayout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/white_shape_button"
+            android:text="客服"
+            />
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/white_shape_button"
+            android:text="店铺"
+            />
+        <Button
+            android:id="@+id/button_shopping"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:background="#940000"
+            android:textColor="@color/white"
+            android:text="加入购物车"
+            />
+        <Button
+            android:id="@+id/button_chuangpinxiangqing"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="2"
+            android:background="#e85414"
+            android:textColor="@color/white"
+            android:text="立即购买"
+            />
+
+    </LinearLayout>
+</LinearLayout>
