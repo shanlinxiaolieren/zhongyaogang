@@ -152,7 +152,7 @@ public class BaiduMapActivity extends Activity implements BaiduMap.OnMapClickLis
                     .from(stNode).to(enNode));
         } else if (v.getId() == R.id.transit) {
             mSearch.transitSearch((new TransitRoutePlanOption())
-                    .from(stNode).city("北京").to(enNode));
+                    .from(stNode).city("南宁").to(enNode));
         } else if (v.getId() == R.id.walk) {
             mSearch.walkingSearch((new WalkingRoutePlanOption())
                     .from(stNode).to(enNode));
@@ -498,7 +498,7 @@ public class BaiduMapActivity extends Activity implements BaiduMap.OnMapClickLis
                 return;
             }
 
-            editSt.setText(location.getStreet());
+           // editSt.setText(location.getStreet());
             MyLocationData locData = new MyLocationData.Builder()
                     .accuracy(location.getRadius())
                     // 此处设置开发者获取到的方向信息，顺时针0-360
