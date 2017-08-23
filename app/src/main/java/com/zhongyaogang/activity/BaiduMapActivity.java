@@ -252,6 +252,10 @@ public class BaiduMapActivity extends Activity implements BaiduMap.OnMapClickLis
         super.onRestoreInstanceState(savedInstanceState);
     }
 
+    /**
+     * 步行
+     * @param result
+     */
     @Override
     public void onGetWalkingRouteResult(WalkingRouteResult result) {
         if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
@@ -277,6 +281,9 @@ public class BaiduMapActivity extends Activity implements BaiduMap.OnMapClickLis
 
     }
 
+    /**
+     *公车
+     */
     @Override
     public void onGetTransitRouteResult(TransitRouteResult result) {
 
@@ -302,11 +309,18 @@ public class BaiduMapActivity extends Activity implements BaiduMap.OnMapClickLis
         }
     }
 
+    /**
+     * 轨道交通 地铁？
+     * @param massTransitRouteResult
+     */
     @Override
     public void onGetMassTransitRouteResult(MassTransitRouteResult massTransitRouteResult) {
 
     }
 
+    /**
+     * 驾车
+     */
     @Override
     public void onGetDrivingRouteResult(DrivingRouteResult result) {
         if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
@@ -331,11 +345,17 @@ public class BaiduMapActivity extends Activity implements BaiduMap.OnMapClickLis
         }
     }
 
+    /**
+     * 室内的
+     */
     @Override
     public void onGetIndoorRouteResult(IndoorRouteResult indoorRouteResult) {
 
     }
 
+    /**
+     *骑行
+     */
     @Override
     public void onGetBikingRouteResult(BikingRouteResult bikingRouteResult) {
         if (bikingRouteResult == null || bikingRouteResult.error != SearchResult.ERRORNO.NO_ERROR) {
