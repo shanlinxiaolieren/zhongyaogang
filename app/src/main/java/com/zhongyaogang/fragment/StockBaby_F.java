@@ -1,66 +1,63 @@
 package com.zhongyaogang.fragment;
 
-import java.util.List;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.zhongyaogang.activity.DanGeQueRenDingDanActivity;
 import com.zhongyaogang.R;
+import com.zhongyaogang.activity.MyApplication;
 import com.zhongyaogang.activity.PromptlyShoppingOrderActivity;
 import com.zhongyaogang.activity.ShangPinXiangQingActivity;
 import com.zhongyaogang.bean.HotBean;
 import com.zhongyaogang.config.Constants;
-import com.zhongyaogang.utils.L;
-import com.zhongyaogang.utils.SystemUtil;
-import com.zhongyaogang.view.NoScrollGridView;
+import com.zhongyaogang.http.HttpUtils;
+import com.zhongyaogang.view.MyGridView;
+import com.zhongyaogang.view.PullToRefreshView;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v4.app.Fragment;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
-import android.widget.ExpandableListView;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @SuppressLint("HandlerLeak")
-public class StockBaby_F extends Fragment {
+public class StockBaby_F extends Fragment implements PullToRefreshView.OnFooterRefreshListener,PullToRefreshView.OnHeaderRefreshListener {
 	private StockBaby_F act;// 最新上线
 	private List<HotBean> datas;
-	private ExpandableListView expandableListView;
-	private ListViewAdapter treeViewAdapter;
+	private MyGridView gv;
+	private GridViewAdapter adapter;
+	private PullToRefreshView pv;
+	private int maxResultCount=10;
+	private int skipCount=0;
 	private Handler mHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
 			super.handleMessage(msg);
 			switch (msg.what) {
 				case 1:
-					treeViewAdapter = new ListViewAdapter(act,
-							ListViewAdapter.PaddingLeft >> 1, datas);
-					treeViewAdapter.UpdateTreeNode(datas);
-					expandableListView.setAdapter(treeViewAdapter);
+					adapter = new GridViewAdapter(act, datas);
+					gv.setAdapter(adapter);
 					break;
 				default:
 					break;
@@ -79,10 +76,16 @@ public class StockBaby_F extends Fragment {
 	}
 
 	private void initView(View view) {
-		expandableListView = (ExpandableListView) view
-				.findViewById(R.id.expandableListView);
+		gv = (MyGridView) view
+				.findViewById(R.id.gv);
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
 		intSearchHotQuary();
 	}
+
 	/**
 	 * 处理fragment重复叠加的问题
 	 * @param outState
@@ -91,163 +94,47 @@ public class StockBaby_F extends Fragment {
 	public void onSaveInstanceState(Bundle outState) {
 		//super.onSaveInstanceState(outState);//
 	}
-	private void intSearchHotQuary() {
-		String url = Constants.NEW_QUERY;
-		SystemUtil.getHttpUtils().send(HttpMethod.POST, url, callBack2);
+	@Override
+	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
 	}
-
-	RequestCallBack<String> callBack2 = new RequestCallBack<String>() {
-		@Override
-		public void onSuccess(ResponseInfo<String> arg0) {
-			// 获得这个查询结果需要通过json解析后在此给数据源初始化和绑定adapter
-			String content = arg0.result;
-			JSONObject jo;
-			try {
-				jo = new JSONObject(content);
-				JSONObject body1 = jo.getJSONObject("result");
-				JSONArray items = body1.getJSONArray("items");
-				L.e("返回结果：items=" + items);
-				Gson gson = new Gson();
-				datas = gson.fromJson(items.toString(),
-						new TypeToken<List<HotBean>>() {
+	private void intSearchHotQuary() {
+		new Thread() {
+			public void run() {
+				try {
+					Looper.prepare();
+					String path =  Constants.NEW_QUERY;
+					Map<String,String> params = new HashMap<String,String>();
+					params.put("maxResultCount",maxResultCount+"");
+					params.put("skipCount",skipCount*maxResultCount+"");
+					String strResult= HttpUtils.submitPostData(path,params, "utf-8");
+					JSONObject jo = new JSONObject(strResult);
+					JSONObject	body1 = jo.getJSONObject("result");
+					JSONArray items=body1.getJSONArray("items");
+					Log.e("返回结果：StockBaby_F=",items.toString());
+					Gson gson = new Gson();
+					if(skipCount==0) {
+						datas = gson.fromJson(items.toString(), new TypeToken<List<HotBean>>() {
 						}.getType());
-				Message msg = new Message();
-				msg.what = 1;
-				mHandler.sendMessage(msg);
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}
-		}
-
-		@Override
-		public void onFailure(HttpException arg0, String arg1) {
-		}
-	};
-
-	public class ListViewAdapter extends BaseExpandableListAdapter implements
-			OnItemClickListener {
-		public static final int ItemHeight = 48;// 每项的高度
-		public static final int PaddingLeft = 36;// 每项的高度
-		private int myPaddingLeft = 0;
-
-		private NoScrollGridView toolbarGrid;
-		private GridViewAdapter gridviewadapter;
-		private StockBaby_F act;
-		private LayoutInflater layoutInflater;
-		private List<HotBean> datas;
-
-		public ListViewAdapter(StockBaby_F view, int myPaddingLeft,
-							   List<HotBean> data) {
-			act = view;
-			this.myPaddingLeft = myPaddingLeft;
-			datas = data;
-		}
-
-		public List<HotBean> GetTreeNode() {
-			return datas;
-		}
-
-		public void UpdateTreeNode(List<HotBean> nodes) {
-			datas = nodes;
-		}
-
-		public void RemoveAll() {
-			datas.clear();
-		}
-
-		public Object getChild(int childPosition) {
-			return datas.get(childPosition);
-		}
-
-		public int getChildrenCount(int groupPosition) {
-			return
-					// treeNodes.get(groupPosition).childs.size()
-					1;
-		}
-
-		public TextView getTextView(Context context) {
-			AbsListView.LayoutParams lp = new AbsListView.LayoutParams(
-					ViewGroup.LayoutParams.FILL_PARENT, ItemHeight);
-
-			TextView textView = new TextView(context);
-			textView.setLayoutParams(lp);
-			textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
-			return textView;
-		}
-
-		/**
-		 * 可自定义ExpandableListView
-		 */
-		public View getChildView(int groupPosition, int childPosition,
-								 boolean isLastChild, View convertView, ViewGroup parent) {
-			if (convertView == null) {
-				layoutInflater = (LayoutInflater) getActivity()
-						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				convertView = layoutInflater.inflate(R.layout.listview_item,
-						null);
-				toolbarGrid = (NoScrollGridView) convertView
-						.findViewById(R.id.gridview);
-				toolbarGrid.setNumColumns(2);// 设置每行列数
-				toolbarGrid.setGravity(Gravity.CENTER);// 位置居中
-				toolbarGrid.setHorizontalSpacing(10);// 水平间隔
-				gridviewadapter = new GridViewAdapter(act, datas);
-				toolbarGrid.setAdapter(gridviewadapter);
-				toolbarGrid.setOnItemClickListener(this);
-				gridviewadapter.notifyDataSetChanged();
-			}
-			return convertView;
-		}
-
-		/**
-		 * 可自定义list
-		 */
-		public View getGroupView(int groupPosition, boolean isExpanded,
-								 View convertView, ViewGroup parent) {
-			TextView textView = getTextView(getActivity());
-			textView.setText(getGroup(groupPosition).toString());
-			textView.setPadding(myPaddingLeft + PaddingLeft, 0, 0, 0);
-			for(int i = 0; i < treeViewAdapter.getGroupCount(); i++){
-				expandableListView.expandGroup(i);
-			}
-			return textView;
-		}
-
-		public long getChildId(int groupPosition, int childPosition) {
-			return childPosition;
-		}
-
-		public Object getGroup(int groupPosition) {
-			return "";
-		}
-
-		public int getGroupCount() {
-			return 1;
-		}
-
-		public long getGroupId(int groupPosition) {
-			return groupPosition;
-		}
-
-		public boolean isChildSelectable(int groupPosition, int childPosition) {
-			return true;
-		}
-
-		public boolean hasStableIds() {
-			return true;
-		}
-
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, int position,
-								long id) {
-			Toast.makeText(getActivity(), "当前选中的是:" + position,
-					Toast.LENGTH_SHORT).show();
-
-		}
-
-		@Override
-		public Object getChild(int groupPosition, int childPosition) {
-			return datas.get(childPosition);
-		}
+					}
+					else
+					{
+						List<HotBean> data=gson.fromJson(items.toString(), new TypeToken<List<HotBean>>() {
+						}.getType());
+						for(int i=0;i<data.size();i++)
+						{
+							datas.add(data.get(i));
+						}
+					}
+					Message msg = new Message();
+					msg.what = 1;
+					mHandler.sendMessage(msg);
+				} catch (Exception e) {
+					e.printStackTrace();
+					Toast.makeText(getActivity(), "查询失败", Toast.LENGTH_SHORT).show();
+				}
+			};
+		}.start();
 	}
 
 	public class GridViewAdapter extends BaseAdapter {
@@ -286,6 +173,9 @@ public class StockBaby_F extends Fragment {
 				holder = (ViewHolder) convertView.getTag();
 			}
 			// 设置图片内容
+//			holder.llayitem.setTag(convertView);
+//			holder.iv.setTag(position);
+//			holder.update();
 			ImageLoader.getInstance().displayImage(
 					getItem(position).getPigUrl(), holder.iv);
 			holder.yaomingcheng.setText(getItem(position).getMerchandiseName());
@@ -331,13 +221,109 @@ public class StockBaby_F extends Fragment {
 			TextView yaomingcheng;
 			TextView yaoprice;
 			Button gouma;
+			LinearLayout llayitem;
 			public ViewHolder(View view) {
+				llayitem=(LinearLayout) view.findViewById(R.id.llayitem);
 				iv = (ImageView) view.findViewById(R.id.yaomingchengpicture);
 				yaomingcheng = (TextView) view.findViewById(R.id.yaomingcheng);
 				yaoprice = (TextView) view.findViewById(R.id.yaoprice);
 				gouma = (Button) view.findViewById(R.id.gouma);
 				view.setTag(this);
 			}
+			public void update() {
+				// 精确计算GridView的item高度
+				llayitem.getViewTreeObserver().addOnGlobalLayoutListener(
+						new ViewTreeObserver.OnGlobalLayoutListener() {
+							public void onGlobalLayout() {
+								int position = (Integer) iv.getTag();
+								// 这里是保证同一行的item高度是相同的！！也就是同一行是齐整的 height相等
+								if (position > 0 && position % 2 == 1) {
+									View v = (View) llayitem.getTag();
+									int height = v.getHeight();
+
+									View view = gv.getChildAt(position - 1);
+									int lastheight = view.getHeight();
+									// 得到同一行的最后一个item和前一个item想比较，把谁的height大，就把两者中                                                                // height小的item的高度设定为height较大的item的高度一致，也就是保证同一                                                                 // 行高度相等即可
+									if (height > lastheight) {
+										view.setLayoutParams(new GridView.LayoutParams(
+												GridView.LayoutParams.FILL_PARENT,
+												height));
+									} else if (height < lastheight) {
+										v.setLayoutParams(new GridView.LayoutParams(
+												GridView.LayoutParams.FILL_PARENT,
+												lastheight));
+									}
+								}
+							}
+						});
+			}
 		}
 	}
+	// ------------------------------上滑发送的东西------------------------------------//
+	@Override
+	// 底部刷新
+	public void onFooterRefresh(PullToRefreshView view) {
+		pv.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				MyHandler mh = new MyHandler();
+				Message msg = new Message();
+				Bundle b = new Bundle();
+				b.putBoolean("key", false);
+				msg.setData(b);
+				mh.sendMessage(msg);
+			}
+		}, 1);
+	}
+	@Override
+	// 头部刷新
+	public void onHeaderRefresh(PullToRefreshView view) {
+		pv.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				// 用线程更新数据与监听刷新的动态
+				MyHandler mh = new MyHandler();
+				Message msg = new Message();
+				Bundle b = new Bundle();
+				b.putBoolean("key", true);
+				msg.setData(b);
+				mh.sendMessage(msg);
+			}
+		}, 1);
+	}
+
+	// 继承Handler类时，必须重写handleMessage方法
+	// 利用Handler更新数据
+	public class MyHandler extends Handler {
+
+		public MyHandler() {
+		}
+
+
+		public MyHandler(Looper l) {
+			super(l);
+		}
+
+		// 执行接收到的通知，此时执行的顺序是按照队列进行，即先进先出
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			Bundle b = msg.getData();
+			pv.onHeaderRefreshComplete();
+			pv.onFooterRefreshComplete();
+			// 得到线程里面数据
+			if (b.getBoolean("key")) {
+				//下拉
+				 skipCount=0;
+				Message s=new Message();
+				s.what=4;
+				MyApplication.mHandler.sendMessage(s);
+			} else {
+				//上拉
+				 skipCount+=1;
+			}
+			intSearchHotQuary();
+		}
+	}
+
 }

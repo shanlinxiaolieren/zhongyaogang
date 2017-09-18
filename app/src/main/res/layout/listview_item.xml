@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     android:numColumns="2"
     android:stretchMode="columnWidth"
-    android:horizontalSpacing="10dp"
-    android:verticalSpacing="10dp"
+    android:horizontalSpacing="@dimen/martopten"
+    android:verticalSpacing="@dimen/martopten"
         />
         
     

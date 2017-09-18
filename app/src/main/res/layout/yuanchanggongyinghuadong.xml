@@ -3,13 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-   <ExpandableListView
-       android:id="@+id/expandableListView"
-       android:layout_width="fill_parent"
-       android:layout_height="fill_parent"
-       android:groupIndicator="@null"
-       android:divider="@null"
-       >
-   </ExpandableListView>
 
-</RelativeLayout>
+       <!-- <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">-->
+            <com.zhongyaogang.view.MyGridView
+                android:id="@+id/gv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:numColumns="2"
+                android:layout_marginTop="@dimen/martop"
+                android:layout_marginLeft="@dimen/martop"
+                android:layout_marginRight="@dimen/martop"
+                android:horizontalSpacing="@dimen/martop"
+                android:verticalSpacing="@dimen/martop"
+                android:divider="@null">
+            </com.zhongyaogang.view.MyGridView>
+        <!-- </ScrollView> -->
+
+
+ </RelativeLayout>

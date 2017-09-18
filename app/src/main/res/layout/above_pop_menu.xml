@@ -5,41 +5,41 @@
      >
 
     <LinearLayout
-        android:layout_width="150dp"
-        android:layout_height="160dp"
+        android:layout_width="@dimen/hundredandtfifty"
+        android:layout_height="@dimen/hundredandtsixty"
         android:layout_centerInParent="true"
         android:background="#F88425"
         android:orientation="vertical" >
         
         <TextView 
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="@dimen/hundred"
+            android:layout_height="@dimen/forty"
+            android:layout_marginTop="@dimen/martopten"
             android:text="添加成功"
-            android:textSize="18sp" 
+            android:textSize="@dimen/medium_text_size"
             android:layout_gravity="center"
             android:textColor="@color/white"
             />
          
         <Button
             android:id="@+id/btn_camera_pop_camera"
-            android:layout_width="120dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="@dimen/hundredandtwenty"
+            android:layout_height="@dimen/forty_five"
+            android:layout_marginTop="@dimen/martop"
             android:background="@color/white"
             android:layout_gravity="center"
             android:text="结算"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
 
         <Button
             android:id="@+id/btn_camera_pop_album"
-            android:layout_width="120dp"
-            android:layout_height="45dp"
-             android:layout_marginTop="5dp"
+            android:layout_width="@dimen/hundredandtwenty"
+            android:layout_height="@dimen/forty_five"
+             android:layout_marginTop="@dimen/martop"
             android:background="@color/white"
              android:layout_gravity="center"
             android:text="继续购物"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
 
        
     </LinearLayout>

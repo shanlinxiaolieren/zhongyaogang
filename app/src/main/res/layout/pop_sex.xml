@@ -7,18 +7,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="@dimen/hundredandtfifty"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF" >
 
         <RelativeLayout
             android:id="@+id/relativeLayout1"
             android:layout_width="match_parent"
-            android:layout_height="50dp" >
+            android:layout_height="@dimen/fifty" >
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/one"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:background="#d9d9d9" />

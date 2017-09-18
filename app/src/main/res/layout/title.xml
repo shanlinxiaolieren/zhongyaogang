@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="52dp"
+    android:layout_height="@dimen/fiftytwo"
     android:background="#9A0000"
     android:orientation="vertical" >
     <RelativeLayout
@@ -16,11 +16,11 @@
     	android:layout_height="fill_parent"
     	android:gravity="center"
     	android:singleLine="true"
-    	android:paddingLeft="64dp"
-    	android:paddingRight="64dp"
+    	android:paddingLeft="@dimen/sixtyfour"
+    	android:paddingRight="@dimen/sixtyfour"
     	android:layout_alignBottom="@+id/btn_back"
     	android:layout_alignTop="@+id/btn_back"
-    	android:textSize="16sp"
+    	android:textSize="@dimen/s_text_size"
     	android:textColor="@color/white"
     	/>
 	<Button 
@@ -29,20 +29,20 @@
     	android:layout_height="fill_parent"
     	android:text="返回"
     	android:drawableLeft="@mipmap/icon_back"
-    	android:textSize="16sp"
+    	android:textSize="@dimen/s_text_size"
     	android:textColor="@color/white"
-    	android:paddingLeft="4sp"
+    	android:paddingLeft="@dimen/foursp"
     	android:background="#9A0000"/>
 	<Button 
 	    android:id="@+id/btn_right"
 	    android:layout_width="wrap_content"
     	android:layout_height="fill_parent"
-    	android:textSize="16sp"
+    	android:textSize="@dimen/s_text_size"
     	android:layout_alignBottom="@+id/btn_back"
     	android:layout_alignTop="@+id/btn_back"
     	android:layout_alignParentRight="true"
     	android:textColor="@color/white"
-    	android:paddingRight="8dp"
+    	android:paddingRight="@dimen/eight"
     	android:background="#9A0000"
     	/>
 	</RelativeLayout>

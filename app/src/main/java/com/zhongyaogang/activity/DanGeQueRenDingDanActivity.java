@@ -1,5 +1,6 @@
 package com.zhongyaogang.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,11 +8,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.app.Activity;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -104,6 +104,13 @@ public class DanGeQueRenDingDanActivity extends Activity implements OnClickListe
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        QueRenDingDanAdd();
+    }
+
     private void intView() {
         wodezhongxin_left = (ImageView) findViewById(R.id.wodezhongxin_left);
         imageview_pigurl = (ImageView) findViewById(R.id.imageview_pigurl);
@@ -124,7 +131,7 @@ public class DanGeQueRenDingDanActivity extends Activity implements OnClickListe
         sp = this.getSharedPreferences("config", 0);
         sharedusernameid = sp.getString("usernameid", "");
         token=sp.getString("token", "");
-        QueRenDingDanAdd();
+
         supplyTitle = getIntent().getStringExtra("supplyTitle");
         shopId = getIntent().getStringExtra("shopId");
         stock = getIntent().getStringExtra("stock");
@@ -191,6 +198,10 @@ public class DanGeQueRenDingDanActivity extends Activity implements OnClickListe
         }.start();
     }
     private  void shoppingCartOrderAdd(){
+        if(datas.size()==0)
+        {
+            Toast.makeText(act, "请添加默认地址", Toast.LENGTH_SHORT).show();
+        }
         new Thread() {
             public void run() {
                 try {
@@ -204,7 +215,10 @@ public class DanGeQueRenDingDanActivity extends Activity implements OnClickListe
                     params.put("messages", messages);//店铺id&留言
                     String strResult= HttpUtils.submitPostDataToken(path,params, "utf-8",token);
                     L.e("返回：params结果="+params);
-                    L.e("返回：shoppingCartOrderAdd结果="+strResult);
+                    L.e("返回：CreateYXTOrderForAppAsync结果="+strResult);
+
+
+
                     Message msg = new Message();
                     msg.what = 2;
                     mHandler.sendMessage(msg);

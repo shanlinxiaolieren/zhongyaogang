@@ -7,6 +7,12 @@
     >
     <include layout="@layout/index_top_relativelayout" />
 
+    <com.zhongyaogang.view.PullToRefreshView
+        android:id="@+id/pv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
     <com.zhongyaogang.widgets.CustomScrollView
         android:id="@+id/customScrollview"
         android:layout_width="match_parent"
@@ -19,67 +25,67 @@
             <ImageView
                 android:id="@+id/guanggaolunbo"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="@dimen/hundredandtfifty"
                 android:contentDescription="@string/app_name"
                 android:src="@mipmap/menu_viewpager_5"
                 />
             <RelativeLayout
                 android:id="@+id/top_relativelayout"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/fifty"
                 android:gravity="center_vertical"
                 android:orientation="horizontal" >
                 <TextView
-                    android:layout_width="180dp"
-                    android:layout_height="40dp"
+                    android:layout_width="@dimen/index_gallery_height"
+                    android:layout_height="@dimen/forty"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="@dimen/eight"
+                    android:layout_marginTop="@dimen/martopten"
+                    android:layout_marginBottom="@dimen/martopten"
                     android:text="@string/zhongyaocaibazaar"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="@dimen/medium_text_size"
                     />
                 <ImageView
                     android:id="@+id/wodezhongxin_right"
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
+                    android:layout_width="@dimen/thirty"
+                    android:layout_height="@dimen/forty"
                     android:contentDescription="@string/app_name"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="@dimen/martopten"
+                    android:layout_marginTop="@dimen/martopten"
+                    android:layout_marginBottom="@dimen/martopten"
                     android:src="@mipmap/zygycpfscright"
                     />
             </RelativeLayout>
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="5dp"
+                android:layout_height="@dimen/sixty"
+                android:layout_marginLeft="@dimen/eight"
+                android:layout_marginTop="@dimen/martop"
                 android:text="@string/yulinsi"
                 android:textColor="@color/black"
-                android:textSize="12sp"  />
+                android:textSize="@dimen/micro_text_size"  />
             <include layout="@layout/search_layout" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1000dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fifteen"
                 android:orientation="vertical"
                 android:background="@color/qianghuangshe"
                 >
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
+                    android:layout_height="@dimen/thirty"
                     android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/martopten"
                     >
                     <ImageView
                         android:id="@+id/imageview_sichangchangpin"
-                        android:layout_width="20dp"
-                        android:layout_height="30dp"
+                        android:layout_width="@dimen/twenty"
+                        android:layout_height="@dimen/thirty"
                         android:contentDescription="@string/app_name"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="@dimen/fifteen"
                         android:layout_alignParentLeft="true"
                         android:src="@mipmap/shichangchanpin"
                         />
@@ -87,24 +93,20 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="6dp"
+                        android:layout_marginLeft="@dimen/six"
                         android:layout_toRightOf="@+id/imageview_sichangchangpin"
                         android:text="@string/sichangchangpin"
                         android:textColor="#595757"
-                        android:textSize="20sp" />
+                        android:textSize="@dimen/l_text_size" />
 
                 </RelativeLayout>
 
                 <include layout="@layout/yuanchanggongying_shangebutton" />
 
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/id_page_vp"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" >
-                </android.support.v4.view.ViewPager>
+
             </LinearLayout>
         </LinearLayout>
     </com.zhongyaogang.widgets.CustomScrollView>
+    </com.zhongyaogang.view.PullToRefreshView>
 </LinearLayout>

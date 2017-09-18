@@ -1,5 +1,41 @@
 package com.zhongyaogang.activity;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.zhongyaogang.R;
+import com.zhongyaogang.bean.YunFeiBean;
+import com.zhongyaogang.config.Constants;
+import com.zhongyaogang.http.HttpUtils;
+import com.zhongyaogang.utils.L;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,41 +48,6 @@ import java.util.Map;
 //import org.apache.http.client.methods.HttpPost;
 //import org.apache.http.impl.client.DefaultHttpClient;
 //import org.apache.http.message.BasicNameValuePair;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.zhongyaogang.R;
-import com.zhongyaogang.bean.YunFeiBean;
-import com.zhongyaogang.config.Constants;
-import com.zhongyaogang.http.HttpUtils;
-import com.zhongyaogang.utils.L;
-
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.View.OnClickListener;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.PopupWindow;
-import android.widget.TextView;
-import android.widget.Toast;
 
 @SuppressWarnings("deprecation")
 @SuppressLint("HandlerLeak")
@@ -86,8 +87,14 @@ public class YunFeiSettingActivity extends Activity implements OnClickListener{
         EventBus.getDefault().register(this);
         act=this;
         intView();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         yunFeiQuary();
     }
+
     @Subscribe
     public void onEventMainThread(String addressId){
         yunFeiDelete(addressId);
@@ -179,11 +186,10 @@ public class YunFeiSettingActivity extends Activity implements OnClickListener{
         }
     }
     public class YunFeiAdapter extends BaseAdapter{
-        private YunFeiSettingActivity act;
         private List<YunFeiBean> data;
         private YunFeiBean  yunfeibean;
-        private Context mcontext;
-        public YunFeiAdapter(Context mcontext, List<YunFeiBean> data) {
+        private Activity mcontext;
+        public YunFeiAdapter(Activity mcontext, List<YunFeiBean> data) {
             super();
             this.mcontext = mcontext;
             this.data = data;
@@ -212,6 +218,7 @@ public class YunFeiSettingActivity extends Activity implements OnClickListener{
             if (convertView == null) {
                 holder = new ViewHolder();
                 convertView = LayoutInflater.from(mcontext).inflate(R.layout.inflate_yunfei_item, null);
+                holder.llayitem=(LinearLayout) convertView.findViewById(R.id.llayitem);
                 holder.title = (TextView) convertView.findViewById(R.id.textview_title);
                 holder.figure = (TextView) convertView.findViewById(R.id.textview_figure);
                 holder.logisticsType = (TextView) convertView.findViewById(R.id.textview_logisticsType);
@@ -256,10 +263,21 @@ public class YunFeiSettingActivity extends Activity implements OnClickListener{
 
                 }
             });
+            holder.llayitem.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    yunfeibean=data.get(dex);
+                    Intent i=new Intent();
+                    i.putExtra("data",yunfeibean);
+                    mcontext.setResult(110,i);
+                    mcontext.finish();
+                }
+            });
             return convertView;
         }
 
         private class ViewHolder {
+            LinearLayout llayitem;
             private TextView title;
             private TextView figure;
             private TextView logisticsType;

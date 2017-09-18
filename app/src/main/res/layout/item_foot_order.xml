@@ -5,74 +5,74 @@
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/forty"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/peisongfangshi"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/martop"
             android:textColor="#161615"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             />
         <TextView
             android:id="@+id/tv_freightTitle"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="@dimen/twenty"
             android:text="@string/kuaidimianyou"
             android:layout_alignParentRight="true"
             android:textColor="#161615"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             android:drawableRight="@mipmap/right_icon"
             />
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/forty"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:text="@string/maojialiuyan"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             android:textColor="#161615"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginTop="@dimen/martop"
+            android:layout_marginLeft="@dimen/martop"
             android:layout_weight="2"/>
         <EditText
             android:id="@+id/editext_message"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/one"
             android:layout_height="wrap_content"
             android:layout_weight="5"
             android:hint="@string/duibencijiayidishuoming"
             android:singleLine="true"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/martop"
             android:textColorHint="#CDCDCD"
             android:background="@null"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             />
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="@dimen/forty"
+        android:layout_marginTop="@dimen/martop"
         >
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="@dimen/thirty"
             android:text="@string/xiaoji"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             android:textColor="#161615"
             android:layout_toLeftOf="@+id/textview_xiaojiprice"
             />
         <TextView
             android:id="@+id/textview_xiaojiprice"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:textSize="18sp"
+            android:layout_width="@dimen/hundred"
+            android:layout_height="@dimen/thirty"
+            android:textSize="@dimen/medium_text_size"
             android:text="@string/zhelinaliprice2"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="@dimen/martop"
             android:textColor="#AE4747"
             android:layout_alignParentRight="true"
             />

@@ -142,7 +142,6 @@ private  String  tag;
         sp = this.getSharedPreferences("config", 0);
         sharedusernameid = sp.getString("usernameid", "");
         token=sp.getString("token", "");
-        addressQuery();
     }
     @Override
     protected void onStart() {

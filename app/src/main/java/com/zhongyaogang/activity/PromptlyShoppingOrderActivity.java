@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,14 +16,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alipay.sdk.app.PayTask;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.zhongyaogang.R;
 import com.zhongyaogang.adapter.QueRenDingDanAddressAdapter;
 import com.zhongyaogang.bean.AddressBean;
 import com.zhongyaogang.config.Constants;
 import com.zhongyaogang.http.HttpUtils;
+import com.zhongyaogang.pay.AuthResult;
 import com.zhongyaogang.utils.L;
 
 import org.greenrobot.eventbus.EventBus;
@@ -70,6 +75,7 @@ public class PromptlyShoppingOrderActivity extends Activity implements View.OnCl
     private  ImageView imageview_pigurl;
     private  String yxtReceivingaddressId;
     private  String messages;
+    private IWXAPI  msgApi;
     private Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -80,16 +86,40 @@ public class PromptlyShoppingOrderActivity extends Activity implements View.OnCl
                     lvAddress.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
                     break;
+                case 2:
+                    @SuppressWarnings("unchecked")
+                    AuthResult authResult = new AuthResult((Map<String, String>) msg.obj, true);
+                    String resultStatus = authResult.getResultStatus();
+                    L.e("resultStatus:"+resultStatus);
+                    // 判断resultStatus 为“9000”且result_code
+                    // 为“200”则代表授权成功，具体状态码代表含义可参考授权接口文档
+                    if (TextUtils.equals(resultStatus, "9000") && TextUtils.equals(authResult.getResultCode(), "200")) {
+                        // 获取alipay_open_id，调支付时作为参数extern_token 的value
+                        // 传入，则支付账户为该授权账户
+                        Toast.makeText(PromptlyShoppingOrderActivity.this,
+                                "授权成功\n" + String.format("authCode:%s", authResult.getAuthCode()), Toast.LENGTH_SHORT)
+                                .show();
+                    } else {
+                        // 其他状态值则为授权失败
+//                        Toast.makeText(PromptlyShoppingOrderActivity.this,
+//                                "授权失败" + String.format("authCode:%s", authResult.getAuthCode()), Toast.LENGTH_SHORT).show();
+
+                    }
+                    break;
                 default:
                     break;
             }
         }
     };
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promptly_shopping_order);
         EventBus.getDefault().register(this);
+//        msgApi = WXAPIFactory.createWXAPI(this, "wxb4ba3c02aa476ea1");
+//        msgApi.sendReq("");
         act = this;
         intView();
     }
@@ -172,10 +202,15 @@ public class PromptlyShoppingOrderActivity extends Activity implements View.OnCl
                     L.e("返回结果：QueRenDingDanAddressitems="+items);
                     Gson gson = new Gson();
                     datas=gson.fromJson(items.toString(),new  TypeToken<List<AddressBean>>(){}.getType());
+                    yxtReceivingaddressId=datas.get(0).getId();//
                     Message msg = new Message();
                     msg.what = 1;
                     mHandler.sendMessage(msg);
                     L.e("返回结果：datas="+datas);
+
+                    /**
+                     *
+                     */
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(getApplicationContext(), "查询失败", Toast.LENGTH_SHORT).show();
@@ -185,7 +220,7 @@ public class PromptlyShoppingOrderActivity extends Activity implements View.OnCl
         }.start();
     }
     private  void PromptlyshoppingOrderAdd(){
-        new Thread() {
+      new Thread() {
             public void run() {
                 try {
                     Looper.prepare();
@@ -201,8 +236,23 @@ public class PromptlyShoppingOrderActivity extends Activity implements View.OnCl
                     String strResult= HttpUtils.submitPostDataToken(path,params, "utf-8",token);
                     L.e("返回：params结果="+params);
                     L.e("返回：PromptlyshoppingOrderAdd结果="+strResult);
+                    if(strResult.equals("401"))
+                    {
+                        Intent i=new Intent(getApplication(),DengLuActivity.class);
+                        startActivity(i);
+                    }
+                   JSONObject object=new JSONObject(strResult);
+                    object=object.getJSONObject("result");
+                    String orderNo=object.getString("orderNo");
+                    String orderId=object.getString("orderId");
+                    String payString=object.getString("payString");
+                    L.e("payString:"+payString.toString());
+                    PayTask alipay = new PayTask(PromptlyShoppingOrderActivity.this);
+                    Map<String, String> result = alipay.payV2(payString, true);
+                    Log.i("msp", result.toString());
                     Message msg = new Message();
                     msg.what = 2;
+                    msg.obj = result;
                     mHandler.sendMessage(msg);
                 } catch (Exception e) {
                     e.printStackTrace();

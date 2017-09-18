@@ -1,15 +1,5 @@
 package com.zhongyaogang.adapter;
 
-import java.util.List;
-
-import org.greenrobot.eventbus.EventBus;
-
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.zhongyaogang.R;
-import com.zhongyaogang.activity.ShengQingShoppingAddActivity;
-import com.zhongyaogang.bean.ShengQingShoppingBean;
-import com.zhongyaogang.utils.L;
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -19,6 +9,17 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.zhongyaogang.R;
+import com.zhongyaogang.activity.ShengQingShoppingAddActivity;
+import com.zhongyaogang.bean.ShengQingShoppingBean;
+import com.zhongyaogang.utils.L;
+import com.zhongyaogang.view.MyGridView;
+
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ShengQingShoppingAdapter extends BaseAdapter{
     private List<ShengQingShoppingBean> data;
@@ -30,10 +31,8 @@ public class ShengQingShoppingAdapter extends BaseAdapter{
         this.mcontext = mcontext;
         this.data = data;
     }
-
     @Override
     public int getCount() {
-
         return data.size();
     }
 
@@ -48,7 +47,7 @@ public class ShengQingShoppingAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
         final int dex=position;
         if (convertView == null) {
@@ -62,10 +61,7 @@ public class ShengQingShoppingAdapter extends BaseAdapter{
             holder.textView_xiugai = (TextView) convertView.findViewById(R.id.textView_xiugai);
             holder.textView_shanchu = (TextView) convertView.findViewById(R.id.textView_shanchu);
             holder.imageview_shengqingshoppingquanbu = (ImageView) convertView.findViewById(R.id.imageview_shengqingshoppingquanbu);
-            holder.imageview_picture1 = (ImageView) convertView.findViewById(R.id.imageview_picture1);
-            holder.imageview_picture2 = (ImageView) convertView.findViewById(R.id.imageview_picture2);
-            holder.imageview_picture3 = (ImageView) convertView.findViewById(R.id.imageview_picture3);
-            holder.imageview_picture4 = (ImageView) convertView.findViewById(R.id.imageview_picture4);
+            holder.gv = (MyGridView) convertView.findViewById(R.id.gv);
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder) convertView.getTag();
@@ -79,26 +75,26 @@ public class ShengQingShoppingAdapter extends BaseAdapter{
         final String [] resultCertificate=result.split(",");
         L.e("返回结果：resultCertificate[0]="+resultCertificate[0]);
         final String [] resultidCardPng=data.get(position).getIdCardPng().split(",");
-        ImageLoader.getInstance().displayImage(resultidCardPng[0], holder.imageview_picture1);
-        ImageLoader.getInstance().displayImage(resultidCardPng[1], holder.imageview_picture2);
-        ImageLoader.getInstance().displayImage(resultCertificate[0], holder.imageview_picture3);
-        ImageLoader.getInstance().displayImage(resultCertificate[1], holder.imageview_picture4);
+        ArrayList<String> list=new ArrayList<>();
+        for(int i=0;i<resultidCardPng.length;i++)
+        {
+            list.add(resultidCardPng[i]);
+        }
+        for(int i=0;i<resultCertificate.length;i++)
+        {
+            list.add(resultCertificate[i]);
+        }
+        GridviewAdapter adapter=new GridviewAdapter(mcontext,list);
+        holder.gv.setAdapter(adapter);
         holder.imageview_shengqingshoppingquanbu.setOnClickListener(new OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 if (isActive) {
                     isActive = false;
-                    holder.imageview_picture1.setVisibility(View.VISIBLE);
-                    holder.imageview_picture2.setVisibility(View.VISIBLE);
-                    holder.imageview_picture3.setVisibility(View.VISIBLE);
-                    holder.imageview_picture4.setVisibility(View.VISIBLE);
+                    holder.gv.setVisibility(View.VISIBLE);
+        ;
                 }else{
                     isActive = true;
-                    holder.imageview_picture1.setVisibility(View.GONE);
-                    holder.imageview_picture2.setVisibility(View.GONE);
-                    holder.imageview_picture3.setVisibility(View.GONE);
-                    holder.imageview_picture4.setVisibility(View.GONE);
                 }
             }
         });
@@ -133,8 +129,15 @@ public class ShengQingShoppingAdapter extends BaseAdapter{
 
             @Override
             public void onClick(View V) {
-                EventBus.getDefault().post(data.get(dex).getId());
-                data.remove(dex);
+                shengqingbean=data.get(dex);
+                if(Integer.parseInt(shengqingbean.getState())>=2) {
+                    EventBus.getDefault().post(data.get(dex).getId());
+                    data.remove(dex);
+                }
+                else
+                {
+
+                }
 
             }
         });
@@ -150,9 +153,6 @@ public class ShengQingShoppingAdapter extends BaseAdapter{
         private TextView textView_xiugai;
         private TextView textView_shanchu;
         private ImageView imageview_shengqingshoppingquanbu;
-        private ImageView imageview_picture1;
-        private ImageView imageview_picture2;
-        private ImageView imageview_picture3;
-        private ImageView imageview_picture4;
+        private MyGridView gv;
     }
 }

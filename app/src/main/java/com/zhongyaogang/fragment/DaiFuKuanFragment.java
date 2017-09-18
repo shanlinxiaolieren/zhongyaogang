@@ -137,7 +137,12 @@ public class DaiFuKuanFragment extends Fragment{
         mRecyclerView = (RecyclerView) view.findViewById(R.id.mRecyclerView);
         sp = getActivity().getSharedPreferences("config", 0);
         token = sp.getString("token", "");
-        daifukuanQuery();
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        daifukuanQuery();
     }
 }

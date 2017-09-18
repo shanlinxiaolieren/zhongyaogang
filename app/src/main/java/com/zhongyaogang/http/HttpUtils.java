@@ -1,13 +1,15 @@
 package com.zhongyaogang.http;
 
+import com.zhongyaogang.utils.L;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.io.OutputStream;
-import java.io.InputStream;
-import java.util.Map;
-import java.io.IOException;
 import java.net.URLEncoder;
-import java.io.ByteArrayOutputStream;
+import java.util.Map;
 
 public class HttpUtils {
     /*
@@ -56,6 +58,7 @@ public class HttpUtils {
             outputStream.write(data);
 
             int response = httpURLConnection.getResponseCode();            //获得服务器的响应码
+            L.e("response:"+response);
             if(response == HttpURLConnection.HTTP_OK) {
                 InputStream inptStream = httpURLConnection.getInputStream();
                 return dealResponseResult(inptStream);                     //处理服务器的响应结果
@@ -66,11 +69,11 @@ public class HttpUtils {
             {
                 return "404";
             }
+            return response+"";
         } catch (IOException e) {
             //e.printStackTrace();
             return "err: " + e.getMessage().toString();
         }
-        return "-1";
     }
     /*
      * Function  :   发送Post请求到服务器
@@ -99,21 +102,17 @@ public class HttpUtils {
             outputStream.write(data);
 
             int response = httpURLConnection.getResponseCode();            //获得服务器的响应码
+            L.e("response:"+response);
             if(response == HttpURLConnection.HTTP_OK) {
                 InputStream inptStream = httpURLConnection.getInputStream();
                 return dealResponseResult(inptStream);                     //处理服务器的响应结果
-            }else if(response==HttpURLConnection.HTTP_UNAUTHORIZED){
-                return "401";
             }
-            else if(response==404)
-            {
-                return "404";
-            }
+            InputStream inptStream = httpURLConnection.getInputStream();
+            return response+": "+dealResponseResult(inptStream);
         } catch (IOException e) {
             //e.printStackTrace();
             return "err: " + e.getMessage().toString();
         }
-        return "-1";
     }
 
     /*

@@ -1,17 +1,17 @@
 package com.zhongyaogang.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Activity;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,12 +21,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zhongyaogang.R;
 import com.zhongyaogang.adapter.QueRenDingDanAddressAdapter;
-import com.zhongyaogang.adapter.RecycleViewAdapter;
 import com.zhongyaogang.adapter.RecycleViewOrderAdapter;
 import com.zhongyaogang.bean.AddressBean;
-import com.zhongyaogang.bean.NewDate;
 import com.zhongyaogang.bean.NewShoppingCartOrderBean;
-import com.zhongyaogang.bean.OrderBean;
 import com.zhongyaogang.bean.QueRenOrderBean;
 import com.zhongyaogang.config.Constants;
 import com.zhongyaogang.http.HttpUtils;
@@ -119,10 +116,16 @@ public class QueRenDingDanActivity extends Activity implements OnClickListener,R
         token=sp.getString("token", "");
 
            cartsList=getIntent().getStringExtra("cartsList");
-        QueRenDingDanAddressQuery();
-        QueRenDingDanQuery();
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        QueRenDingDanAddressQuery();
+        QueRenDingDanQuery();
+    }
+
     private void QueRenDingDanQuery(){
         new Thread() {
             public void run() {

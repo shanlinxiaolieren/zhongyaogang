@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="49dp"
+    android:layout_height="@dimen/forty_nine"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/forty"
         >
         <ImageView
             android:id="@+id/imageView1_zhangsan"
-            android:layout_width="20dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/twenty"
+            android:layout_height="@dimen/thirty"
             android:contentDescription="@string/app_name"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="@dimen/fifteen"
             android:src="@mipmap/home_selected"
             android:layout_alignParentLeft="true"
             />
 
         <TextView
             android:id="@+id/tv_shopname"
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="@dimen/hundred"
+            android:layout_height="@dimen/thirty"
+            android:layout_marginLeft="@dimen/six"
+            android:layout_marginTop="@dimen/martop"
             android:layout_toRightOf="@+id/imageView1_zhangsan"
             android:text="张三店"
             android:textColor="#C3C3C3"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
         <TextView
             android:id="@+id/tv_orderstate"
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="@dimen/sixty"
+            android:layout_height="@dimen/thirty"
+            android:layout_marginTop="@dimen/martop"
             android:layout_alignParentRight="true"
             android:text="待付款"
             android:textColor="#CA7D7D"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/one"
         android:background="#E1E1E1" />
 </LinearLayout>

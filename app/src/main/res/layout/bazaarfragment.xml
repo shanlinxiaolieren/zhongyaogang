@@ -7,20 +7,20 @@
      <LinearLayout
         android:id="@+id/index_top_layout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/forty_eight"
         android:gravity="center_vertical"
         android:background="#9A0000"
         android:orientation="horizontal" >
        
         <TextView
             android:id="@+id/index_search_yaocaiwang"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/dongmingsichang"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:textSize="@dimen/large_text_size" />
     </LinearLayout>
     
     
@@ -33,40 +33,40 @@
         <LinearLayout
         android:id="@+id/index_top_layout_gonghuo"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="@dimen/forty_four"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
-        <TextView
-            android:id="@+id/index_search_gongqiu"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
-            android:text="@string/gongqiu"
-            android:textColor="@color/black"
-            android:textSize="22sp" />
+            <Spinner
+                android:id="@+id/sp"
+                android:layout_width="@dimen/seventy"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/martop"
+                android:clickable="true"
+                android:text="供求"
+                android:textColor="@color/black"
+                android:textSize="@dimen/large_text_size" />
        
             <FrameLayout
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="@dimen/fifteen"
             android:layout_weight="7"
             >
 
             <EditText
                 android:id="@+id/search_et_input"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/fifteen"
                 android:layout_gravity="center_vertical"
                 android:background="@null"
                 android:textCursorDrawable="@null"
                 android:textColorHint="@color/black"
-                android:drawablePadding="5dp"
-                android:hint="@string/index_search_edit_hint"
+                android:drawablePadding="@dimen/martop"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="@dimen/s_text_size" />
 
             <ImageView
                 android:id="@+id/search_iv_delete"
@@ -74,26 +74,26 @@
                 android:layout_height="wrap_content"
                  android:contentDescription="@string/app_name"
                 android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="@dimen/twenty"
                 android:src="@drawable/btn_clear_input_selector"
                 android:visibility="gone" />
         </FrameLayout>
           <ImageView
             android:id="@+id/index_search_button"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_margin="5dp"
+            android:layout_height="@dimen/thirty"
+            android:layout_margin="@dimen/martop"
              android:contentDescription="@string/app_name"
             android:clickable="true"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
+            android:paddingLeft="@dimen/martop"
+            android:paddingRight="@dimen/martop"
             android:src="@mipmap/search" />
        </LinearLayout>
        <ListView
         android:id="@+id/listview_bazaar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:dividerHeight="8dp" />
+        android:dividerHeight="@dimen/eight" />
         
     </LinearLayout>
 </LinearLayout>

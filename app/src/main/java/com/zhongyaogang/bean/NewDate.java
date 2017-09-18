@@ -15,6 +15,15 @@ public class NewDate {
     private String quantity;//数量
     private String stateCode;//交易状态码
     private String orderId;
+    private String state;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 
     public NewDate(int type, String shopName, String orderState, String imagesUrl, String merchandiseName, String actualPrice, String farePrice, String payable, String quantity, String stateCode) {
         this.type = type;

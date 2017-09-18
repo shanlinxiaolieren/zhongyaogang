@@ -5,11 +5,11 @@
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/martop"
+        android:layout_marginBottom="@dimen/martop"
+        android:layout_marginLeft="@dimen/martopten"
+        android:layout_marginRight="@dimen/martopten"
+        android:layout_height="@dimen/fifty"
         android:background="@null"
         android:id="@+id/editText"
         android:layout_weight="1" />

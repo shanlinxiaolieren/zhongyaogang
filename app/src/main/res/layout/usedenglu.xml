@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/relativelayout_denglu"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="@dimen/eighty"
     android:background="#B92204">
     
                <ImageView
@@ -10,8 +10,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                          android:contentDescription="@string/app_name"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="@dimen/martopten"
+                        android:layout_marginTop="@dimen/martop"
                         android:background="@color/white"
                         android:src="@mipmap/centre_red" />
 
@@ -20,8 +20,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="@dimen/martopten"
+                        android:layout_marginTop="@dimen/martopten"
                         android:layout_toRightOf="@+id/imageView1"
                         android:text="山头某某"
                         android:textColor="@color/white" />
@@ -30,7 +30,7 @@
                         android:id="@+id/textview_shoujihaoma"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/martopten"
                         android:layout_alignBottom="@+id/imageView1"
                         android:layout_alignLeft="@+id/textView_username"
                         android:layout_below="@+id/textView_username"
@@ -48,12 +48,12 @@
                         />
                     <ImageView
                         android:id="@+id/imageview_denglu"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="@dimen/twenty"
+                        android:layout_height="@dimen/twenty"
                          android:contentDescription="@string/app_name"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="@dimen/martopten"
                         android:src="@mipmap/personel_arrow_right" />
 
 </RelativeLayout>

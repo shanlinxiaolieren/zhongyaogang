@@ -11,24 +11,24 @@
         >
         <ImageView
             android:id="@+id/imageview_xitongtongzhi"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/forty"
+            android:layout_height="@dimen/forty"
             android:layout_alignParentLeft="true"
             android:contentDescription="@string/app_name"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/martop"
             android:src="@mipmap/xitongtongzi"/>
         <TextView
             android:id="@+id/textview_xitongtongzhi"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
+            android:layout_height="@dimen/twenty"
+            android:layout_marginTop="@dimen/martopten"
+            android:layout_marginLeft="@dimen/martop"
             android:layout_toRightOf="@+id/imageview_xitongtongzhi"
             android:text="@string/xitongtongzhi"
             android:textColor="#4A4848"/>
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="@dimen/twenty"
             android:layout_alignLeft="@+id/textview_xitongtongzhi"
             android:layout_below="@+id/textview_xitongtongzhi"
             android:text="@string/xitongtongzhixia"
@@ -38,27 +38,27 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/martopten"
         >
         <ImageView
             android:id="@+id/imageview_dingdanxiaoxi"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="5dp"
+            android:layout_width="@dimen/forty"
+            android:layout_height="@dimen/forty"
+            android:layout_margin="@dimen/martop"
             android:src="@mipmap/dingdanxiaoxi"
             />
         <TextView
             android:id="@+id/textview_dingdanxiaoxi"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
+            android:layout_height="@dimen/twenty"
+            android:layout_marginTop="@dimen/martopten"
+            android:layout_marginLeft="@dimen/martop"
             android:layout_toRightOf="@+id/imageview_dingdanxiaoxi"
             android:text="@string/dingdanxiaoxi"
             android:textColor="#4A4848"/>
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
+            android:layout_height="@dimen/twenty"
             android:layout_alignLeft="@+id/textview_dingdanxiaoxi"
             android:layout_below="@+id/textview_dingdanxiaoxi"
             android:text="@string/dingdanxiaoxixia"

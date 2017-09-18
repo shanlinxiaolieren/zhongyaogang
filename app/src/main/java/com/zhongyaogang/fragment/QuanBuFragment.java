@@ -1,16 +1,5 @@
 package com.zhongyaogang.fragment;
 
-import com.zhongyaogang.activity.DengLuActivity;
-import com.zhongyaogang.R;
-import com.zhongyaogang.activity.DingDanXiangQingActivity;
-import com.zhongyaogang.adapter.RecycleViewAdapter;
-import com.zhongyaogang.bean.NewDate;
-import com.zhongyaogang.bean.OrderBean;
-import com.zhongyaogang.config.Constants;
-import com.zhongyaogang.http.HttpUtils;
-import com.zhongyaogang.utils.L;
-import com.zhongyaogang.utils.SystemUtil;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,9 +12,20 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Toast;
+
+import com.zhongyaogang.R;
+import com.zhongyaogang.activity.DengLuActivity;
+import com.zhongyaogang.activity.DingDanXiangQingActivity;
+import com.zhongyaogang.adapter.RecycleViewAdapter;
+import com.zhongyaogang.bean.NewDate;
+import com.zhongyaogang.bean.OrderBean;
+import com.zhongyaogang.config.Constants;
+import com.zhongyaogang.http.HttpUtils;
+import com.zhongyaogang.utils.L;
+import com.zhongyaogang.utils.SystemUtil;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -110,8 +110,15 @@ public class QuanBuFragment extends Fragment implements OnClickListener{
         mRecyclerView = (RecyclerView) view.findViewById(R.id.mRecyclerView);
         sp = getActivity().getSharedPreferences("config", 0);
         token = sp.getString("token", "");
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         quanbuQuery();
     }
+
     private void quanbuQuery() {
         // 数据应该提交给服务器 由服务器比较是否正确
         new Thread() {

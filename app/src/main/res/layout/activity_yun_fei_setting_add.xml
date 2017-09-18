@@ -15,78 +15,78 @@
         >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/martopten"
+            android:layout_height="@dimen/fifty"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
                 android:text="标题"
-                android:textSize="18sp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="8dp"
+                android:textSize="@dimen/medium_text_size"
+                android:layout_marginTop="@dimen/martop"
+                android:layout_marginLeft="@dimen/eight"
                 android:textColor="#525151"
                 android:layout_weight="1"/>
             <EditText
                 android:id="@+id/edittext_title"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:hint="请填写标题"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/martop"
                 android:textColorHint="#CDCDCD"
                 android:background="@null"
-                android:textSize="18sp"
+                android:textSize="@dimen/medium_text_size"
                 />
         </LinearLayout>
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/one"
             android:background="#BABABA" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/martopten"
+            android:layout_height="@dimen/fifty"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
                 android:text="默认运费金额"
-                android:textSize="18sp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="8dp"
+                android:textSize="@dimen/medium_text_size"
+                android:layout_marginTop="@dimen/martop"
+                android:layout_marginLeft="@dimen/eight"
                 android:textColor="#525151"
                 android:layout_weight="2"/>
             <EditText
                 android:id="@+id/edittext_figure"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:hint="请填写金额"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/martop"
                 android:textColorHint="#CDCDCD"
                 android:background="@null"
-                android:textSize="18sp"
+                android:textSize="@dimen/medium_text_size"
                 />
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/one"
             android:background="#BABABA" />
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="@dimen/fifty"
+            android:layout_marginTop="@dimen/martopten"
             android:background="@color/white">
             <TextView
-                android:layout_width="80dp"
+                android:layout_width="@dimen/eighty"
                 android:layout_height="wrap_content"
                 android:text="物流类型"
-                android:textSize="18sp"
+                android:textSize="@dimen/medium_text_size"
                 android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="8dp"
+                android:layout_marginTop="@dimen/martop"
+                android:layout_marginLeft="@dimen/eight"
                 android:textColor="#525151"
                 />
             <!-- <TextView
@@ -102,87 +102,87 @@
 
             <TextView
                 android:id="@+id/textview_kuaidi"
-                android:layout_width="100dp"
+                android:layout_width="@dimen/hundred"
                 android:layout_height="wrap_content"
                 android:text="快递"
-                android:textSize="18sp"
+                android:textSize="@dimen/medium_text_size"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/martop"
                 android:clickable="true"
                 android:textColor="#525151"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="@dimen/martopten"
                 android:drawableRight="@mipmap/personel_arrow_right"
                 />
         </RelativeLayout>
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/one"
             android:background="#BABABA" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/martopten"
+            android:layout_height="@dimen/fifty"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
                 android:text="多少个产品加一次运费"
-                android:textSize="18sp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="8dp"
+                android:textSize="@dimen/medium_text_size"
+                android:layout_marginTop="@dimen/martop"
+                android:layout_marginLeft="@dimen/eight"
                 android:textColor="#525151"
                 android:layout_weight="3"/>
             <EditText
                 android:id="@+id/edittext_changpingeshu"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:hint="输入产品个数"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/martop"
                 android:textColorHint="#CDCDCD"
                 android:background="@null"
-                android:textSize="18sp"
+                android:textSize="@dimen/medium_text_size"
                 />
         </LinearLayout>
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/one"
             android:background="#BABABA" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_height="50dp"
+            android:layout_marginTop="@dimen/martopten"
+            android:layout_height="@dimen/fifty"
             android:orientation="horizontal">
             <TextView
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
                 android:text="每次运费加多少金额 "
-                android:textSize="18sp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="8dp"
+                android:textSize="@dimen/medium_text_size"
+                android:layout_marginTop="@dimen/martop"
+                android:layout_marginLeft="@dimen/eight"
                 android:textColor="#525151"
                 android:layout_weight="3"/>
             <EditText
                 android:id="@+id/edittext_jine"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:hint="输入金额"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/martop"
                 android:textColorHint="#CDCDCD"
                 android:background="@null"
-                android:textSize="18sp"
+                android:textSize="@dimen/medium_text_size"
                 />
         </LinearLayout>
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/one"
             android:background="#BABABA" />
     </LinearLayout>
     <TextView
         android:id="@+id/rl_save_yunfeiadd"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/fifty"
         android:background="#940000"
         android:clickable="true"
         android:gravity="center"

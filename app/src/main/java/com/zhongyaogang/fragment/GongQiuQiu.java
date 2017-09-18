@@ -1,21 +1,5 @@
 package com.zhongyaogang.fragment;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-//import org.apache.http.HttpResponse;
-//import org.apache.http.NameValuePair;
-//import org.apache.http.client.HttpClient;
-//import org.apache.http.client.entity.UrlEncodedFormEntity;
-//import org.apache.http.client.methods.HttpPost;
-//import org.apache.http.impl.client.DefaultHttpClient;
-//import org.apache.http.message.BasicNameValuePair;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -37,13 +21,30 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.zhongyaogang.R;
 import com.zhongyaogang.activity.DengLuActivity;
 import com.zhongyaogang.activity.QiuGouActivity;
-import com.zhongyaogang.R;
 import com.zhongyaogang.bean.QiuBean;
 import com.zhongyaogang.config.Constants;
 import com.zhongyaogang.http.HttpUtils;
 import com.zhongyaogang.utils.L;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+//import org.apache.http.HttpResponse;
+//import org.apache.http.NameValuePair;
+//import org.apache.http.client.HttpClient;
+//import org.apache.http.client.entity.UrlEncodedFormEntity;
+//import org.apache.http.client.methods.HttpPost;
+//import org.apache.http.impl.client.DefaultHttpClient;
+//import org.apache.http.message.BasicNameValuePair;
 
 @SuppressWarnings("deprecation")
 @SuppressLint("HandlerLeak")
@@ -163,8 +164,15 @@ public class GongQiuQiu extends Fragment{
         listview_wodefabu=(ListView) view.findViewById(R.id.listview_wodefabu);
         sp =getActivity().getSharedPreferences("config", 0);
         token = sp.getString("token", "");
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         qiuQuery();
     }
+
     class ListAdapter extends BaseAdapter {
         private List<QiuBean> mListData;
         private GongQiuQiu act;

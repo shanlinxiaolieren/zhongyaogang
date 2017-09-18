@@ -10,7 +10,7 @@
      <RelativeLayout
         android:id="@+id/index_top_layout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/sixty"
         android:gravity="center_vertical"
         android:background="#9A0000"
         android:orientation="horizontal" >
@@ -22,15 +22,15 @@
              android:layout_centerInParent="true"
             android:text="我的中心"
             android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:textSize="@dimen/large_text_size" />
          <ImageView 
                 android:id="@+id/wodezhongxin_xingxi"
-                android:layout_width="25dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/twentyfive"
+                android:layout_height="@dimen/thirty"
                  android:contentDescription="@string/app_name"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginRight="@dimen/martopten"
+                android:layout_marginTop="@dimen/martopten"
                 android:src="@mipmap/wodezhongxin_xingxi"
                 />
     </RelativeLayout>
@@ -49,18 +49,18 @@
     
           <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="@dimen/sixty"
                     android:background="@color/white"
                     android:orientation="horizontal"
                      >
 
                     <LinearLayout
                         android:id="@+id/linearlayout_quanbu"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/zero"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:clickable="true"
-                         android:layout_marginTop="5dp"
+                         android:layout_marginTop="@dimen/martop"
                         android:orientation="vertical" >
                  <ImageView
                       android:id="@+id/imageView1"
@@ -73,23 +73,23 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="@dimen/martop"
                             android:text="全部订单"
                             android:textColor="#595757" />
                     </LinearLayout>
 
                     <View
-                        android:layout_width="1dp"
+                        android:layout_width="@dimen/one"
                         android:layout_height="match_parent"
                         android:background="#BABABA" />
 
                     <LinearLayout
                          android:id="@+id/linearlayout_daifukuan"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/zero"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:clickable="true"
-                         android:layout_marginTop="5dp"
+                         android:layout_marginTop="@dimen/martop"
                         android:orientation="vertical" >
 
                        <ImageView
@@ -103,23 +103,23 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="@dimen/martop"
                             android:text="待付款"
                             android:textColor="#595757" />
                     </LinearLayout>
 
                     <View
-                        android:layout_width="1dp"
+                        android:layout_width="@dimen/one"
                         android:layout_height="match_parent"
                         android:background="#BABABA" />
 
                     <LinearLayout
                          android:id="@+id/linearlayout_daifahua"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/zero"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:clickable="true"
-                         android:layout_marginTop="5dp"
+                         android:layout_marginTop="@dimen/martop"
                         android:orientation="vertical" >
 
                        <ImageView
@@ -134,22 +134,22 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="@dimen/martop"
                             android:text="待发货"
                             android:textColor="#595757" />
                     </LinearLayout>
                      <View
-                        android:layout_width="1dp"
+                        android:layout_width="@dimen/one"
                         android:layout_height="match_parent"
                         android:background="#BABABA" />
                     
                     <LinearLayout
                          android:id="@+id/linearlayout_shouhuo"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/zero"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:clickable="true"
-                         android:layout_marginTop="5dp"
+                         android:layout_marginTop="@dimen/martop"
                         android:orientation="vertical" >
 
                        <ImageView
@@ -164,155 +164,155 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="@dimen/martop"
                             android:text="售后"
                             android:textColor="#595757" />
                     </LinearLayout>
                 </LinearLayout>
                     <View
                         android:layout_width="match_parent"
-                        android:layout_marginTop="5dp"
-                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/martop"
+                        android:layout_height="@dimen/one"
                         android:background="#BABABA" />
     
             <RelativeLayout 
                 android:id="@+id/relativelayout_wodefabu"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="@dimen/fifty"
+                android:layout_marginTop="@dimen/martopten"
                 android:background="@color/white"
                 >
              <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
+            android:textSize="@dimen/l_text_size"
             android:textColor="#595757"
             android:text="我的发布"/>
                 
             </RelativeLayout>
                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/one"
                         android:background="#BABABA" />
             <RelativeLayout 
                 android:id="@+id/relativelayout_shopping"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/fifty"
                 android:background="@color/white"
                 >
              <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
+            android:textSize="@dimen/l_text_size"
             android:textColor="#595757"
             android:text="购物车"/>
                 
             </RelativeLayout>
                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/one"
                         android:background="#BABABA" />
             <RelativeLayout 
                 android:id="@+id/relativelayout_address"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/fifty"
                 android:background="@color/white"
                 >
              <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
+            android:textSize="@dimen/l_text_size"
             android:textColor="#595757"
             android:text="我的地址"/>
                 
             </RelativeLayout>
                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/one"
                         android:background="#BABABA" />
             <RelativeLayout 
                 android:id="@+id/relativelayout_shengqingshopping"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/fifty"
                 android:background="@color/white"
                 >
              <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
+            android:textSize="@dimen/l_text_size"
             android:textColor="#595757"
             android:text="申请做商户"/>
                 
             </RelativeLayout>
                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/one"
                         android:background="#BABABA" />
             <RelativeLayout 
                 android:id="@+id/relativelayout_changepassword"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/fifty"
                 android:background="@color/white"
                 >
              <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
+            android:textSize="@dimen/l_text_size"
             android:textColor="#595757"
             android:text="修改密码"/>
                 
             </RelativeLayout>
                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/one"
                         android:background="#BABABA" />
             <RelativeLayout 
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/fifty"
                 android:background="@color/white"
                 >
              <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
+            android:textSize="@dimen/l_text_size"
             android:textColor="#595757"
             android:text="意见反馈"/>
                 
             </RelativeLayout>
                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/one"
                         android:background="#BABABA" />
             <RelativeLayout 
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/fifty"
                 android:background="@color/white"
                 >
              <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
+            android:textSize="@dimen/l_text_size"
             android:textColor="#595757"
             android:text="客户与帮助"/>
                 

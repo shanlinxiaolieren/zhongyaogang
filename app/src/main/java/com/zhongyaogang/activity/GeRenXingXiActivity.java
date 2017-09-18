@@ -6,8 +6,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -29,10 +31,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zhongyaogang.R;
-import com.zhongyaogang.utils.FileDirectory;
-import com.zhongyaogang.utils.ImageProcessingUtil;
 
-import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class GeRenXingXiActivity extends Activity implements OnClickListener{
     private ImageView wodezhongxin_left;
@@ -165,7 +167,46 @@ public class GeRenXingXiActivity extends Activity implements OnClickListener{
         popWindow.showAsDropDown(parent,10,20);
     }
 
-
+    private Bitmap getbitmap(Intent data)
+    {
+        Bitmap b= (Bitmap) data.getExtras().get("data");
+        Matrix matrix = new Matrix();
+        matrix.setScale(0.5f, 0.5f);
+        b = Bitmap.createBitmap(b, 0, 0, b.getWidth(),
+                b.getHeight(), matrix, true);
+        return  b;
+    }
+    private int caculateInSampleSize(BitmapFactory.Options options, int rqsW, int rqsH) {
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+        if (rqsW == 0 || rqsH == 0) return 1;
+        if (height > rqsH || width > rqsW) {
+            final int heightRatio = Math.round((float) height / (float) rqsH);
+            final int widthRatio = Math.round((float) width / (float) rqsW);
+            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+        }
+        return inSampleSize;
+    }
+    private Bitmap compressBitmap(String path, int rqsW, int rqsH) {
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(path, options);
+        options.inSampleSize = caculateInSampleSize(options, rqsW, rqsH);
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeFile(path, options);
+    }
+    private Bitmap GetBitmap(Intent data)
+    {
+        Uri selectedImage = data.getData();
+        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(selectedImage,
+                filePathColumn, null, null, null);
+        cursor.moveToFirst();
+        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+        String picturePath = cursor.getString(columnIndex);
+        return compressBitmap(picturePath, 100, 100);
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -177,17 +218,11 @@ public class GeRenXingXiActivity extends Activity implements OnClickListener{
             } else {
                 switch (requestCode) {
                     case 1:
-                        String tuPianurl=FileDirectory.pzls;
-                        ImageProcessingUtil.save(tuPian1, 70);
-                        bitmap=BitmapFactory
-                                .decodeFile(tuPianurl);
+                        bitmap = getbitmap(data);
                         imageview_touxiang.setImageBitmap(bitmap);
                         break;
                     case 4:
-                        String tuPian = ImageProcessingUtil.selectImage(
-                                this, data, 70);
-                        bitmap=BitmapFactory
-                                .decodeFile(tuPian);
+                        bitmap=GetBitmap(data);
                         imageview_touxiang.setImageBitmap(bitmap);
                         break;
                     default:
@@ -304,37 +339,46 @@ public class GeRenXingXiActivity extends Activity implements OnClickListener{
         bendiDelete.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Intent takePictureIntent = new Intent(
-                        MediaStore.ACTION_IMAGE_CAPTURE);
-                // 指定存放拍摄照片的位置
-                File f = ImageProcessingUtil
-                        .getAlbumDir(FileDirectory.YIJIANFANKUI);
-                FileDirectory.pzls = f.getAbsolutePath();
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        Uri.fromFile(f));
-                startActivityForResult(takePictureIntent, k);
-//				if (mpopupWindow != null && mpopupWindow.isShowing())
-//				{
-//					mpopupWindow.dismiss();
-//				}
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, k);
+                if (mpopupWindow != null && mpopupWindow.isShowing())
+                {
+                    mpopupWindow.dismiss();
+                }
             }
         });
         bendiAllSelect.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-				/* 调用本地 */
-                Intent intent2 = new Intent(Intent.ACTION_GET_CONTENT);
-                intent2.setType("image/*");
-                startActivityForResult(intent2, k + 3);
-//                if (mpopupWindow != null && mpopupWindow.isShowing())
-//                {
-//                    mpopupWindow.dismiss();
-//                }
+                Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent, k + 3);
+                if (mpopupWindow != null && mpopupWindow.isShowing())
+                {
+                    mpopupWindow.dismiss();
+                }
             }
         });
         mpopupWindow.setBackgroundDrawable(new BitmapDrawable());
         mpopupWindow.showAtLocation(v, Gravity.BOTTOM, 0, 0);
     }
+    public static Long getData()
+    {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd HH:mm:ss");
+        Date date = null;
 
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy年MM月dd HH:mm:ss");
+        String time=  sdf.format( new  Date());
+
+        try
+        {
+            date = simpleDateFormat.parse(time);
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+            return 0l;
+        }
+        return date.getTime();
+    }
 }

@@ -1,30 +1,30 @@
 package com.zhongyaogang.activity;
 
 
-        import com.zhongyaogang.R;
-        import com.zhongyaogang.fragment.BazaarFragment;
-        import com.zhongyaogang.fragment.CentreFragment;
-        import com.zhongyaogang.fragment.GongQiuFragment;
-        import com.zhongyaogang.fragment.HomeFragment;
-        import com.zhongyaogang.fragment.ShoppingFragment;
-        import com.zhongyaogang.utils.L;
-
         import android.annotation.SuppressLint;
-        import android.content.Intent;
-        import android.content.SharedPreferences;
-        import android.os.Bundle;
-        import android.support.v4.app.Fragment;
-        import android.support.v4.app.FragmentActivity;
-        import android.support.v4.app.FragmentManager;
-        import android.support.v4.app.FragmentTransaction;
-        import android.support.v4.view.ViewPager.OnPageChangeListener;
-        import android.view.View;
-        import android.view.WindowManager;
-        import android.view.View.OnClickListener;
-        import android.view.Window;
-        import android.widget.ImageView;
-        import android.widget.LinearLayout;
-        import android.widget.TextView;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.zhongyaogang.R;
+import com.zhongyaogang.fragment.BazaarFragment;
+import com.zhongyaogang.fragment.CentreFragment;
+import com.zhongyaogang.fragment.GongQiuFragment;
+import com.zhongyaogang.fragment.HomeFragment;
+import com.zhongyaogang.fragment.ShoppingFragment;
+import com.zhongyaogang.utils.L;
 
 @SuppressLint("CommitPrefEdits")
 public class MainActivity extends FragmentActivity implements OnClickListener,OnPageChangeListener{

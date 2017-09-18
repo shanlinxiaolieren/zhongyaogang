@@ -1,14 +1,5 @@
 package com.zhongyaogang.fragment;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -21,8 +12,8 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -32,19 +23,28 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.zhongyaogang.R;
 import com.zhongyaogang.activity.DengLuActivity;
 import com.zhongyaogang.activity.GongHuoActivity;
-import com.zhongyaogang.R;
-import com.zhongyaogang.bean.GongBean;
+import com.zhongyaogang.bean.Gongqiu;
 import com.zhongyaogang.config.Constants;
 import com.zhongyaogang.http.HttpUtils;
 import com.zhongyaogang.utils.L;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @SuppressWarnings({ "unused", "deprecation" })
 @SuppressLint("HandlerLeak")
 public class GongQiu extends Fragment{
     private ListView listview_wodefabu;
-    private List<GongBean> datas;
+    private List<Gongqiu> datas;
     private GongQiu act;
     private ListAdapter mListAdapter;
     private Handler mHandler = new Handler(){
@@ -115,7 +115,7 @@ public class GongQiu extends Fragment{
                         JSONArray items=body1.getJSONArray("items");
                         L.e("返回结果：gongitems="+items);
                         Gson gson = new Gson();
-                        datas=gson.fromJson(items.toString(),new  TypeToken<List<GongBean>>(){}.getType());
+                        datas=gson.fromJson(items.toString(),new  TypeToken<List<Gongqiu>>(){}.getType());
                         Message msg = new Message();
                         msg.what = 1;
                         mHandler.sendMessage(msg);
@@ -131,8 +131,15 @@ public class GongQiu extends Fragment{
         listview_wodefabu=(ListView) view.findViewById(R.id.listview_wodefabu);
         sp =getActivity().getSharedPreferences("config", 0);
         token = sp.getString("token", "");
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         gongQuery();
     }
+
     private void gongDelete(final String id){
         new Thread() {
             public void run() {
@@ -159,11 +166,11 @@ public class GongQiu extends Fragment{
         }.start();
     }
     class ListAdapter extends BaseAdapter {
-        private List<GongBean> mListData;
+        private List<Gongqiu> mListData;
         private GongQiu act;
-        private GongBean gongbean;
+        private Gongqiu gongbean;
 
-        public ListAdapter(List<GongBean> mListData, GongQiu act) {
+        public ListAdapter(List<Gongqiu> mListData, GongQiu act) {
             super();
             this.mListData = mListData;
             this.act = act;
@@ -234,26 +241,7 @@ public class GongQiu extends Fragment{
                 public void onClick(View v) {
                     gongbean=mListData.get(dex);
                     Intent intent=new Intent(getActivity(), GongHuoActivity.class);
-                    intent.putExtra("id", gongbean.getId());
-                    intent.putExtra("supplyTitle", gongbean.getSupplyTitle());
-                    intent.putExtra("price", gongbean.getPrice());
-                    intent.putExtra("details", gongbean.getDetails());
-                    intent.putExtra("upTime", gongbean.getUpTime());
-                    intent.putExtra("downTime", gongbean.getDownTime());
-                    intent.putExtra("stock", gongbean.getStock());
-                    intent.putExtra("isVoucher", gongbean.getIsVoucher());
-                    intent.putExtra("pigUrl", gongbean.getPigUrl());
-                    intent.putExtra("supplyUID", gongbean.getSupplyUID());
-                    intent.putExtra("units", gongbean.getUnits());
-                    intent.putExtra("supplyUserName", gongbean.getSupplyUserName());
-                    intent.putExtra("types", gongbean.getTypes());
-                    intent.putExtra("repertory", gongbean.getRepertory());
-                    intent.putExtra("merchandiseName", gongbean.getMerchandiseName());
-                    intent.putExtra("originName", gongbean.getOriginName());
-                    intent.putExtra("warehouse", gongbean.getWarehouse());
-                    intent.putExtra("figureId", gongbean.getFigureId());
-                    intent.putExtra("standard", gongbean.getStandard());
-                    intent.putExtra("moq", gongbean.getMoq());
+                    intent.putExtra("Gongqiu",gongbean);
                     startActivity(intent);
                 }
             });

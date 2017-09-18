@@ -1,11 +1,8 @@
 package com.zhongyaogang.image;
 
-import java.io.File;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 
-import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.disc.naming.HashCodeFileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -15,6 +12,8 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 import com.zhongyaogang.R;
+
+import java.io.File;
 
 public class ImageLoaderConfig {
 
@@ -77,7 +76,7 @@ public class ImageLoaderConfig {
         // 设定只保存同一尺寸的图片在内存
         builder.denyCacheImageMultipleSizesInMemory();
         // 设定缓存的SDcard目录，UnlimitDiscCache速度最快
-        builder.discCache(new UnlimitedDiscCache(cacheDir));
+        //builder.discCache(new UnlimitedDiscCache(cacheDir));
         // 设定缓存到SDCard目录的文件命名
         builder.discCacheFileNameGenerator(new HashCodeFileNameGenerator());
         // 设定网络连接超时 timeout: 10s 读取网络连接超时read timeout: 60s

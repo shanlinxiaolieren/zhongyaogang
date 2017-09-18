@@ -1,5 +1,48 @@
 package com.zhongyaogang.activity;
 
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.os.Looper;
+import android.provider.MediaStore;
+import android.text.Html;
+import android.text.TextUtils;
+import android.text.format.DateFormat;
+import android.util.Base64;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.zhongyaogang.R;
+import com.zhongyaogang.bean.Market;
+import com.zhongyaogang.config.Constants;
+import com.zhongyaogang.http.HttpUtils;
+import com.zhongyaogang.utils.FileDirectory;
+import com.zhongyaogang.utils.ImageProcessingUtil;
+import com.zhongyaogang.utils.L;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
@@ -15,46 +58,6 @@ import java.util.Map;
 //import org.apache.http.client.methods.HttpPost;
 //import org.apache.http.impl.client.DefaultHttpClient;
 //import org.apache.http.message.BasicNameValuePair;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.json.JSONObject;
-
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.zhongyaogang.R;
-import com.zhongyaogang.config.Constants;
-import com.zhongyaogang.http.HttpUtils;
-import com.zhongyaogang.utils.FileDirectory;
-import com.zhongyaogang.utils.ImageProcessingUtil;
-import com.zhongyaogang.utils.L;
-
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.os.Looper;
-import android.provider.MediaStore;
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.ColorDrawable;
-import android.text.Html;
-import android.text.TextUtils;
-import android.text.format.DateFormat;
-import android.util.Base64;
-import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
-import android.widget.TextView;
-import android.widget.Toast;
 
 @SuppressWarnings("deprecation")
 public class ShengQingShoppingAddActivity extends Activity implements OnClickListener{
@@ -125,6 +128,12 @@ public class ShengQingShoppingAddActivity extends Activity implements OnClickLis
     private String  urltuPian3;
     private String  urltuPian4;
     private String yunfeiId = "0";
+    private String Alipay;
+    private String market;
+    private EditText edAlipay;
+    private TextView tvmarket;
+    private LinearLayout rlaymarket;
+    private Market mMarket;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,6 +162,8 @@ public class ShengQingShoppingAddActivity extends Activity implements OnClickLis
     }
     private void shengQingShoppingAdd(){
         shopName=edittext_shopName.getText().toString().trim();
+        Alipay=edAlipay.getText().toString().trim();
+        market=mMarket.getId();
         proposer=edittext_proposer.getText().toString().trim();
         proposerEimal=edittext_youxiang.getText().toString().trim();
         phone=edittext_shoujihaoma.getText().toString().trim();
@@ -169,7 +180,7 @@ public class ShengQingShoppingAddActivity extends Activity implements OnClickLis
                 TextUtils.isEmpty(idCardStart)||TextUtils.isEmpty(certificateEnd)||
                 TextUtils.isEmpty(certificateStart)||TextUtils.isEmpty(idCardEnd)||
                 TextUtils.isEmpty(idCardPng)||TextUtils.isEmpty(certificate)
-                ||TextUtils.isEmpty(shopName)) {
+               ||TextUtils.isEmpty(shopName)||TextUtils.isEmpty(Alipay)||TextUtils.isEmpty(market)) {
             Toast.makeText(this, "不能为空", Toast.LENGTH_SHORT).show();
             return;
         } else {
@@ -189,14 +200,15 @@ public class ShengQingShoppingAddActivity extends Activity implements OnClickLis
                         params.put("proposerEimal", proposerEimal);
                         params.put("idCard", idCard);
                         params.put("idCardPng", idCardPng);
-                        params.put("certificate", certificate);
-                        params.put("contacts", contacts);
-                        params.put("contactsPhone", contactsPhone);
                         params.put("idCardStart", idCardStart);
                         params.put("idCardEnd", idCardEnd);
+                        params.put("certificate", certificate);
                         params.put("certificateStart",certificateStart);
                         params.put("certificateEnd", certificateEnd);
+                        params.put("contacts", contacts);
+                        params.put("contactsPhone", contactsPhone);
                         params.put("marketId", "0");
+                        params.put("alipay ",Alipay);
                         String strResult= HttpUtils.submitPostDataToken(yunfeiId == "0" ? path:pathXiuGai,params, "utf-8",token);
                         if (strResult.equals("401")){
                             Intent intent=new Intent(act,DengLuActivity.class);
@@ -267,6 +279,10 @@ public class ShengQingShoppingAddActivity extends Activity implements OnClickLis
     }
 
     private void intView() {
+        rlaymarket=(LinearLayout)findViewById(R.id.rlaymarket);
+        rlaymarket.setOnClickListener(this);
+        edAlipay=(EditText) findViewById(R.id.edAlipay);
+        tvmarket=(TextView) findViewById(R.id.tvmarket);
         edittext_shopName=(EditText)findViewById(R.id.edittext_shopName);
         edittext_proposer=(EditText)findViewById(R.id.edittext_proposer);
         edittext_youxiang=(EditText)findViewById(R.id.edittext_youxiang);
@@ -365,6 +381,9 @@ public class ShengQingShoppingAddActivity extends Activity implements OnClickLis
         switch (v.getId()) {
             case R.id.wodezhongxin_right:
                 showPopwindowMenu(v);
+                break;
+            case R.id.rlaymarket:
+                startActivityForResult(new Intent(this,MarketSelectActivity.class),109);
                 break;
             case R.id.wodezhongxin_left:
                 finish();
@@ -482,6 +501,12 @@ public class ShengQingShoppingAddActivity extends Activity implements OnClickLis
         super.onActivityResult(requestCode, resultCode, data);
         String sdStatus = Environment.getExternalStorageState();
 
+        if(requestCode==109||resultCode==110)
+        {
+            mMarket=(Market) data.getSerializableExtra("mMarket");
+            Log.e("mMarket",mMarket.getId());
+            tvmarket.setText(mMarket.getMarketName());
+        }
         if (resultCode == Activity.RESULT_OK) {
             if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) {
                 Log.i("内存卡错误", "请检查您的内存卡");

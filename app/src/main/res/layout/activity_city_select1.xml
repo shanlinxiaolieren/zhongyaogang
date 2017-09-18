@@ -16,35 +16,35 @@
 
         <TextView
             android:id="@+id/rb_province"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checked="true"
             android:gravity="center"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
+            android:paddingBottom="@dimen/eight"
+            android:paddingTop="@dimen/eight"
             android:singleLine="true"
             android:text="省" />
 
         <TextView
             android:id="@+id/rb_city"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
+            android:paddingBottom="@dimen/eight"
+            android:paddingTop="@dimen/eight"
             android:singleLine="true"
             android:text="市" />
 
         <TextView
             android:id="@+id/rb_district"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
+            android:paddingBottom="@dimen/eight"
+            android:paddingTop="@dimen/eight"
             android:singleLine="true"
             android:text="区/县" />
     </LinearLayout>
@@ -52,13 +52,13 @@
     <ListView
         android:id="@+id/lv_city"
         android:layout_width="fill_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/zero"
         android:layout_weight="1" />
 
     <HorizontalScrollView
         android:id="@+id/scrollview"
         android:layout_width="wrap_content"
-        android:layout_height="40sp"
+        android:layout_height="@dimen/fortysp"
         >
         <LinearLayout
             android:id="@+id/ll_add"

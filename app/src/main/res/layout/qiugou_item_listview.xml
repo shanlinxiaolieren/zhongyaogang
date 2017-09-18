@@ -7,173 +7,173 @@
     <RelativeLayout
         android:id="@+id/relativelayout_customxiangqing"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="@dimen/threehundred"
         android:background="@color/white" >
 
         <TextView
             android:id="@+id/textview_guige"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/thirtytow"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textview_yuzhu"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
             android:text="规格："
             android:textColor="#767475"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
 
         <TextView
             android:id="@+id/stock"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/thirtytow"
             android:layout_below="@+id/textview_yuzhu"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/martop"
+            android:layout_marginTop="@dimen/martopten"
             android:layout_toRightOf="@+id/textview_guige"
             android:text="大货"
             android:textColor="#767475"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
 
         <TextView
             android:id="@+id/textview_qiugoushuliang"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/thirtytow"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textview_guige"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
             android:text="求购数量："
             android:textColor="#767475"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
 
         <TextView
             android:id="@+id/weight"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/thirtytow"
             android:layout_below="@+id/textview_guige"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/martop"
+            android:layout_marginTop="@dimen/martopten"
             android:layout_toRightOf="@+id/textview_qiugoushuliang"
             android:text="40.00"
             android:textColor="#767475"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
         <TextView
             android:id="@+id/units"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/thirtytow"
             android:layout_below="@+id/textview_guige"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/martop"
+            android:layout_marginTop="@dimen/martopten"
             android:layout_toRightOf="@+id/weight"
             android:text="吨"
             android:textColor="#767475"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
 
         <TextView
             android:id="@+id/textview_ziliangxuqiu"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/thirtytow"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textview_qiugoushuliang"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
             android:text="质量需求:"
             android:textColor="#767475"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
 
         <TextView
             android:id="@+id/details"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/thirtytow"
             android:layout_below="@+id/textview_qiugoushuliang"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/martop"
+            android:layout_marginTop="@dimen/martopten"
             android:layout_toRightOf="@+id/textview_ziliangxuqiu"
             android:text="达到出口标准"
             android:textColor="#767475"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
 
         <TextView
             android:id="@+id/textview_pianjuxuqiu"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/thirtytow"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textview_ziliangxuqiu"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
             android:text="票据需求："
             android:textColor="#767475"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
 
         <TextView
             android:id="@+id/isVoucher"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/thirtytow"
             android:layout_below="@+id/textview_ziliangxuqiu"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/martop"
+            android:layout_marginTop="@dimen/martopten"
             android:layout_toRightOf="@+id/textview_pianjuxuqiu"
             android:text="大货"
             android:textColor="#767475"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
 
         <TextView
             android:id="@+id/textview_lianxiren"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/thirtyfive"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textview_pianjuxuqiu"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
             android:text="联系人："
             android:textColor="#767475"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
 
         <TextView
             android:id="@+id/contacts"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/thirtytow"
             android:layout_below="@+id/textview_pianjuxuqiu"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/martop"
+            android:layout_marginTop="@dimen/martopten"
             android:layout_toRightOf="@+id/textview_lianxiren"
             android:text="张三"
             android:textColor="#767475"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
 
         <TextView
             android:id="@+id/textview_lianxidianhua"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/thirtytow"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/textview_lianxiren"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
             android:text="联系电话:"
             android:textColor="#767475"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
 
         <TextView
             android:id="@+id/phone"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="@dimen/thirtytow"
             android:layout_below="@+id/textview_lianxiren"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/martop"
+            android:layout_marginTop="@dimen/martopten"
             android:layout_toRightOf="@+id/textview_lianxidianhua"
             android:text="登录可见"
             android:textColor="#1D2088"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
 
         <TextView
             android:id="@+id/textview_yuzhu"
             android:layout_width="wrap_content"
-            android:layout_height="36dp"
+            android:layout_height="@dimen/thirtyfive"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:text="玉竹"
             android:textColor="#666666"
-            android:textSize="22sp" />
+            android:textSize="@dimen/large_text_size" />
     </RelativeLayout>
 
   <LinearLayout 

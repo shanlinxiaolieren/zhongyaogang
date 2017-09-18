@@ -3,6 +3,7 @@ package com.zhongyaogang.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,6 +57,8 @@ import com.zhongyaogang.map.WalkingRouteOverlay;
 public class BaiduMapActivity extends Activity implements BaiduMap.OnMapClickListener, OnGetRoutePlanResultListener {
     EditText editSt;
     EditText editEn;
+    private LatLng start;
+    private LatLng end;
     // 浏览路线节点相关
     Button mBtnPre = null; // 上一个节点
     Button mBtnNext = null; // 下一个节点
@@ -82,8 +85,6 @@ public class BaiduMapActivity extends Activity implements BaiduMap.OnMapClickLis
     private static final int accuracyCircleStrokeColor = 0xAA00FF00;
 
     boolean isFirstLoc = true; // 是否首次定位
-
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baidumap);
@@ -143,9 +144,16 @@ public class BaiduMapActivity extends Activity implements BaiduMap.OnMapClickLis
         mBaidumap.clear();
 
         // 设置起终点信息，对于tranist search 来说，城市名无意义
-        PlanNode stNode = PlanNode.withCityNameAndPlaceName("南宁", editSt.getText().toString());
-        PlanNode enNode = PlanNode.withCityNameAndPlaceName("南宁", editEn.getText().toString());
+//        PlanNode stNode = PlanNode.withCityNameAndPlaceName("南宁", editSt.getText().toString());
+//        PlanNode enNode = PlanNode.withCityNameAndPlaceName("南宁", editEn.getText().toString());
 
+        /**
+         * 这里出现的问题就是传入的地址名百度地图有时解析不出来，导致起终点为null，自然线路规划不可能成功了
+         */
+//        PlanNode stNode = PlanNode.withCityNameAndPlaceName("南宁", "万象城");
+//        PlanNode enNode = PlanNode.withCityNameAndPlaceName("南宁", "会展中心");
+        PlanNode stNode = PlanNode.withLocation(start);
+        PlanNode enNode = PlanNode.withLocation(end);
         // 实际使用中请对起点终点城市进行正确的设定
         if (v.getId() == R.id.drive) {
             mSearch.drivingSearch((new DrivingRoutePlanOption())
@@ -258,6 +266,7 @@ public class BaiduMapActivity extends Activity implements BaiduMap.OnMapClickLis
      */
     @Override
     public void onGetWalkingRouteResult(WalkingRouteResult result) {
+        Log.e("WalkingRouteResult",result.toString());
         if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
             Toast.makeText(this, "抱歉，未找到结果", Toast.LENGTH_SHORT).show();
         }
@@ -286,7 +295,7 @@ public class BaiduMapActivity extends Activity implements BaiduMap.OnMapClickLis
      */
     @Override
     public void onGetTransitRouteResult(TransitRouteResult result) {
-
+        Log.e("TransitRouteResult",result.toString());
         if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
             Toast.makeText(this, "抱歉，未找到结果", Toast.LENGTH_SHORT).show();
         }
@@ -323,6 +332,7 @@ public class BaiduMapActivity extends Activity implements BaiduMap.OnMapClickLis
      */
     @Override
     public void onGetDrivingRouteResult(DrivingRouteResult result) {
+        Log.e("DrivingRouteResult",result.toString());
         if (result == null || result.error != SearchResult.ERRORNO.NO_ERROR) {
             Toast.makeText(this, "抱歉，未找到结果", Toast.LENGTH_SHORT).show();
         }
@@ -358,6 +368,7 @@ public class BaiduMapActivity extends Activity implements BaiduMap.OnMapClickLis
      */
     @Override
     public void onGetBikingRouteResult(BikingRouteResult bikingRouteResult) {
+        Log.e("BikingRouteResult",bikingRouteResult.toString());
         if (bikingRouteResult == null || bikingRouteResult.error != SearchResult.ERRORNO.NO_ERROR) {
             Toast.makeText(this, "抱歉，未找到结果", Toast.LENGTH_SHORT).show();
         }
@@ -476,6 +487,7 @@ public class BaiduMapActivity extends Activity implements BaiduMap.OnMapClickLis
 
     @Override
     public void onMapClick(LatLng point) {
+        end=point;
         mBaidumap.hideInfoWindow();
     }
 
@@ -525,12 +537,12 @@ public class BaiduMapActivity extends Activity implements BaiduMap.OnMapClickLis
                     .direction(100).latitude(location.getLatitude())
                     .longitude(location.getLongitude()).build();
             mBaidumap.setMyLocationData(locData);
+            start=new LatLng(location.getLatitude(),
+                    location.getLongitude());
             if (isFirstLoc) {
                 isFirstLoc = false;
-                LatLng ll = new LatLng(location.getLatitude(),
-                        location.getLongitude());
                 MapStatus.Builder builder = new MapStatus.Builder();
-                builder.target(ll).zoom(18.0f);
+                builder.target(start).zoom(18.0f);
                 mBaidumap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
             }
         }

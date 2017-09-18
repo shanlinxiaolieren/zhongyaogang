@@ -9,14 +9,14 @@
     android:orientation="horizontal"
         >
             <View
-                android:layout_width="1dp"
+                android:layout_width="@dimen/one"
                 android:layout_height="match_parent"
                 android:background="@drawable/line" />
             
      <FrameLayout
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/martop"
             android:layout_weight="1"
             >
             
@@ -24,17 +24,17 @@
             <EditText
                 android:id="@+id/search_et_input"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/fifty"
                 android:layout_gravity="center_vertical"
                 android:background="@null"
                 android:textCursorDrawable="@null"
                 android:textColorHint="@color/black"
-                android:drawablePadding="5dp"
+                android:drawablePadding="@dimen/martop"
                 android:hint="请输入产品产地"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="@dimen/s_text_size" />
 
             <ImageView
                 android:id="@+id/search_iv_delete"
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                  android:contentDescription="@string/app_name"
                 android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="@dimen/twenty"
                 android:src="@drawable/btn_clear_input_selector"
                 android:visibility="gone" />
         </FrameLayout>
@@ -57,7 +57,7 @@
     	 android:layout_weight="1"
     	/> -->
           <View
-                android:layout_width="1dp"
+                android:layout_width="@dimen/one"
                 android:layout_height="match_parent"
                 android:background="@drawable/line" />
     </LinearLayout>
@@ -65,10 +65,10 @@
       <ListView
         android:id="@+id/search_lv_tips"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_height="@dimen/towhundred"
+        android:layout_marginBottom="@dimen/martopten"
+        android:layout_marginLeft="@dimen/twenty"
+        android:layout_marginRight="@dimen/twenty"
         android:background="@color/white"
         android:visibility="gone" >
     </ListView>

@@ -1,16 +1,25 @@
 package com.zhongyaogang.activity;
 
-import java.util.HashMap;
-import java.util.Map;
-
-//import org.apache.http.HttpResponse;
-//import org.apache.http.NameValuePair;
-//import org.apache.http.client.HttpClient;
-//import org.apache.http.client.entity.UrlEncodedFormEntity;
-//import org.apache.http.client.methods.HttpPost;
-//import org.apache.http.impl.client.DefaultHttpClient;
-//import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONObject;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -21,26 +30,18 @@ import com.zhongyaogang.config.Constants;
 import com.zhongyaogang.http.HttpUtils;
 import com.zhongyaogang.utils.L;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.view.View;
-import android.view.Window;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.drawable.ColorDrawable;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+//import org.apache.http.HttpResponse;
+//import org.apache.http.NameValuePair;
+//import org.apache.http.client.HttpClient;
+//import org.apache.http.client.entity.UrlEncodedFormEntity;
+//import org.apache.http.client.methods.HttpPost;
+//import org.apache.http.impl.client.DefaultHttpClient;
+//import org.apache.http.message.BasicNameValuePair;
 
 @SuppressWarnings("deprecation")
 @SuppressLint("HandlerLeak")
@@ -120,8 +121,15 @@ public class ShangPinXiangQingActivity extends Activity implements OnClickListen
         sp = this.getSharedPreferences("config", 0);
         sharedusernameid = sp.getString("usernameid", "");
         token = sp.getString("token", "");
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         shoppingXiangQingQuery();
     }
+
     private void shoppingXiangQingQuery() {
         // 数据应该提交给服务器 由服务器比较是否正确
         new Thread() {
@@ -187,6 +195,7 @@ public class ShangPinXiangQingActivity extends Activity implements OnClickListen
                         startActivity(intent);
                         act.finish();
                     }
+                    L.e("返回结果: params"+params);
                     L.e("返回结果：shoppingAdd=" + strResult);
                     Message msg = new Message();
                     msg.what = 2;

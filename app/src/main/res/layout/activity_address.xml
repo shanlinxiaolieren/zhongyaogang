@@ -6,19 +6,19 @@
     <RelativeLayout
         android:id="@+id/top_relativelayout_address"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/fifty"
         android:gravity="center_vertical"
         android:background="#9A0000"
         android:orientation="horizontal" >
         <ImageView
             android:id="@+id/wodezhongxin_left_address"
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/twentyfive"
+            android:layout_height="@dimen/thirty"
             android:contentDescription="@string/app_name"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
+            android:layout_marginBottom="@dimen/martopten"
             android:src="@mipmap/btn_back_normal"
             />
         <TextView
@@ -28,16 +28,16 @@
             android:layout_centerInParent="true"
             android:text="管理收货地址"
             android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:textSize="@dimen/large_text_size" />
         <ImageView
             android:id="@+id/wodezhongxin_right_address"
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/twentyfive"
+            android:layout_height="@dimen/thirty"
             android:contentDescription="@string/app_name"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginRight="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
+            android:layout_marginBottom="@dimen/martopten"
             android:src="@mipmap/gongqiuright"
             />
 
@@ -46,13 +46,13 @@
     <ListView
         android:id="@+id/lvAddress"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/zero"
         android:layout_weight="1"
-        android:dividerHeight="8dp" />
+        android:dividerHeight="@dimen/eight" />
     <Button
         android:id="@+id/button_addressadd"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/sixty"
         android:background="#940000"
         android:textColor="@color/white"
         android:text="+ 添加新地址"

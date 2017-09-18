@@ -2,39 +2,42 @@ package com.zhongyaogang.activity;
 
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Timer;
-
-import org.json.JSONObject;
-
-import com.zhongyaogang.R;
-import com.zhongyaogang.config.Constants;
-import com.zhongyaogang.http.HttpUtils;
-import com.zhongyaogang.utils.L;
-import android.os.Bundle;
-import android.os.Looper;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.Bundle;
+import android.os.Looper;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.zhongyaogang.R;
+import com.zhongyaogang.config.Constants;
+import com.zhongyaogang.http.HttpUtils;
+import com.zhongyaogang.utils.L;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Timer;
 
 @SuppressWarnings({ "unused", "deprecation" })
 @SuppressLint({ "ShowToast", "HandlerLeak" })
 public class DengLuActivity extends Activity implements OnClickListener{
     private TextView tv;
+    private ImageView wodezhongxin_left;
     private CheckBox savePasswordCB;
     private DengLuActivity act;
     private EditText usenameedit;
@@ -91,6 +94,13 @@ public class DengLuActivity extends Activity implements OnClickListener{
 
     private void intView() {
         tv=(TextView)findViewById(R.id.tv);
+        wodezhongxin_left=(ImageView) findViewById(R.id.wodezhongxin_left);
+        wodezhongxin_left.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         savePasswordCB=(CheckBox)findViewById(R.id.savePasswordCB);
         usenameedit=(EditText)findViewById(R.id.usenameedit);
         passwordedit=(EditText)findViewById(R.id.passwordedit);

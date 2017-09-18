@@ -5,16 +5,16 @@
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="@dimen/hundredandten"
         android:background="#EEEEEF"
         >
         <ImageView
             android:id="@+id/imageview_zhelinali"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/eighty"
+            android:layout_height="@dimen/eighty"
             android:contentDescription="@string/app_name"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/martop"
             android:src="@mipmap/yaocai1"
             />
         <TextView
@@ -22,9 +22,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#161615"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:textSize="14sp"
+            android:layout_marginTop="@dimen/martop"
+            android:layout_marginLeft="@dimen/martop"
+            android:textSize="@dimen/small_text_size"
             android:layout_toRightOf="@+id/imageview_zhelinali"
             android:text="@string/zhelinali"
             />
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textview_zhelinali"
             android:text="@string/zhelinaliyanshe"
-            android:textSize="16sp"
+            android:textSize="@dimen/s_text_size"
             android:textColor="#B8B8B8"
             android:layout_alignLeft="@+id/textview_zhelinali"
             />
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/textview_zhelinali_yanshe"
             android:text="@string/yanshe"
-            android:textSize="16sp"
+            android:textSize="@dimen/s_text_size"
             android:textColor="#B8B8B8"
             android:layout_alignTop="@+id/textview_zhelinali_yanshe"
             />
@@ -52,20 +52,20 @@
             android:id="@+id/textview_zhelinali_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/martop"
             android:text="@string/zhelinaliprice"
             android:layout_below="@+id/textview_zhelinali_yanshe"
             android:layout_alignLeft="@+id/textview_zhelinali"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             android:textColor="#AE4747"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/tv_quantity"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="@dimen/martop"
             android:text="x"
-            android:textSize="16sp"
+            android:textSize="@dimen/small_text_size"
             android:layout_alignTop="@+id/textview_zhelinali_price"
             />
         <TextView
@@ -73,14 +73,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="@dimen/martop"
             android:text="1"
-            android:textSize="16sp"
+            android:textSize="@dimen/small_text_size"
             android:layout_alignTop="@+id/textview_zhelinali_price"
             />
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/one"
         android:background="#E1E1E1" />
 </LinearLayout>

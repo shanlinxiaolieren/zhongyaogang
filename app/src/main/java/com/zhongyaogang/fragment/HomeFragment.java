@@ -23,11 +23,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +42,10 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhongyaogang.R;
 import com.zhongyaogang.ab.view.AbSlidingPlayView;
 import com.zhongyaogang.ab.view.MyGallery;
+import com.zhongyaogang.activity.MyApplication;
+import com.zhongyaogang.activity.SearchActivity;
 import com.zhongyaogang.activity.ShangPinXiangQingActivity;
+import com.zhongyaogang.bean.Banner;
 import com.zhongyaogang.bean.DataYaoCai;
 import com.zhongyaogang.bean.GongBean;
 import com.zhongyaogang.bean.QiuGouXiangQingBean;
@@ -65,12 +73,13 @@ import java.util.Map;
 @SuppressWarnings("deprecation")
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 @SuppressLint({ "NewApi", "HandlerLeak" })
-public class HomeFragment extends Fragment implements OnClickListener {
+public class HomeFragment extends Fragment implements OnClickListener  {
 	private TextView index_search_yaocaiwang;
-	private TextView gongqiu;
+	//private TextView gongqiu;
+	private PopupWindow popWindow;
 	private MyGallery mStormGallery = null;
 	//	private GalleryFlow mStormGallery;
-	private IndexGalleryAdapter mStormAdapter = null;
+	private IndexGalleryAdapter mStormAdapter = null;//有问题
 	private HomeFragment act;
 	private List<GongBean> mStormListData ;
 	private ImageView index_search_button;
@@ -80,12 +89,11 @@ public class HomeFragment extends Fragment implements OnClickListener {
 	private StockBaby_F stockBaby_F;
 	// 首页轮播
 	private AbSlidingPlayView viewPager;
+	private ArrayList<Banner>bannerlist;
 	/** 存储首页轮播的界面 */
 	private ArrayList<View> allListView;
 	/** 首页轮播的界面的资源 */
-	private int[] resId = { R.mipmap.show_m1, R.mipmap.menu_viewpager_1,
-			R.mipmap.menu_viewpager_2, R.mipmap.menu_viewpager_3,
-			R.mipmap.menu_viewpager_4, R.mipmap.menu_viewpager_5 };
+
 	private ListView mListView;// 列表
 	private ListView urgentxiangqing;// 求购详情页
 	private QiuGouXiangQingAdapter qiugouxiangqing;
@@ -95,7 +103,12 @@ public class HomeFragment extends Fragment implements OnClickListener {
 	private SharedPreferences sp;
 	private  PopupWindow mpopupWindow ;
 	private String token;
+	private Spinner spinner;
+	private List<String> list;
+	private String[] items = {"供求","供货"};
+	private ArrayAdapter<String> adapter;
 	//	private String id;
+	private EditText search_et_input;
 	private Handler mHandler = new Handler(){
 		@Override
 		public void handleMessage(Message msg) {
@@ -113,6 +126,14 @@ public class HomeFragment extends Fragment implements OnClickListener {
 					qiugouxiangqing=new QiuGouXiangQingAdapter(xiangqingbean, act);
 					urgentxiangqing.setAdapter(qiugouxiangqing);
 					qiugouxiangqing.notifyDataSetChanged();
+					break;
+				case 4://上拉
+					qiuGouQuery();
+					urgentQuery();
+					CarouselQuery();
+					break;
+				case 5:
+					initViewPager();
 					break;
 				default:
 					break;
@@ -138,12 +159,11 @@ public class HomeFragment extends Fragment implements OnClickListener {
 					Constants.BASE_IMAGE_CACHE);
 		}
 		this.act = HomeFragment.this;
-		qiuGouQuery();
-		urgentQuery();
 		initView(view);
 		return view;
 	}
-	private void qiuGouXiangQingQuery(final String id) {
+
+	public void qiuGouXiangQingQuery(final String id) {
 		// 数据应该提交给服务器 由服务器比较是否正确
 		new Thread() {
 			public void run() {
@@ -170,7 +190,7 @@ public class HomeFragment extends Fragment implements OnClickListener {
 			};
 		}.start();
 	}
-	private void qiuGouQuery(){
+	public void qiuGouQuery(){
 		// 数据应该提交给服务器 由服务器比较是否正确
 		new Thread() {
 			public void run() {
@@ -197,6 +217,15 @@ public class HomeFragment extends Fragment implements OnClickListener {
 			};
 		}.start();
 	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
+		qiuGouQuery();
+		urgentQuery();
+		CarouselQuery();
+	}
+
 	//急购特供查询
 	private void urgentQuery(){
 		// 数据应该提交给服务器 由服务器比较是否正确
@@ -206,6 +235,8 @@ public class HomeFragment extends Fragment implements OnClickListener {
 					Looper.prepare();
 					String path = Constants.URGENT_QUERY;
 					Map<String,String> params = new HashMap<String,String>();
+					params.put("maxResultCount","10");
+					params.put("skipCount","0");
 					String strResult= HttpUtils.submitPostData(path,params, "utf-8");
 					JSONObject jo = new JSONObject(strResult);
 						JSONObject	body1 = jo.getJSONObject("result");
@@ -226,30 +257,73 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		}.start();
 	}
 
+	//轮播图
+	private void CarouselQuery(){
+		// 数据应该提交给服务器 由服务器比较是否正确
+		new Thread() {
+			public void run() {
+				try {
+					Looper.prepare();
+					String path = Constants.Carousel;
+					Map<String,String> params = new HashMap<String,String>();
+					String strResult= HttpUtils.submitPostData(path,params, "utf-8");
+					JSONObject jo = new JSONObject(strResult);
+					JSONObject	body1 = jo.getJSONObject("result");
+					JSONArray items=body1.getJSONArray("items");
+					L.e("返回结果：bannerlist="+items);
+					Gson gson = new Gson();
+					bannerlist=gson.fromJson(items.toString(),new  TypeToken<List<Banner>>(){}.getType());
+					Message msg = new Message();
+					msg.what = 2;
+					mHandler.sendMessage(msg);
+					L.e("返回结果：mStormListData="+mStormListData);
+				} catch (Exception e) {
+					e.printStackTrace();
+					Toast.makeText(getActivity(), "查询失败", Toast.LENGTH_SHORT).show();
+				}
+
+			};
+		}.start();
+	}
+
 	private void initView(View view) {
+		MyApplication.mHandler=mHandler;
 		index_search_button = (ImageView) view
 				.findViewById(R.id.index_search_button);
+		spinner=(Spinner) view.findViewById(R.id.sp);
 		index_search_yaocaiwang = (TextView) view
 				.findViewById(R.id.index_search_yaocaiwang);
-		gongqiu = (TextView) view.findViewById(R.id.index_search_gongqiu);
+//		gongqiu = (TextView) view.findViewById(R.id.index_search_gongqiu);
 		mStormGallery = (MyGallery) view.findViewById(R.id.index_jingqiu_gallery);
 		bt_cart_all = (TextView) view.findViewById(R.id.id_chat_tv);
 		bt_cart_low = (TextView) view.findViewById(R.id.id_friend_tv);
 		bt_cart_stock = (TextView) view.findViewById(R.id.id_contacts_tv);
 		mListView = (ListView) view.findViewById(R.id.listview_qiugouxingxi);
+		search_et_input=(EditText) view.findViewById(R.id.search_et_input);
 		mListView.setSelector(R.drawable.list_selector);
 		bt_cart_all.setOnClickListener(this);
 		bt_cart_low.setOnClickListener(this);
 		bt_cart_stock.setOnClickListener(this);
-		gongqiu.setOnClickListener(this);
+		//gongqiu.setOnClickListener(this);
 		index_search_button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				showBottomPopupWindow(v);
+				//showBottomPopupWindow(v);
+				if(search_et_input.getText().toString().length()!=0) {
+					Intent i = new Intent(getContext(), SearchActivity.class);
+					i.putExtra("tag","gong");
+					i.putExtra("search",search_et_input.getText().toString().trim());
+					startActivity(i);
+				}
+				else
+				{
+					Toast.makeText(getContext(), "搜索内容不能为空", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 
 		allBaby_F = new AllBaby_F();
+
 		addFragment(allBaby_F);
 		showFragment(allBaby_F);
 		viewPager = (AbSlidingPlayView) view.findViewById(R.id.viewPager_menu);
@@ -257,9 +331,19 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		viewPager.setPlayType(1);
 		// 设置播放间隔时间
 		viewPager.setSleepTime(5000);
-		initViewPager();
+//		initViewPager();
 		sp = getActivity().getSharedPreferences("config", 0);
 		token = sp.getString("token", "");
+
+		list = new ArrayList<String>();
+		for(int i = 0; i < items.length; i++)
+		{
+			list.add(items[i]);
+		}
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+				android.R.layout.simple_spinner_item, items);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
 	}
 
 
@@ -287,12 +371,13 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		}
 		allListView = new ArrayList<View>();
 
-		for (int i = 0; i < resId.length; i++) {
+		for (int i = 0; i < bannerlist.size(); i++) {
 			// 导入ViewPager的布局
 			View view = LayoutInflater.from(getActivity()).inflate(
 					R.layout.pic_item, null);
 			ImageView imageView = (ImageView) view.findViewById(R.id.pic_item);
-			imageView.setImageResource(resId[i]);
+			//imageView.setImageResource(bannerlist.get(i).get);
+			ImageLoader.getInstance().displayImage(bannerlist.get(i).getPinUrl(), imageView);
 			allListView.add(view);
 		}
 
@@ -342,6 +427,7 @@ public class HomeFragment extends Fragment implements OnClickListener {
 
 	}
 
+
 	class IndexGalleryAdapter extends BaseAdapter {
 
 		HomeFragment context;
@@ -370,9 +456,8 @@ public class HomeFragment extends Fragment implements OnClickListener {
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getView( int position, View convertView, ViewGroup parent) {
 			ViewHolder viewHolder;
-			final int pos = position;
 			if (convertView == null) {
 				LayoutInflater inflater = LayoutInflater.from(getActivity());
 				convertView = inflater.inflate(R.layout.gallery_item_image, parent, false);
@@ -385,20 +470,19 @@ public class HomeFragment extends Fragment implements OnClickListener {
 				convertView.setTag(viewHolder);
 			} else {
 				viewHolder = (ViewHolder) convertView.getTag();
-				resetViewHolder(viewHolder);
+				//resetViewHolder(viewHolder);
 			}
-
+			gongbean=listData.get(position);
 			ImageLoader.getInstance().displayImage(
-					listData.get(pos).getPigUrl(), viewHolder.imageView);
-			viewHolder.yaoming.setText(listData.get(pos).getMerchandiseName());
-			viewHolder.textView.setText("¥"+listData.get(pos).getPrice());
+					gongbean.getPigUrl(), viewHolder.imageView);
+			viewHolder.yaoming.setText(gongbean.getMerchandiseName());
+			viewHolder.textView.setText("¥"+gongbean.getPrice());
 			viewHolder.textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
 			viewHolder.yaoming.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
 			viewHolder.imageView.setOnClickListener(new View.OnClickListener() {
 
 				@Override
 				public void onClick(View v) {
-					gongbean=listData.get(pos);
 					Intent intent=new Intent(getActivity(), ShangPinXiangQingActivity.class);
 					intent.putExtra("id", gongbean.getId());
 					intent.putExtra("merchandiseName", gongbean.getMerchandiseName());
@@ -485,10 +569,9 @@ public class HomeFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-
-			case R.id.index_search_gongqiu:
-//				showPopupMenu(gongqiu);
-				break;
+//			case R.id.index_search_gongqiu:
+////			showPopupMenu(gongqiu);
+//				break;
 			case R.id.id_chat_tv:
 				if (allBaby_F == null) {
 					allBaby_F = new AllBaby_F();
@@ -562,8 +645,7 @@ public class HomeFragment extends Fragment implements OnClickListener {
 //				.findViewById(R.id.linearlayout_lianximaojia);
 		int width = getResources().getDisplayMetrics().widthPixels;
 		int height = getResources().getDisplayMetrics().heightPixels;
-
-		final PopupWindow popWindow = new PopupWindow(popView,
+		popWindow = new PopupWindow(popView,
 				width, height);
 		popWindow.setAnimationStyle(R.style.AnimBottom);
 		popWindow.setFocusable(true);
@@ -698,6 +780,8 @@ public class HomeFragment extends Fragment implements OnClickListener {
 				holder.units = (TextView) convertView.findViewById(R.id.units);
 				holder.contacts = (TextView) convertView.findViewById(R.id.contacts);
 				holder.phone = (TextView) convertView.findViewById(R.id.phone);
+				holder.button_guangbixiangqing=(Button) convertView.findViewById(R.id.button_guangbixiangqing);
+				holder.linearlayout_lianximaojia=(LinearLayout) convertView.findViewById(R.id.linearlayout_lianximaojia);
 				convertView.setTag(holder);
 			} else {
 				holder = (ViewHolder) convertView.getTag();
@@ -710,6 +794,25 @@ public class HomeFragment extends Fragment implements OnClickListener {
 			holder.units.setText(mData.getUnits());
 			holder.contacts.setText(mData.getContacts());
 			holder.phone.setText(mData.getPhone());
+			holder.button_guangbixiangqing.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+if(popWindow.isShowing()&&popWindow!=null)
+{
+	popWindow.dismiss();
+}
+				}
+			});
+			holder.linearlayout_lianximaojia.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Toast.makeText(getContext(), "联系买家", Toast.LENGTH_SHORT).show();
+					if(popWindow.isShowing()&&popWindow!=null)
+					{
+						popWindow.dismiss();
+					}
+				}
+			});
 			return convertView;
 		}
 
@@ -722,8 +825,9 @@ public class HomeFragment extends Fragment implements OnClickListener {
 			TextView contacts;
 			TextView phone;
 			TextView units;
-
+			Button button_guangbixiangqing;
+			LinearLayout linearlayout_lianximaojia;
 		}
-
 	}
+
 }

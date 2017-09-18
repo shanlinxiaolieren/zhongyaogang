@@ -19,6 +19,15 @@ public class ShengQingShoppingBean implements Serializable{
     private String certificateStart;
     private String certificateEnd;
     private String shopName;
+    private String state;
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getState() {
+        return state;
+    }
 
     public String getShopName() {
         return shopName;

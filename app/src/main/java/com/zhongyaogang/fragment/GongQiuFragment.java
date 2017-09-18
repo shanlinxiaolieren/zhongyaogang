@@ -1,17 +1,17 @@
 package com.zhongyaogang.fragment;
 
 
-import com.zhongyaogang.R;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.zhongyaogang.R;
 
 public class GongQiuFragment extends Fragment implements OnClickListener{
 	private GongQiuFragment act;
@@ -35,6 +35,11 @@ public class GongQiuFragment extends Fragment implements OnClickListener{
 		act=this;
 		initView(view);
 		return view;
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
 	}
 
 	private void initView(View view) {

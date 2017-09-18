@@ -13,6 +13,9 @@ public class Constants {
 	public static final String BASE_IMAGE_CACHE = BASE_PATH + "cache/images/";
 	/** 域名*/
 	public final static String JMZG = "http://yxt.jmzgo.com";
+
+	//public final static String JMZG="http://www.cnlxdc.com";
+	//public final static String JMZG="http://192.168.1.89";
 	//我供货添加
 	public final static String WOGONGHUO_ADD=JMZG+"/api/services/app/yXTSupply/CreateYXTSupplyAsync";
 	//我求货添加
@@ -82,6 +85,8 @@ public class Constants {
 	public static final String QIU_DELETE=JMZG+"/api/services/app/yXTDemand/DeleteYXTDemandAsync";
 	//急购特供查询
 	public static final String URGENT_QUERY=JMZG+"/api/services/app/yXTSupply/GetUrgentYXTSupplysAsync";
+	//轮播图查询
+	public static final String Carousel=JMZG+"/api/services/app/yXTAdvertisement/GetYXTAdvertisementsAsync";
 	//求购的产品详情
 	public static final String QIUGOU_XIANGQING_QUERY=JMZG+"/api/services/app/yXTDemand/GetYXTDemandByIdAsync";
 	//购物车添加
@@ -104,6 +109,6 @@ public class Constants {
 	public  static  final  String ORDER_QUERY=JMZG+"/api/services/app/yXTOrder/GetYXTOrderByUserIdAsync";
 	//确认订单查询
 	public  static  final  String QUEREN_ORDER_QUERY=JMZG+"/api/services/app/yXTOrder/YXTOrderForAppAsync";
-
-
+	//查询全部市场
+	public static final String QUEREN_XTMarket=JMZG+"/api/services/app/yXTMarket/GetYXTMarketsAsync";
 }

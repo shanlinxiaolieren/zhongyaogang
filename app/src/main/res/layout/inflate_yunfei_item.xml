@@ -1,118 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/llayitem"
+    android:layout_height="@dimen/hundredandtwenty"
     android:orientation="vertical" >
            <LinearLayout 
          android:id="@+id/linearlayout_qibu"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/forty"
         android:orientation="horizontal">
         <TextView 
             android:id="@+id/textview_title"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:text="起步5元"
-            android:textSize="18sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
+            android:textSize="@dimen/medium_text_size"
+            android:layout_marginTop="@dimen/martop"
+            android:layout_marginLeft="@dimen/eight"
             android:layout_weight="1"/>
         <TextView 
             android:id="@+id/textview_figure"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:text="5.00"
-            android:textSize="18sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
+            android:textSize="@dimen/medium_text_size"
+            android:layout_marginTop="@dimen/martop"
+            android:layout_marginLeft="@dimen/eight"
             android:textColor="#940000"
             android:layout_weight="1"/>
         
         <TextView 
             android:id="@+id/textview_logisticsType"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:text="快递"
-            android:textSize="18sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
+            android:textSize="@dimen/medium_text_size"
+            android:layout_marginTop="@dimen/martop"
+            android:layout_marginLeft="@dimen/eight"
             android:layout_weight="1"/>
     </LinearLayout>
      <LinearLayout 
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/forty"
         android:orientation="horizontal">
              <TextView
                        android:id="@+id/textview_addyunfei"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:textSize="18sp"
+                        android:layout_marginLeft="@dimen/eight"
+                        android:textSize="@dimen/medium_text_size"
                         android:text="每单每增加"
                         android:textColor="@color/black" />
              <TextView
                        android:id="@+id/textview_addyunfeinum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="18sp"
+                        android:layout_marginLeft="@dimen/martop"
+                        android:textSize="@dimen/medium_text_size"
                         android:text="5"
                         android:textColor="@color/black" />
              <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="18sp"
+                        android:layout_marginLeft="@dimen/martop"
+                        android:textSize="@dimen/medium_text_size"
                         android:text="个产品，增加运费"
                         android:textColor="@color/black" />
              <TextView
                        android:id="@+id/textview_addyunfeijine"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="18sp"
+                        android:layout_marginLeft="@dimen/martop"
+                        android:textSize="@dimen/medium_text_size"
                         android:text="5"
                         android:textColor="@color/black" />
              <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="18sp"
+                        android:layout_marginLeft="@dimen/martop"
+                        android:textSize="@dimen/medium_text_size"
                         android:text="元"
                         android:textColor="@color/black" />
              
              </LinearLayout>
                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/one"
                         android:background="#BABABA" />
                   <RelativeLayout 
                       android:layout_width="match_parent"
-                      android:layout_height="40dp"
+                      android:layout_height="@dimen/forty"
                       >
                   <TextView
                         android:id="@+id/textView_xiugai"
-                        android:layout_width="80dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="3dp"
+                        android:layout_width="@dimen/eighty"
+                        android:layout_height="@dimen/forty"
+                        android:layout_marginLeft="@dimen/three"
                         android:layout_toLeftOf="@+id/textView_shanchu"
                         android:drawableLeft="@mipmap/xiugai"
                         android:gravity="center_vertical"
                         android:clickable="true"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/l_text_size"
                         android:text="修改"
                         android:textColor="@color/black" />
                      
                        <TextView
                         android:id="@+id/textView_shanchu"
-                        android:layout_width="80dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="3dp"
+                        android:layout_width="@dimen/eighty"
+                        android:layout_height="@dimen/forty"
+                        android:layout_marginLeft="@dimen/three"
                         android:drawableLeft="@mipmap/shanchu"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
                         android:clickable="true"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/l_text_size"
                         android:text="删除"
                         android:textColor="@color/black" />
                  <!-- 

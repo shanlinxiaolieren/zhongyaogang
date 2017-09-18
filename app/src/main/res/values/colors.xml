@@ -7,6 +7,7 @@
     <color name="transparent">#00000000</color>
     <!-- 白色 -->
     <color name="white">#ffffff</color>
+    <color name="navpage">#FFE1E8EB</color>
     <!-- 黑色 -->
     <color name="black">#000000</color>
     <!-- 红色 -->

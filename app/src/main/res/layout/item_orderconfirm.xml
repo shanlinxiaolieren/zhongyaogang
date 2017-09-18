@@ -5,18 +5,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="@dimen/forty"
+        android:layout_marginTop="@dimen/martop"
         android:layout_alignParentTop="true"
         android:id="@+id/relativeLayout3">
 
         <ImageView
             android:id="@+id/imageView1"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/thirtyfive"
+            android:layout_height="@dimen/thirtyfive"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="@dimen/fifteen"
             android:src="@mipmap/home_selected" />
 
         <TextView
@@ -24,13 +24,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="@dimen/fifteen"
             android:layout_toRightOf="@+id/imageView1"
             android:text="某xxxx店" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/one"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:background="#e1e1e1" />
@@ -44,14 +44,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="@dimen/hundredandtwenty"
         android:layout_below="@+id/gv"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
         <RelativeLayout
             android:id="@+id/rlaygive"
             android:layout_width="fill_parent"
-            android:layout_height="40dp" >
+            android:layout_height="@dimen/forty" >
 
             <TextView
                 android:id="@+id/textView1"
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="@dimen/fifteen"
                 android:text="配送方式" />
 
             <TextView
@@ -68,19 +68,19 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="@dimen/thirty"
                 android:text="快递 免邮" />
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="@dimen/twentyfive"
+                android:layout_height="@dimen/twentyfive"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@mipmap/personel_arrow_right" />
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="@dimen/one"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:background="#e1e1e1" />
@@ -89,7 +89,7 @@
         <RelativeLayout
             android:id="@+id/relativeLayout5"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="@dimen/forty"
             android:layout_below="@+id/rlaygive" >
 
             <TextView
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="@dimen/fifteen"
                 android:text="买家留言:" />
 
             <EditText
@@ -110,7 +110,7 @@
                 android:layout_toRightOf="@+id/textView3"
                 android:ems="10"
                 android:hint="选填：对本次交易的说明(建议填写已和卖家...)"
-                android:textSize="10dp" >
+                android:textSize="@dimen/martopten" >
 
                 <requestFocus />
             </EditText>
@@ -129,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/textView4"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="@dimen/fifteen"
                 android:textColor="#9A0000"
                 android:layout_alignBottom="@+id/textView4"
                 android:layout_alignParentRight="true"

@@ -1,5 +1,54 @@
 package com.zhongyaogang.activity;
 
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.provider.MediaStore;
+import android.text.TextUtils;
+import android.text.format.DateFormat;
+import android.util.Base64;
+import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.zhongyaogang.R;
+import com.zhongyaogang.bean.Gongqiu;
+import com.zhongyaogang.bean.YunFeiBean;
+import com.zhongyaogang.config.Constants;
+import com.zhongyaogang.http.HttpUtils;
+import com.zhongyaogang.utils.DateTimePickDialog;
+import com.zhongyaogang.utils.DateTimePickDialog.OnDateTimeSetListener;
+import com.zhongyaogang.utils.FileDirectory;
+import com.zhongyaogang.utils.ImageProcessingUtil;
+import com.zhongyaogang.utils.L;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
@@ -15,54 +64,11 @@ import java.util.Map;
 //import org.apache.http.client.methods.HttpPost;
 //import org.apache.http.impl.client.DefaultHttpClient;
 //import org.apache.http.message.BasicNameValuePair;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.json.JSONObject;
-
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.zhongyaogang.R;
-import com.zhongyaogang.config.Constants;
-import com.zhongyaogang.http.HttpUtils;
-import com.zhongyaogang.utils.DateTimePickDialog;
-import com.zhongyaogang.utils.FileDirectory;
-import com.zhongyaogang.utils.ImageProcessingUtil;
-import com.zhongyaogang.utils.L;
-import com.zhongyaogang.utils.DateTimePickDialog.OnDateTimeSetListener;
-
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.os.Looper;
-import android.provider.MediaStore;
-import android.text.TextUtils;
-import android.text.format.DateFormat;
-import android.util.Base64;
-import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 @SuppressWarnings("deprecation")
 public class GongHuoActivity extends Activity implements OnClickListener{
-
+    private YunFeiBean yunfeibean;
+    private TextView tvfreight;
     private TextView tv_origin;
     private TextView tv_drug;
     private LinearLayout imageview_yunfeisetting;
@@ -130,14 +136,16 @@ public class GongHuoActivity extends Activity implements OnClickListener{
     private RadioGroup rgisvoucher;
     private RadioButton rbshi;
     private RadioButton rbfou;
-    private String shi;
-    private String fou;
+    private String shi="是";
+    private String fou="";
     private TextView text_units;
     private String spinner;
-    //	 private String str;
     private String gonghuoId;
     private String [] resultPigurl = null;
 
+    private Gongqiu gongbean;
+    private ImageView wodezhongxin_left;
+    private ImageView wodezhongxin_right;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,6 +155,18 @@ public class GongHuoActivity extends Activity implements OnClickListener{
         EventBus.getDefault().register(act);
         initView();
     }
+    private Handler mhandler=new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    Toast.makeText(act, "发布成功", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+    };
 
     @Subscribe
     public void onEventMainThread(String result){
@@ -195,7 +215,6 @@ public class GongHuoActivity extends Activity implements OnClickListener{
         }else if(fou.equals("否")){
             isVoucher="0";
         }
-        L.e("返回结果：isVoucher=" + isVoucher);
         if (TextUtils.isEmpty(supplyTitle) || TextUtils.isEmpty(stock)||
                 TextUtils.isEmpty(repertory)||TextUtils.isEmpty(price)||
                 TextUtils.isEmpty(upTime)||TextUtils.isEmpty(downTime)||
@@ -206,7 +225,12 @@ public class GongHuoActivity extends Activity implements OnClickListener{
                 ) {
             Toast.makeText(act, "不能为空", Toast.LENGTH_SHORT).show();
             return;
-        } else {
+        }
+        else if(yunfeibean==null)
+        {
+            Toast.makeText(getBaseContext(), "请选择运费", Toast.LENGTH_SHORT).show();
+        }
+        else {
 
             // 数据应该提交给服务器 由服务器比较是否正确
             new Thread() {
@@ -216,10 +240,10 @@ public class GongHuoActivity extends Activity implements OnClickListener{
                         String path = Constants.GONG_EDIT;
                         Map<String,String> params = new HashMap<String,String>();
                         params.put("id", gonghuoId);
-                        params.put("supplyUID",sharedusernameid);
-                        params.put("supplyUserName",name);
                         params.put("supplyTitle", supplyTitle);
                         params.put("price", price);
+                        params.put("upTime", upTime);
+                        params.put("downTime", downTime);
                         params.put("stock",stock);
                         params.put("pigUrl",pigUrl);
                         params.put("details",details);
@@ -227,18 +251,31 @@ public class GongHuoActivity extends Activity implements OnClickListener{
                         params.put("repertory", repertory);
                         params.put("merchandiseName", merchandiseName);
                         params.put("originName", originName);
+                       // params.put("supplyUserName",name);
                         params.put("warehouse", warehouse);
                         params.put("units", units);
                         params.put("figureId", figureId);
                         params.put("isVoucher", isVoucher);
-                        params.put("upTime", upTime);
                         params.put("moq", moq);
                         params.put("standard", standard);
-                        params.put("downTime", downTime);
+                        params.put("shopId","0");
+                        params.put("originId","");
+                        params.put("merchandiseId","");
+                        L.e("params："+params);
+                       // String strResult=HttpUtils.submitPostData(path,params,"utf-8");
                         String strResult= HttpUtils.submitPostDataToken(path,params, "utf-8",token);
+                        Log.e("strResult",strResult);
                         if (strResult.equals(401)){
                             Intent intent=new Intent(act,DengLuActivity.class);
                             startActivity(intent);
+                            act.finish();
+                        }
+                        JSONObject obj=new JSONObject(strResult);
+                        String success=obj.getString("success");
+                        String error=obj.getString("error");
+                        if(success.equals("true")&&error.equals("null"))
+                        {
+                            Toast.makeText(act, "修改成功", Toast.LENGTH_SHORT).show();
                             act.finish();
                         }
                     } catch (Exception e) {
@@ -263,28 +300,28 @@ public class GongHuoActivity extends Activity implements OnClickListener{
             public void run() {
                 try {
                     Looper.prepare();
-                     String path = Constants.PICTURE_UPLOADING;
+                    String path = Constants.PICTURE_UPLOADING;
                     Map<String,String> params = new HashMap<String,String>();
                     params.put("userID",sharedusernameid);
                     params.put("types", "1");
                     params.put("isEnable","1");
                     params.put("base64",ba1);
                     String strResult= HttpUtils.submitPostDataToken(path,params, "utf-8",token);
-                        L.e("返回结果：图片result" + strResult);
-                        JSONObject jo = new JSONObject(strResult);
-                        JSONObject	body1 = jo.getJSONObject("result");
-                        urlResult=body1.getString("url");
-                        if(tuPian==tuPian1){
-                            urltuPian1=urlResult;
-                            EventBus.getDefault().post(urltuPian1);
-                            L.e("返回结果：图片urltuPian1=" +urltuPian1);
-                        }else if(tuPian==tuPian2){
-                            urltuPian2=urlResult;
-                            EventBus.getDefault().post(urltuPian2);
-                        }else if(tuPian==tuPian3){
-                            urltuPian3=urlResult;
-                            EventBus.getDefault().post(urltuPian3);
-                        }
+                    L.e("返回结果：图片result" + strResult);
+                    JSONObject jo = new JSONObject(strResult);
+                    JSONObject	body1 = jo.getJSONObject("result");
+                    urlResult=body1.getString("url");
+                    if(tuPian==tuPian1){
+                        urltuPian1=urlResult;
+                        EventBus.getDefault().post(urltuPian1);
+                        L.e("返回结果：图片urltuPian1=" +urltuPian1);
+                    }else if(tuPian==tuPian2){
+                        urltuPian2=urlResult;
+                        EventBus.getDefault().post(urltuPian2);
+                    }else if(tuPian==tuPian3){
+                        urltuPian3=urlResult;
+                        EventBus.getDefault().post(urltuPian3);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(act, "图片上传失败", Toast.LENGTH_SHORT)
@@ -294,23 +331,16 @@ public class GongHuoActivity extends Activity implements OnClickListener{
             };
         }.start();
     }
-
-    //	 //清空数据
-//	 private void qingkong() {
-//	 tuPianList.clear();
-//	 img_paiZhao1.setImageResource(R.drawable.xq_feedback);
-//	 img_paiZhao2.setImageResource(R.drawable.xq_feedback);
-//	 img_paiZhao3.setImageResource(R.drawable.xq_feedback);
-//	 img_paiZhao2.setVisibility(View.INVISIBLE);
-//	 img_paiZhao3.setVisibility(View.INVISIBLE);
-//	 tuPian1 = null;
-//	 tuPian2 = null;
-//	 tuPian3 = null;
-//	 }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         String sdStatus = Environment.getExternalStorageState();
+        if(requestCode==109&&resultCode==110)
+        {
+            yunfeibean=(YunFeiBean)data.getSerializableExtra("data");
+            tvfreight.setText(yunfeibean.getFigure()+" "+yunfeibean.getLogisticsType());
+            //Toast.makeText(getActivity(), "拿到运费了", Toast.LENGTH_SHORT).show();
+        }
 
         if (resultCode == Activity.RESULT_OK) {
             if (!sdStatus.equals(Environment.MEDIA_MOUNTED)) {
@@ -380,27 +410,28 @@ public class GongHuoActivity extends Activity implements OnClickListener{
     private void xiuGaiView(){
         rbshi = (RadioButton)findViewById(R.id.rbshi);
         rbfou = (RadioButton)findViewById(R.id.rbfou);
+        gongbean=(Gongqiu) getIntent().getSerializableExtra("Gongqiu");
         // 修改传过来的
-        gonghuoId = getIntent().getStringExtra("id");
-        sharedusernameid=getIntent().getStringExtra("supplyUID");
-        supplyTitle=getIntent().getStringExtra("supplyTitle");
-        price=getIntent().getStringExtra("price");
-        upTime=getIntent().getStringExtra("upTime");
-        downTime=getIntent().getStringExtra("downTime");
-        stock=getIntent().getStringExtra("stock");
-        pigUrl=getIntent().getStringExtra("pigUrl");
-        name=getIntent().getStringExtra("supplyUserName");
-        details=getIntent().getStringExtra("details");
-        types=getIntent().getStringExtra("types");
-        repertory=getIntent().getStringExtra("repertory");
-        merchandiseName=getIntent().getStringExtra("merchandiseName");
-        originName=getIntent().getStringExtra("originName");
-        warehouse=getIntent().getStringExtra("warehouse");
-        units=getIntent().getStringExtra("units");
-        figureId=getIntent().getStringExtra("figureId");
-        isVoucher=getIntent().getStringExtra("isVoucher");
-        standard=getIntent().getStringExtra("standard");
-        moq=getIntent().getStringExtra("moq");
+        gonghuoId =gongbean.getId();
+        sharedusernameid=gongbean.getSupplyUID();
+        supplyTitle=gongbean.getSupplyTitle();
+        price=gongbean.getPrice();
+        upTime=gongbean.getUpTime();
+        downTime=gongbean.getDownTime();
+        stock=gongbean.getStock();
+        pigUrl=gongbean.getPigUrl();
+        name=gongbean.getSupplyUserName();
+        details=gongbean.getDetails();
+        types=gongbean.getTypes();
+        repertory=gongbean.getRepertory();
+        merchandiseName=gongbean.getMerchandiseName();
+        originName=gongbean.getOriginName();
+        warehouse=gongbean.getWarehouse();
+        units=gongbean.getUnits();
+        figureId=gongbean.getFigureId();
+        isVoucher=gongbean.getIsVoucher();
+        standard=gongbean.getStandard();
+        moq=gongbean.getMoq();
 
         edittext_supplyTitle.setText(supplyTitle);
         edittext_stock.setText(stock);
@@ -436,6 +467,7 @@ public class GongHuoActivity extends Activity implements OnClickListener{
     }
     private void initView() {
 //		text_units = (TextView) findViewById(R.id.text_units);
+        tvfreight=(TextView) findViewById(R.id.tvfreight);
         rgisvoucher = (RadioGroup) findViewById(R.id.rgisvoucher);
         imageview_yunfeisetting = (LinearLayout)
                 findViewById(R.id.imageview_yunfeisetting);
@@ -471,6 +503,14 @@ public class GongHuoActivity extends Activity implements OnClickListener{
         token=sp.getString("token", "");
 
         xiuGaiView();
+        wodezhongxin_left=(ImageView) findViewById(R.id.wodezhongxin_left);
+        wodezhongxin_left.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                act.finish();
+            }
+        });
+        wodezhongxin_right=(ImageView) findViewById(R.id.wodezhongxin_right);
         if (!file.exists()) { // 检查图片存放的文件夹是否存在
             file.mkdirs(); // 不存在的话 创建文件夹
         }
@@ -496,8 +536,6 @@ public class GongHuoActivity extends Activity implements OnClickListener{
         switch (v.getId()) {
             case R.id.button_fabu:
                 woGongHuoAdd();
-                Toast.makeText(act, "发布成功",
-                        Toast.LENGTH_LONG).show();
                 break;
             case R.id.img_feedback_tu1:
                 if (tuPianList.size() == 0) {
@@ -517,7 +555,8 @@ public class GongHuoActivity extends Activity implements OnClickListener{
                 }
                 break;
             case R.id.imageview_yunfeisetting:
-                startActivity(new Intent(act, YunFeiSettingActivity.class));
+                //startActivity(new Intent(act, YunFeiSettingActivity.class));
+                startActivityForResult(new Intent(act, YunFeiSettingActivity.class),109);
                 break;
             case R.id.tv_origin:
                 startActivity(new Intent(act, OriginSearchActivity.class));

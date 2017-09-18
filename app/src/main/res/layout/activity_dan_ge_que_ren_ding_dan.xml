@@ -5,19 +5,19 @@
     <RelativeLayout
         android:id="@+id/top_relativelayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/fifty"
         android:layout_alignParentTop="true"
         android:background="#9A0000"
         android:orientation="horizontal" >
         <ImageView
             android:id="@+id/wodezhongxin_left"
-            android:layout_width="45dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/forty_five"
+            android:layout_height="@dimen/thirty"
             android:contentDescription="@string/app_name"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
+            android:layout_marginBottom="@dimen/martopten"
             android:src="@mipmap/btn_back_normal"
             />
         <TextView
@@ -27,14 +27,14 @@
             android:layout_centerInParent="true"
             android:text="确认订单"
             android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:textSize="@dimen/large_text_size" />
     </RelativeLayout>
 
     <ListView
         android:id="@+id/lvAddress_dangequerendingdan"
         android:layout_width="match_parent"
         android:layout_below="@+id/top_relativelayout"
-        android:layout_height="80dp"
+        android:layout_height="@dimen/eighty"
          />
     <LinearLayout
                 android:layout_width="match_parent"
@@ -43,40 +43,40 @@
                 android:orientation="vertical" >
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/forty"
                     >
                     <ImageView
                         android:id="@+id/imageView_zhangshandian"
-                        android:layout_width="20dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_width="@dimen/twenty"
+                        android:layout_height="@dimen/forty"
+                        android:layout_marginLeft="@dimen/fifteen"
                         android:contentDescription="@string/app_name"
                         android:src="@mipmap/home_selected"
                         android:layout_alignParentLeft="true"
                         />
                     <TextView
                         android:id="@+id/shopName"
-                        android:layout_width="150dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="6dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_width="@dimen/hundredandtfifty"
+                        android:layout_height="@dimen/forty"
+                        android:layout_marginLeft="@dimen/martop"
+                        android:layout_marginTop="@dimen/martop"
                         android:layout_toRightOf="@+id/imageView_zhangshandian"
                         android:text="@string/zhangshandian"
                         android:textColor="#C3C3C3"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/medium_text_size" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="110dp"
+                    android:layout_height="@dimen/hundredandten"
                     android:background="#EEEEEF"
                     >
                     <ImageView
                         android:id="@+id/imageview_pigurl"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="@dimen/eighty"
+                        android:layout_height="@dimen/eighty"
                         android:contentDescription="@string/app_name"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="@dimen/martop"
                         android:src="@mipmap/yaocai1"
                         />
                     <TextView
@@ -84,9 +84,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#161615"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="14sp"
+                        android:layout_marginTop="@dimen/martop"
+                        android:layout_marginLeft="@dimen/martop"
+                        android:textSize="@dimen/small_text_size"
                         android:layout_toRightOf="@+id/imageview_pigurl"
                         android:text="@string/zhelinali"
                         />
@@ -95,9 +95,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#161615"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
-                        android:textSize="14sp"
+                        android:layout_marginTop="@dimen/martop"
+                        android:layout_marginLeft="@dimen/martop"
+                        android:textSize="@dimen/small_text_size"
                         android:layout_toRightOf="@+id/textview_zhelinali"
                         android:text="@string/zhelinali"
                         />
@@ -107,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/textview_zhelinali"
                         android:text="@string/zhelinaliyanshe"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/s_text_size"
                         android:textColor="#B8B8B8"
                         android:layout_alignLeft="@+id/textview_zhelinali"
                         />
@@ -117,7 +117,7 @@
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/textview_zhelinali_yanshe"
                         android:text="@string/yanshe"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/s_text_size"
                         android:textColor="#B8B8B8"
                         android:layout_alignTop="@+id/textview_zhelinali_yanshe"
                         />
@@ -125,20 +125,20 @@
                         android:id="@+id/textview_zhelinali_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="@dimen/martop"
                         android:text="@string/zhelinaliprice"
                         android:layout_below="@+id/textview_zhelinali_yanshe"
                         android:layout_alignLeft="@+id/textview_zhelinali"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/medium_text_size"
                         android:textColor="#AE4747"
                         />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toLeftOf="@+id/tv_quantity"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginRight="@dimen/martop"
                         android:text="x"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/s_text_size"
                         android:layout_alignTop="@+id/textview_zhelinali_price"
                         />
                     <TextView
@@ -146,81 +146,81 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="@dimen/martopten"
                         android:text="1"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/s_text_size"
                         android:layout_alignTop="@+id/textview_zhelinali_price"
                         />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/forty"
                     >
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/peisongfangshi"
                         android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginLeft="@dimen/martop"
                         android:textColor="#161615"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/medium_text_size"
                         />
                     <TextView
                         android:id="@+id/tvfreightTitle"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_height="@dimen/twenty"
                         android:text="@string/kuaidimianyou"
                         android:layout_alignParentRight="true"
                         android:textColor="#161615"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/medium_text_size"
                         android:drawableRight="@mipmap/right_icon"
                         />
                 </RelativeLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/forty"
                     android:orientation="horizontal">
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/zero"
                         android:layout_height="wrap_content"
                         android:text="@string/maojialiuyan"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/medium_text_size"
                         android:textColor="#161615"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="@dimen/martop"
+                        android:layout_marginLeft="@dimen/martop"
                         android:layout_weight="2"/>
                     <EditText
                         android:id="@+id/editext_message"
-                        android:layout_width="0dp"
+                        android:layout_width="@dimen/zero"
                         android:layout_height="wrap_content"
                         android:layout_weight="5"
                         android:hint="@string/duibencijiayidishuoming"
                         android:singleLine="true"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="@dimen/martop"
                         android:textColorHint="#CDCDCD"
                         android:background="@null"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/medium_text_size"
                         />
                 </LinearLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="@dimen/forty"
+                    android:layout_marginTop="@dimen/martop"
                     >
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
+                        android:layout_height="@dimen/thirty"
                         android:text="@string/xiaoji"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/medium_text_size"
                         android:textColor="#161615"
                         android:layout_toLeftOf="@+id/textview_xiaojiprice"
                         />
                     <TextView
                         android:id="@+id/textview_xiaojiprice"
                         android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:textSize="18sp"
+                        android:layout_height="@dimen/thirty"
+                        android:textSize="@dimen/medium_text_size"
                         android:text="@string/zhelinaliprice"
                         android:textColor="#AE4747"
                         android:layout_alignParentRight="true"
@@ -231,34 +231,34 @@
     <RelativeLayout
         android:id="@+id/relativelayout_bottom"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/fifty"
         android:layout_alignParentBottom="true"
         android:background="#FFFFFF"
         >
         <TextView
-            android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="@dimen/sixty"
+            android:layout_height="@dimen/thirty"
+            android:layout_marginTop="@dimen/martopten"
             android:text="@string/heji"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             android:layout_toLeftOf="@+id/textview_zhelinaliprice3"
             />
         <TextView
             android:id="@+id/textview_hejiprice"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp"
-            android:textSize="18sp"
+            android:layout_width="@dimen/eighty"
+            android:layout_height="@dimen/thirty"
+            android:layout_marginTop="@dimen/martopten"
+            android:textSize="@dimen/medium_text_size"
             android:textColor="#AE4747"
             android:text="@string/zhelinaliprice"
             android:layout_toLeftOf="@+id/textview_tijiadingdan"
             />
         <TextView
             android:id="@+id/textview_tijiadingdan"
-            android:layout_width="80dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:textSize="18sp"
+            android:layout_width="@dimen/eighty"
+            android:layout_height="@dimen/fifty"
+            android:layout_marginLeft="@dimen/martopten"
+            android:textSize="@dimen/medium_text_size"
             android:background="#A81100"
             android:clickable="true"
             android:gravity="center"

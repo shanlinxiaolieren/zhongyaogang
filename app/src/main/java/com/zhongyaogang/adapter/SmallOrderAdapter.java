@@ -57,6 +57,7 @@ public class SmallOrderAdapter extends BaseAdapter {
         {
             holder=(ViewHolder) convertView.getTag();
         }
+
         return convertView;
     }
     private class ViewHolder {

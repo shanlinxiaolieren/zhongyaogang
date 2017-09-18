@@ -1,6 +1,7 @@
 package com.zhongyaogang.activity;
 
 import android.app.Application;
+import android.os.Handler;
 
 import com.baidu.mapapi.SDKInitializer;
 
@@ -8,7 +9,7 @@ import com.baidu.mapapi.SDKInitializer;
  * Created by Administrator on 2017/8/22.
  */
 public class MyApplication extends Application {
-
+    public static Handler mHandler;//线程通讯
     @Override
     public void onCreate() {
         super.onCreate();

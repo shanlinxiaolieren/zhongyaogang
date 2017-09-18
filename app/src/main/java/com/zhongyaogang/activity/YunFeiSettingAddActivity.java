@@ -8,27 +8,27 @@ package com.zhongyaogang.activity;
 //import org.apache.http.impl.client.DefaultHttpClient;
 //import org.apache.http.message.BasicNameValuePair;
 
-import com.zhongyaogang.R;
-import com.zhongyaogang.config.Constants;
-import com.zhongyaogang.http.HttpUtils;
-import com.zhongyaogang.utils.L;
-
-import android.os.Bundle;
-        import android.os.Looper;
-        import android.app.Activity;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.os.Looper;
 import android.text.TextUtils;
-        import android.view.View;
-        import android.view.Window;
+import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.zhongyaogang.R;
+import com.zhongyaogang.config.Constants;
+import com.zhongyaogang.http.HttpUtils;
+import com.zhongyaogang.utils.L;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -149,8 +149,8 @@ public class YunFeiSettingAddActivity extends Activity implements OnClickListene
                         params.put("upMoney",jine);
                         String strResult= HttpUtils.submitPostDataToken(yunfeiId == "0" ? path:pathXiuGai,params, "utf-8",token);
                         L.e("返回结果：addressAddresult" + strResult);
-                        Intent intent = new Intent(act,YunFeiSettingActivity.class);
-                        startActivity(intent);
+                       // Intent intent = new Intent(act,YunFeiSettingActivity.class);
+                       // startActivity(intent);
                         act.finish();
                     } catch (Exception e) {
                         e.printStackTrace();

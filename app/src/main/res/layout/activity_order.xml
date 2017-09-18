@@ -13,7 +13,7 @@
         android:orientation="vertical" >
         <View
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/one"
             android:background="@color/white" />
         <LinearLayout
             android:id="@+id/id_tab_chat_ll"
@@ -24,77 +24,77 @@
 
             <TextView
                 android:id="@+id/textview_quanbu"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
+                android:paddingBottom="@dimen/martopten"
+                android:paddingTop="@dimen/martopten"
                 android:clickable="true"
                 android:text="全部"
                 android:textColor="#FF6144"
-                android:textSize="20sp" />
+                android:textSize="@dimen/l_text_size" />
 
             <View
-                android:layout_width="1dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_width="@dimen/one"
+                android:layout_marginTop="@dimen/martop"
+                android:layout_marginBottom="@dimen/martop"
                 android:layout_height="match_parent"
                 android:background="@color/white" />
 
 
             <TextView
                 android:id="@+id/textview_daifukuan"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:clickable="true"
                 android:layout_weight="1"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
+                android:paddingBottom="@dimen/martopten"
+                android:paddingTop="@dimen/martopten"
                 android:text="待付款"
                 android:textColor="@color/darkgray"
-                android:textSize="20sp" />
+                android:textSize="@dimen/l_text_size" />
 
 
             <View
-                android:layout_width="1dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_width="@dimen/one"
+                android:layout_marginTop="@dimen/martop"
+                android:layout_marginBottom="@dimen/martop"
                 android:layout_height="match_parent"
                 android:background="@color/white" />
 
             <TextView
                 android:id="@+id/textview_daifahuo"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
+                android:paddingBottom="@dimen/martopten"
+                android:paddingTop="@dimen/martopten"
                 android:text="待发货"
                 android:textColor="@color/darkgray"
-                android:textSize="20sp" />
+                android:textSize="@dimen/l_text_size" />
             <View
-                android:layout_width="1dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_width="@dimen/one"
+                android:layout_marginTop="@dimen/martop"
+                android:layout_marginBottom="@dimen/martop"
                 android:layout_height="match_parent"
                 android:background="@color/white" />
 
             <TextView
                 android:id="@+id/textview_daishouhuo"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:clickable="true"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
+                android:paddingBottom="@dimen/martopten"
+                android:paddingTop="@dimen/martopten"
                 android:text="待收货"
                 android:textColor="@color/darkgray"
-                android:textSize="20sp" />
+                android:textSize="@dimen/l_text_size" />
         </LinearLayout>
 
 
@@ -116,7 +116,7 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/id_page_vp"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/zero"
             android:layout_weight="1" >
         </android.support.v4.view.ViewPager>
     </LinearLayout>

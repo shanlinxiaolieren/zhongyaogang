@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <ImageView
+        android:id="@+id/yaomingchengpicture"
+        android:layout_width="@dimen/hundredandtsixty"
+        android:layout_height="@dimen/index_gallery_height"
+        android:contentDescription="@string/app_name"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/yaocai1"/>
+    <TextView
+        android:id="@+id/yaomingcheng"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="三七"
+        android:textColor="#6A3906"
+        android:textSize="@dimen/large_text_size" />
+
+    <TextView
+        android:id="@+id/yaoprice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="¥100/公斤"
+        android:textColor="#6A3906"
+        android:textSize="@dimen/large_text_size" />
+
+    <Button
+        android:id="@+id/gouma"
+        android:layout_width="@dimen/hundredandtfifty"
+        android:layout_height="@dimen/forty"
+        android:background="#EA5514"
+        android:text="立即 购买"
+        android:layout_gravity="center_horizontal"
+        />
+
+</LinearLayout>

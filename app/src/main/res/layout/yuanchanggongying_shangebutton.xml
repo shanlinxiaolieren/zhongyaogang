@@ -1,92 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
-     <LinearLayout
+
+    <LinearLayout
         android:id="@+id/id_switch_tab_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#C9ED8F"
         android:baselineAligned="false"
-        android:background="@color/qianghuangshe"
         android:orientation="vertical" >
-       <View
-                    android:layout_width="fill_parent"
-                     android:layout_height="1dp"
-                    android:background="@color/white" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/one"
+            android:background="#FFFFFF" />
+
         <LinearLayout
             android:id="@+id/id_tab_chat_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-             >
+            android:orientation="horizontal" >
 
             <TextView
                 android:id="@+id/id_chat_tv"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                 android:layout_weight="1"
-                 android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:background="@color/bg_Black"
+                android:layout_weight="1"
+                android:background="#8CB54B"
                 android:clickable="true"
+                android:gravity="center"
+                android:paddingBottom="@dimen/martopten"
+                android:paddingTop="@dimen/martopten"
                 android:text="热销产品"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-      
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/l_text_size" />
+
             <View
-                android:layout_width="1dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_width="@dimen/one"
                 android:layout_height="match_parent"
-                android:background="@color/white" />
-            
+                android:layout_marginBottom="@dimen/martop"
+                android:layout_marginTop="@dimen/martop"
+                android:background="#FFFFFF" />
 
             <TextView
                 android:id="@+id/id_friend_tv"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_weight="1"
                 android:clickable="true"
-                 android:layout_weight="1"
-                 android:paddingBottom="10dp"
-                android:paddingTop="10dp"
+                android:gravity="center"
+                android:paddingBottom="@dimen/martopten"
+                android:paddingTop="@dimen/martopten"
                 android:text="低价资源"
-                android:textColor="@color/darkgray"
-                android:textSize="20sp" />
-       
+                android:textColor="#a9a9a9"
+                android:textSize="@dimen/l_text_size" />
 
             <View
-                android:layout_width="1dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_width="@dimen/one"
                 android:layout_height="match_parent"
-                android:background="@color/white" />
-            
+                android:layout_marginBottom="@dimen/martop"
+                android:layout_marginTop="@dimen/martop"
+                android:background="#FFFFFF" />
+
             <TextView
                 android:id="@+id/id_contacts_tv"
-                android:layout_width="0dp"
+                android:layout_width="@dimen/zero"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                 android:layout_weight="1"
+                android:layout_weight="1"
                 android:clickable="true"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
+                android:gravity="center"
+                android:paddingBottom="@dimen/martopten"
+                android:paddingTop="@dimen/martopten"
                 android:text="最新上线"
-                android:textColor="@color/darkgray"
-                android:textSize="20sp" />
+                android:textColor="#a9a9a9"
+                android:textSize="@dimen/l_text_size" />
         </LinearLayout>
-       
+
         <View
-                    android:layout_width="fill_parent"
-                     android:layout_height="1dp"
-                    android:background="@color/white" />
-        <RelativeLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/one"
+            android:background="#ffffff" />
+    </LinearLayout>
+        <RelativeLayout
             android:id="@+id/show_cart_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ></RelativeLayout>
-    </LinearLayout>
+            android:background="#C9ED8F"
+            android:layout_below="@+id/id_switch_tab_ll"
+            android:layout_height="wrap_content">
 
-</LinearLayout>
+        </RelativeLayout>
+
+
+
+</RelativeLayout>

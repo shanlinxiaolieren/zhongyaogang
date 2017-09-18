@@ -8,19 +8,19 @@
     <RelativeLayout
         android:id="@+id/top_relativelayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/fifty"
         android:gravity="center_vertical"
         android:background="#9A0000"
         >
         <ImageView
             android:id="@+id/wodezhongxin_left"
-            android:layout_width="45dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/forty_five"
+            android:layout_height="@dimen/thirty"
             android:contentDescription="@string/app_name"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
+            android:layout_marginBottom="@dimen/martopten"
             android:src="@mipmap/btn_back_normal"
             />
         <TextView
@@ -30,30 +30,30 @@
             android:layout_centerInParent="true"
             android:text="运费设置"
             android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:textSize="@dimen/large_text_size" />
         <ImageView
             android:id="@+id/wodezhongxin_right"
-            android:layout_width="35dp"
+            android:layout_width="@dimen/thirtyfive"
             android:layout_height="match_parent"
             android:contentDescription="@string/app_name"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginRight="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
+            android:layout_marginBottom="@dimen/martopten"
             android:src="@mipmap/gongqiuright"
             />
     </RelativeLayout>
     <ListView
         android:id="@+id/listview_yunfei"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/zero"
         android:layout_weight="1"
-        android:dividerHeight="8dp" />
+        android:dividerHeight="@dimen/eight" />
 
     <Button
         android:id="@+id/button_addressadd"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/fifty"
         android:background="#940000"
         android:textColor="@color/white"
         android:text="添加运费"

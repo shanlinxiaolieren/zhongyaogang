@@ -5,8 +5,7 @@
     android:orientation="vertical"
     >
     <include layout="@layout/index_top_relativelayout" />
-    <include layout="@layout/wogonghuo"
-        />
+    <include layout="@layout/wogonghuo" />
 
 
 </LinearLayout>

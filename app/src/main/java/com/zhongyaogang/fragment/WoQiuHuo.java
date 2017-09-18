@@ -1,30 +1,34 @@
 package com.zhongyaogang.fragment;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.zhongyaogang.activity.DengLuActivity;
-import com.zhongyaogang.R;
-import com.zhongyaogang.config.Constants;
-import com.zhongyaogang.http.HttpUtils;
-import com.zhongyaogang.utils.L;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.zhongyaogang.R;
+import com.zhongyaogang.activity.DengLuActivity;
+import com.zhongyaogang.config.Constants;
+import com.zhongyaogang.http.HttpUtils;
+import com.zhongyaogang.utils.L;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @SuppressWarnings("deprecation")
 public class WoQiuHuo extends Fragment implements OnClickListener{
@@ -51,8 +55,21 @@ public class WoQiuHuo extends Fragment implements OnClickListener{
 	private RadioGroup rgisvoucher;
 	private RadioButton rbshi;
 	private RadioButton rbfou;
-	private String shi;
-	private String fou;
+	private String shi="需要";
+	private String fou="";
+	private Handler mhandler=new Handler()
+	{
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			switch (msg.what) {
+				case 100:
+					L.e("到这了");
+					Toast.makeText(getActivity(), "发布成功", Toast.LENGTH_SHORT).show();
+					break;
+			}
+		}
+	};
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
@@ -84,7 +101,6 @@ public class WoQiuHuo extends Fragment implements OnClickListener{
 				shi = rbshi.getText().toString();
 				rbfou = (RadioButton) view.findViewById(rgisvoucher.getCheckedRadioButtonId());
 				fou = rbfou.getText().toString();
-
 			}
 		});
 	}
@@ -101,8 +117,6 @@ public class WoQiuHuo extends Fragment implements OnClickListener{
 		switch (v.getId()) {
 			case R.id.button_qiuhuo:
 				woQiuHuoAdd();
-				Toast.makeText(getActivity(), "发布成功",
-						Toast.LENGTH_LONG).show();
 				break;
 		}
 	}
@@ -126,8 +140,6 @@ public class WoQiuHuo extends Fragment implements OnClickListener{
 		}else if(fou.equals("不需要")){
 			isVoucher="0";
 		}
-		L.e("返回结果：isVoucher=" + isVoucher);
-
 		weight=edittext_weight.getText().toString().trim();
 		details=edittext_details.getText().toString().trim();
 		phone=editext_dianhua.getText().toString().trim();
@@ -160,10 +172,20 @@ public class WoQiuHuo extends Fragment implements OnClickListener{
 						params.put("units", units);
 						params.put("isVoucher", isVoucher);
 						String strResult= HttpUtils.submitPostDataToken(path,params, "utf-8",token);
+						L.e("strResult:"+strResult);
 						if (strResult.equals("401")){
 							Intent intent=new Intent(getActivity(),DengLuActivity.class);
 							startActivity(intent);
 							getActivity().finish();
+						}
+						JSONObject obj=new JSONObject(strResult);
+						String success=obj.getString("success");
+						String error=obj.getString("error");
+						if(success.equals("true")&&error.equals("null"))
+						{
+							Message s=new Message();
+							s.what=100;
+							mhandler.sendMessage(s);
 						}
 					} catch (Exception e) {
 						e.printStackTrace();

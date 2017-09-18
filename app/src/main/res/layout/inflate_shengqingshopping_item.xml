@@ -13,8 +13,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="@dimen/martopten"
+                        android:layout_marginTop="@dimen/martopten"
                         android:text="李四店"
                         android:textColor="@color/black" />
                     <TextView
@@ -22,16 +22,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/textView_shopName"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="@dimen/martopten"
+                        android:layout_marginTop="@dimen/martopten"
                         android:text="李四"
                         android:textColor="@color/black" />
                     <TextView
                         android:id="@+id/textView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="@dimen/martopten"
+                        android:layout_marginTop="@dimen/martopten"
                         android:layout_toRightOf="@+id/textView_proposer"
                          android:layout_below="@+id/textView_shopName"
                         android:text="邮箱："
@@ -40,8 +40,8 @@
                         android:id="@+id/textView_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="@dimen/martopten"
+                        android:layout_marginTop="@dimen/martopten"
                         android:layout_toRightOf="@+id/textView1"
                          android:layout_below="@+id/textView_shopName"
                         android:text="252545245@qq.com"
@@ -51,7 +51,7 @@
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="@dimen/martop"
                         android:layout_alignLeft="@+id/textView1"
                         android:layout_below="@+id/textView1"
                          android:text="手机号："
@@ -61,8 +61,8 @@
                         android:id="@+id/textView_phone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                          android:layout_marginLeft="10dp"
+                        android:layout_marginTop="@dimen/martop"
+                          android:layout_marginLeft="@dimen/martopten"
                         android:layout_toRightOf="@+id/textView2"
                         android:layout_below="@+id/textView1"
                          android:text="13615421254"
@@ -72,7 +72,7 @@
                         android:id="@+id/textview_shengfenzheng"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="@dimen/martop"
                         android:layout_alignLeft="@+id/textView2"
                         android:layout_below="@+id/textView2"
                          android:text="身份证："
@@ -82,82 +82,50 @@
                         android:id="@+id/textview_shengfenzhenghaoma"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                         android:layout_marginLeft="10dp"
+                        android:layout_marginTop="@dimen/martop"
+                         android:layout_marginLeft="@dimen/martopten"
                          android:layout_toRightOf="@+id/textview_shengfenzheng"
                         android:layout_below="@+id/textView2"
                          android:text="452503198711221545"
-                         android:textColor="@color/black"
-                        />
-                    <ImageView 
-                        android:id="@+id/imageview_picture1"
-                        android:contentDescription="@string/app_name"
-                        android:layout_width="wrap_content"
+                         android:textColor="@color/black" />
+                    <com.zhongyaogang.view.MyGridView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="@dimen/martopten"
                         android:layout_alignParentLeft="true"
-                        android:visibility="gone"
                         android:layout_below="@+id/textview_shengfenzheng"
-                        android:src="@mipmap/show_m1"/>
-                    <ImageView 
-                        android:id="@+id/imageview_picture2"
-                        android:contentDescription="@string/app_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_alignParentRight="true"
                         android:visibility="gone"
-                        android:layout_toRightOf="@+id/imageview_picture1"
-                        android:layout_below="@+id/textview_shengfenzheng"
-                        android:src="@mipmap/show_m1"/>
-                    <ImageView 
-                        android:id="@+id/imageview_picture3"
-                        android:contentDescription="@string/app_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:visibility="gone"
-                         android:layout_alignParentLeft="true"
-                        android:layout_below="@+id/imageview_picture1"
-                        android:src="@mipmap/show_m1"/>
-                    <ImageView 
-                        android:id="@+id/imageview_picture4"
-                        android:contentDescription="@string/app_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                         android:layout_alignParentRight="true"
-                        android:visibility="gone"
-                        android:layout_toRightOf="@+id/imageview_picture3"
-                        android:layout_below="@+id/imageview_picture1"
-                        android:src="@mipmap/show_m1"/>
+                        android:numColumns="2"
+                        android:id="@+id/gv">
+                    </com.zhongyaogang.view.MyGridView>
+
 </RelativeLayout>
      
                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
+                        android:layout_height="@dimen/one"
                         android:background="#BABABA" />
                     <ImageView
                         android:id="@+id/imageview_shengqingshoppingquanbu"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="@dimen/sixty"
+                        android:layout_height="@dimen/sixty"
                         android:clickable="true"
                          android:contentDescription="@string/app_name"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="@dimen/martopten"
                         android:layout_gravity="center_horizontal"
                         android:src="@mipmap/up_icon" />
                    <RelativeLayout 
                       android:id="@+id/relativelayout_bottom"
                       android:layout_width="match_parent"
-                      android:layout_height="40dp"
+                      android:layout_height="@dimen/forty"
                       android:background="#FFFFFF"
                       >
                    <Button 
-                android:layout_width="100dp"
-                android:layout_height="40dp"
+                android:layout_width="@dimen/hundred"
+                android:layout_height="@dimen/forty"
                 android:background="@drawable/shape_button"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginTop="@dimen/martop"
+                android:layout_marginLeft="@dimen/martopten"
                 android:text="提交申请"
                 android:layout_alignParentLeft="true"
                 android:textColor="@color/white"
@@ -165,27 +133,27 @@
                   
                        <TextView
                         android:id="@+id/textView_xiugai"
-                        android:layout_width="80dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="3dp"
+                        android:layout_width="@dimen/eighty"
+                        android:layout_height="@dimen/forty"
+                        android:layout_marginLeft="@dimen/three"
                         android:layout_toLeftOf="@+id/textView_shanchu"
                         android:drawableLeft="@mipmap/xiugai"
                         android:gravity="center_vertical"
                         android:clickable="true"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/twenty"
                         android:text="修改"
                         android:textColor="@color/black" />
                      
                        <TextView
                         android:id="@+id/textView_shanchu"
-                        android:layout_width="80dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="3dp"
+                        android:layout_width="@dimen/eighty"
+                        android:layout_height="@dimen/forty"
+                        android:layout_marginLeft="@dimen/three"
                         android:drawableLeft="@mipmap/shanchu"
                         android:layout_alignParentRight="true"
                         android:gravity="center_vertical"
                         android:clickable="true"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/twenty"
                         android:text="删除"
                         android:textColor="@color/black" />
                 

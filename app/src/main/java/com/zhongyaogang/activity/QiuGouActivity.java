@@ -8,26 +8,27 @@ package com.zhongyaogang.activity;
 //import org.apache.http.impl.client.DefaultHttpClient;
 //import org.apache.http.message.BasicNameValuePair;
 
-import com.zhongyaogang.R;
-import com.zhongyaogang.config.Constants;
-import com.zhongyaogang.http.HttpUtils;
-import com.zhongyaogang.utils.L;
-
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
-import android.app.Activity;
-        import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.zhongyaogang.R;
+import com.zhongyaogang.config.Constants;
+import com.zhongyaogang.http.HttpUtils;
+import com.zhongyaogang.utils.L;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -62,6 +63,8 @@ public class QiuGouActivity extends Activity implements OnClickListener{
     private String fou;
     private String yunfeiId ;
     private String  spinner ;
+    private ImageView wodezhongxin_left;
+    private ImageView wodezhongxin_right;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +76,14 @@ public class QiuGouActivity extends Activity implements OnClickListener{
 
     }
     private void initView() {
-
+        wodezhongxin_left=(ImageView) findViewById(R.id.wodezhongxin_left);
+        wodezhongxin_left.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                act.finish();
+            }
+        });
+        wodezhongxin_right=(ImageView) findViewById(R.id.wodezhongxin_right);
         rbshi = (RadioButton)findViewById(R.id.rbshi);
         rbfou = (RadioButton)findViewById(R.id.rbfou);
         button_qiuhuo = (Button) findViewById(R.id.button_qiuhuo);

@@ -1,26 +1,30 @@
 package com.zhongyaogang.activity;
 
 
-import com.zhongyaogang.R;
-import com.zhongyaogang.fragment.AllBaby_F;
-import com.zhongyaogang.fragment.LowBaby_F;
-import com.zhongyaogang.fragment.StockBaby_F;
-
-import android.os.Bundle;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.zhongyaogang.R;
+import com.zhongyaogang.fragment.AllBaby_F;
+import com.zhongyaogang.fragment.LowBaby_F;
+import com.zhongyaogang.fragment.StockBaby_F;
 
 public class FenBazaarActivity extends FragmentActivity implements OnClickListener{
     private TextView index_search_yaocaiwang;
@@ -31,8 +35,24 @@ public class FenBazaarActivity extends FragmentActivity implements OnClickListen
     private LowBaby_F lowBaby_F;
     private StockBaby_F stockBaby_F;
     private TextView bt_cart_all, bt_cart_low, bt_cart_stock;
+    private EditText search_et_input;
+    private ImageView index_search_button;
     private SharedPreferences sp;
     private String sharedusernameid;
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 4://上拉
+                    Toast.makeText(getApplication(), "这里没有数据加载", Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +63,7 @@ public class FenBazaarActivity extends FragmentActivity implements OnClickListen
         intView();
     }
     private void intView() {
+        MyApplication.mHandler=mHandler;
         index_search_yaocaiwang=(TextView) findViewById(R.id.index_search_yaocaiwang);
         index_search_yaocaiwang.setText("市场");
         bt_cart_all = (TextView) findViewById(R.id.id_chat_tv);
@@ -60,6 +81,24 @@ public class FenBazaarActivity extends FragmentActivity implements OnClickListen
         showFragment(allBaby_F);
         sp = this.getSharedPreferences("config", 0);
         sharedusernameid = sp.getString("usernameid", "");
+        search_et_input=(EditText) findViewById(R.id.search_et_input);
+        index_search_button=(ImageView) findViewById(R.id.index_search_button);
+        index_search_button.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent(getContext(), BaiduMapActivity.class));
+                if(search_et_input.getText().toString().length()!=0) {
+                    Intent i = new Intent(getApplication(), SearchActivity.class);
+                    i.putExtra("tag","qiu");
+                    i.putExtra("search",search_et_input.getText().toString().trim());
+                    startActivity(i);
+                }
+                else
+                {
+                    Toast.makeText(getApplication(), "搜索内容不能为空", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
     /** 添加Fragment **/
     public void addFragment(Fragment fragment) {
@@ -90,7 +129,6 @@ public class FenBazaarActivity extends FragmentActivity implements OnClickListen
         ft.commitAllowingStateLoss();
 
     }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

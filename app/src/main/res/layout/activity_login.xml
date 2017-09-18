@@ -8,46 +8,46 @@
     <include layout="@layout/index_top_relativelayout" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/martopten"
+        android:layout_height="@dimen/fifty"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:text="手机号码"
-            android:textSize="18sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
+            android:textSize="@dimen/medium_text_size"
+            android:layout_marginTop="@dimen/martop"
+            android:layout_marginLeft="@dimen/eight"
             android:layout_weight="1"/>
         <EditText
             android:id="@+id/edittext_shoujihaoma"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:hint="请输入您的手机号码"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/martop"
             android:textColorHint="#CDCDCD"
             android:singleLine="true"
             android:background="@null"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/one"
         android:background="#BABABA" />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/fifty"
         >
         <TextView
             android:id="@+id/textview_yanzhengma"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="@dimen/thirty"
             android:text="验证码"
-            android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="8dp"
+            android:textSize="@dimen/medium_text_size"
+            android:layout_marginTop="@dimen/martopten"
+            android:layout_marginLeft="@dimen/eight"
             />
         <EditText
             android:id="@+id/et_phoneCode"
@@ -55,146 +55,146 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/textview_yanzhengma"
             android:hint="请输入验证码"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginTop="@dimen/martopten"
+            android:layout_marginLeft="@dimen/martop"
             android:textColorHint="#CDCDCD"
             android:background="@null"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             />
         <ImageView
             android:id="@+id/iv_showCode"
-            android:layout_width="80dp"
+            android:layout_width="@dimen/eighty"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/martop"
             android:contentDescription="@string/app_name"
             android:layout_toRightOf="@+id/et_phoneCode"
             />
         <Button
             android:id="@+id/but_forgetpass_toSetCodes"
-            android:layout_width="40dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="@dimen/forty"
+            android:layout_height="@dimen/fifty"
+            android:layout_marginLeft="@dimen/martop"
             android:layout_toRightOf="@+id/iv_showCode"
             android:layout_alignParentRight="true"
             android:background="@color/white"
             android:text="换一张"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             android:textColor="#717070" />
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/one"
         android:background="#BABABA" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/fifty"
 
         android:orientation="horizontal">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:text="用户名"
-            android:textSize="18sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
+            android:textSize="@dimen/medium_text_size"
+            android:layout_marginTop="@dimen/martop"
+            android:layout_marginLeft="@dimen/eight"
             android:layout_weight="1"/>
         <EditText
             android:id="@+id/edittext_username"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:hint="请输入用户名"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/martop"
             android:textColorHint="#CDCDCD"
             android:background="@null"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/one"
         android:background="#BABABA" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/fifty"
 
         android:orientation="horizontal">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:text="设置密码"
-            android:textSize="18sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
+            android:textSize="@dimen/medium_text_size"
+            android:layout_marginTop="@dimen/martop"
+            android:layout_marginLeft="@dimen/eight"
             android:layout_weight="1"/>
         <EditText
             android:id="@+id/edittext_mima"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:hint="请输入密码"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/martop"
             android:textColorHint="#CDCDCD"
             android:inputType="textPassword"
             android:background="@null"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/one"
         android:background="#BABABA" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/fifty"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:text="重复密码"
-            android:textSize="18sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
+            android:textSize="@dimen/medium_text_size"
+            android:layout_marginTop="@dimen/martop"
+            android:layout_marginLeft="@dimen/eight"
             android:layout_weight="1"/>
         <EditText
             android:id="@+id/edittext_confirmPassword"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:hint="请输入重复密码"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/martop"
             android:textColorHint="#CDCDCD"
             android:inputType="textPassword"
             android:background="@null"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/forty"
         android:orientation="horizontal">
         <CheckBox
             android:id="@+id/savePasswordCB"
             android:layout_width="wrap_content"
-            android:layout_height="26dp"
-            android:layout_marginLeft="10dp"
+            android:layout_height="@dimen/twentysix"
+            android:layout_marginLeft="@dimen/martopten"
             >
         </CheckBox>
         <TextView
             android:id="@+id/textview_xieyi"
             android:layout_width="wrap_content"
-            android:layout_height="26dp"
+            android:layout_height="@dimen/twentysix"
             android:clickable="true"
             android:text="东盟·大宗药材网协议"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             android:textColor="#FF0000"
             />
     </LinearLayout>
     <Button
         android:id="@+id/button_lijizhuce"
-        android:layout_width="300dp"
-        android:layout_margin="10dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/threehundred"
+        android:layout_margin="@dimen/martopten"
+        android:layout_height="@dimen/fifty"
         android:background="@drawable/shape_button"
         android:layout_gravity="center_horizontal"
         android:text="立即注册"

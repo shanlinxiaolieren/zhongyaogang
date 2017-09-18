@@ -6,7 +6,7 @@
                  <LinearLayout 
                     android:id="@+id/jixutegong_diyi"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="@dimen/forty"
                     android:orientation="horizontal"
                      android:gravity="center"
                     >
@@ -17,16 +17,16 @@
             android:text="三七"
             android:layout_weight="1"
             android:textColor="#6A3906"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
             <TextView
             android:id="@+id/jixutegong_huo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/martop"
             android:text="药厂投料货"
             android:layout_weight="2"
             android:textColor="#6A3906"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
              <LinearLayout 
                     android:id="@+id/jixutegong_qiugounumber"
                     android:layout_width="wrap_content"
@@ -46,27 +46,27 @@
             android:layout_height="wrap_content"
             android:text="100"
             android:textColor="#E4B8B8"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
             <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="公斤"
             android:textColor="#E4B8B8"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
               </LinearLayout>
             <TextView
             android:id="@+id/jixutegong_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/martop"
             android:clickable="true"
             android:text="查看更多"
             android:layout_weight="2"
             android:textColor="#6A3906"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
                 </LinearLayout>
                  <View
                     android:layout_width="fill_parent"
-                     android:layout_height="1dp"
+                     android:layout_height="@dimen/one"
                     android:background="@color/qianred" />
 </LinearLayout>

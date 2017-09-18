@@ -5,66 +5,66 @@
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="@dimen/forty"
         >
         <TextView
             android:id="@+id/textview_yunfei_lishi"
-            android:layout_width="40dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="100dp"
+            android:layout_width="@dimen/forty"
+            android:layout_height="@dimen/thirty"
+            android:layout_marginTop="@dimen/martop"
+            android:layout_marginLeft="@dimen/hundred"
             android:text="运费"
             android:textColor="#A9A9A9"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
         <TextView
             android:id="@+id/tv_fareprice"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="@dimen/thirty"
+            android:layout_marginTop="@dimen/martop"
             android:layout_toRightOf="@+id/textview_yunfei_lishi"
             android:layout_centerHorizontal="true"
             android:text="10.0"
             android:textColor="#A9A9A9"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
         <TextView
             android:id="@+id/textview_heji_lishi"
-            android:layout_width="50dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
+            android:layout_width="@dimen/fifty"
+            android:layout_height="@dimen/thirty"
+            android:layout_marginTop="@dimen/martop"
             android:layout_toLeftOf="@+id/textview_hejiprice_lishi"
             android:text="合计:"
             android:textColor="#A9A9A9"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
         <TextView
             android:id="@+id/textview_hejiprice_lishi"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
+            android:layout_height="@dimen/thirty"
+            android:layout_marginTop="@dimen/martop"
+            android:layout_marginRight="@dimen/martop"
             android:layout_alignParentRight="true"
             android:text="110.0"
             android:textColor="#CA7D7D"
-            android:textSize="18sp" />
+            android:textSize="@dimen/medium_text_size" />
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/one"
         android:background="#E1E1E1" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/one"
         android:background="#E1E1E1" />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="@dimen/forty"
+        android:layout_marginTop="@dimen/martop"
         >
         <Button
             android:id="@+id/button_quxiao_order"
-            android:layout_width="85dp"
-            android:layout_height="35dp"
-            android:layout_marginRight="10dp"
+            android:layout_width="@dimen/eightyfive"
+            android:layout_height="@dimen/thirtyfive"
+            android:layout_marginRight="@dimen/martopten"
             android:layout_toLeftOf="@+id/button_fukuan_zhangsan"
             android:background="@drawable/shape_fukuan_button"
             android:textColor="@color/white"
@@ -73,10 +73,10 @@
             />
         <Button
             android:id="@+id/button_fukuan_zhangsan"
-            android:layout_width="80dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/eighty"
+            android:layout_height="@dimen/thirtyfive"
             android:layout_alignParentRight="true"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/martop"
             android:background="@drawable/shape_button"
             android:textColor="@color/white"
             />

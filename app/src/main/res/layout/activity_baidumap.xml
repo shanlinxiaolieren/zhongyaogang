@@ -5,18 +5,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/fifty"
         android:background="#9A0000"
         android:id="@+id/relativeLayout7">
         <ImageView
             android:id="@+id/wodezhongxin_left_address"
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/twentyfive"
+            android:layout_height="@dimen/thirty"
             android:contentDescription="@string/app_name"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
+            android:layout_marginBottom="@dimen/martopten"
             android:src="@mipmap/btn_back_normal"/>
 
         <TextView
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="百度地图导航"
             android:textColor="#FFFFFF"
-            android:textSize="22sp"
+            android:textSize="@dimen/large_text_size"
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>

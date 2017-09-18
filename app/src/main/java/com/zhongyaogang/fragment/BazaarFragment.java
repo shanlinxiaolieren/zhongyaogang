@@ -13,18 +13,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
+        import android.widget.ArrayAdapter;
+        import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
+        import android.widget.Spinner;
+        import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.zhongyaogang.R;
-        import com.zhongyaogang.activity.BaiduMapActivity;
-        import com.zhongyaogang.activity.FenBazaarActivity;
+import com.zhongyaogang.activity.FenBazaarActivity;
+import com.zhongyaogang.activity.SearchActivity;
 import com.zhongyaogang.bean.Bazaar;
 import com.zhongyaogang.bean.BazaarBean;
 import com.zhongyaogang.bean.BazaarItems;
@@ -41,15 +44,20 @@ import java.util.Map;
 @SuppressLint({ "NewApi", "HandlerLeak" })
 @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 public class BazaarFragment extends Fragment implements OnClickListener{
-    private TextView index_search_gongqiu;
+   // private TextView index_search_gongqiu;
     private BazaarFragment act;
     private BazaarAdapter adapter;
     private ListView lvAddress;
     private Bazaar bazaarbean;
     private BazaarItems a;
     private BazaarBean depts;
+    private EditText search_et_input;
     private ImageView index_search_button;
     private List<Map<String, Object>> oList;
+    private Spinner spinner;
+    private List<String> list;
+    private String[] items = {"供求","供货"};
+
     private Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -80,7 +88,14 @@ public class BazaarFragment extends Fragment implements OnClickListener{
         initView(view);
         return view;
     }
-//    private void showPopupMenu(View view) {
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        bazaarQuary();
+    }
+
+    //    private void showPopupMenu(View view) {
 //        // View当前PopupMenu显示的相对View的位置
 //        PopupMenu popupMenu = new PopupMenu(getActivity(), view);
 //        // menu布局
@@ -103,25 +118,118 @@ public class BazaarFragment extends Fragment implements OnClickListener{
 //        popupMenu.show();
 //    }
     private void initView(View view) {
+        spinner=(Spinner) view.findViewById(R.id.sp);
         lvAddress= (ListView) view.findViewById(R.id.listview_bazaar);
-        index_search_gongqiu= (TextView) view.findViewById(R.id.index_search_gongqiu);
-        index_search_gongqiu.setOnClickListener(this);
+        search_et_input=(EditText) view.findViewById(R.id.search_et_input);
+//        index_search_gongqiu= (TextView) view.findViewById(R.id.index_search_gongqiu);
+//        index_search_gongqiu.setOnClickListener(this);
         index_search_button=(ImageView) view.findViewById(R.id.index_search_button);
         depts=new BazaarBean();
         a=new BazaarItems();
         bazaarbean=new Bazaar();
-        bazaarQuary();
         index_search_button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(getContext(), BaiduMapActivity.class));
+               //startActivity(new Intent(getContext(), BaiduMapActivity.class));
+                if(search_et_input.getText().toString().length()!=0) {
+                    Intent i = new Intent(getContext(), SearchActivity.class);
+                    i.putExtra("tag","qiu");
+                    i.putExtra("search",search_et_input.getText().toString().trim());
+                    startActivity(i);
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "搜索内容不能为空", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
+        list = new ArrayList<String>();
+        for(int i = 0; i < items.length; i++)
+        {
+            list.add(items[i]);
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_item, items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
    }
+
+    private void bazaarQuary() {
+        // 数据应该提交给服务器 由服务器比较是否正确
+        new Thread() {
+            public void run() {
+                try {
+                    Looper.prepare();
+                    String path = Constants.BAZAAR_QUERY;
+                    Map<String, String> params = new HashMap<String, String>();
+                    String strResult = HttpUtils.submitPostData(path, params, "utf-8");
+                    analysisData(strResult);
+                    Message msg = new Message();
+                    msg.what = 1;
+                    mHandler.sendMessage(msg);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getActivity(), "查询失败", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }.start();
+    }
+
+    /*
+     * 解析数据
+     */
+    public void analysisData(String data) {
+        try {
+            Gson gson = new Gson();
+            depts = gson.fromJson(data, BazaarBean.class);
+            Bazaar bazaar = depts.getResult();
+            L.e("返回结果：bazaar=" + bazaar);
+            oList = new ArrayList<Map<String, Object>>();
+            List<Bazaar> appinfos = new ArrayList<Bazaar>();
+            appinfos.add(bazaar);
+            for (int i = 0; i < appinfos.size(); i++) {
+                bazaarbean = appinfos.get(i);
+                List<BazaarItems> listA = new ArrayList<BazaarItems>();
+                listA = bazaarbean.getItems();
+                Map<String, Object> map = new HashMap<String, Object>();
+                for (int j = 0; j < listA.size(); j++) {
+                    a = listA.get(j);
+                    map.put("marketName", a.getMarketName());
+                    map.put("marketImage", a.getMarketImage());
+                    map.put("aboutMarket", a.getAboutMarket());
+                    map.put("marketDescription", a.getMarketDescription());
+                    map.put("marketLocation", a.getMarketLocation());
+                    map.put("aboutShop", a.getAboutShop());
+                }
+                oList.add(map);
+                L.e("返回结果：oList=" + oList);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+//            case R.id.index_search_gongqiu:
+////                showPopupMenu(index_search_gongqiu);
+//                break;
+            case R.id.bazaarfragment_button:
+                startActivity(new Intent(getActivity(), FenBazaarActivity.class));
+                break;
+
+        }
+    }
+
     class BazaarAdapter extends BaseAdapter{
         private BazaarFragment act;
         private LayoutInflater layoutinflater;
-        private List<Map<String, Object>> roots=new ArrayList<Map<String, Object>>();;
+        private List<Map<String, Object>> roots = new ArrayList<Map<String, Object>>();
 
         public BazaarAdapter(BazaarFragment act, List<Map<String, Object>> roots) {
             super();
@@ -193,74 +301,6 @@ public class BazaarFragment extends Fragment implements OnClickListener{
             private Button bazaarfragment_button;
         }
 
-    }
-    private void bazaarQuary(){
-        // 数据应该提交给服务器 由服务器比较是否正确
-        new Thread() {
-            public void run() {
-                try {
-                    Looper.prepare();
-                    String path = Constants.BAZAAR_QUERY;
-                    Map<String,String> params = new HashMap<String,String>();
-                    String strResult= HttpUtils.submitPostData(path,params, "utf-8");
-                        analysisData(strResult);
-                    Message msg = new Message();
-                    msg.what = 1;
-                    mHandler.sendMessage(msg);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(getActivity(), "查询失败", Toast.LENGTH_SHORT).show();
-                }
-
-            };
-        }.start();
-    }
-    /*
-     * 解析数据
-     */
-    public void analysisData(String data) {
-        try{
-            Gson gson = new Gson();
-            depts =gson.fromJson(data, BazaarBean.class);
-            Bazaar bazaar=depts.getResult();
-            L.e("返回结果：bazaar="+bazaar);
-            oList = new ArrayList<Map<String, Object>>();
-            List<Bazaar> appinfos = new ArrayList<Bazaar>();
-            appinfos.add(bazaar);
-            for (int i = 0; i < appinfos.size(); i++) {
-                bazaarbean=appinfos.get(i);
-                List<BazaarItems> listA = new ArrayList<BazaarItems>();
-                listA = bazaarbean.getItems();
-                Map<String, Object> map = new HashMap<String, Object>();
-                for (int j = 0; j < listA.size(); j++) {
-                    a = listA.get(j);
-                    map.put("marketName", a.getMarketName());
-                    map.put("marketImage", a.getMarketImage());
-                    map.put("aboutMarket", a.getAboutMarket());
-                    map.put("marketDescription", a.getMarketDescription());
-                    map.put("marketLocation", a.getMarketLocation());
-                    map.put("aboutShop", a.getAboutShop());
-                }
-                oList.add(map);
-                L.e("返回结果：oList="+oList);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.index_search_gongqiu:
-//                showPopupMenu(index_search_gongqiu);
-                break;
-//		case R.id.bazaarfragment_button:
-//			startActivity(new Intent(getActivity(), FenBazaarActivity.class));
-//			break;
-
-        }
     }
 
 }

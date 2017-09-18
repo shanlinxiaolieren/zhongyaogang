@@ -26,6 +26,7 @@
                 android:id="@+id/textview_shengqingrenxingxin"
                 android:layout_width="180dp"
                 android:layout_height="50dp"
+                android:gravity="center"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:textColor="#303030"
@@ -43,6 +44,7 @@
                     android:layout_height="wrap_content"
                     android:text="店铺名"
                     android:textSize="18sp"
+                    android:gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="8dp"
                     android:textColor="#525151"
@@ -50,7 +52,7 @@
                 <EditText
                     android:id="@+id/edittext_shopName"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:hint="请输入店铺名"
                     android:layout_marginTop="5dp"
@@ -71,6 +73,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="申请人姓名"
+                    android:gravity="center"
                     android:textSize="18sp"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="8dp"
@@ -79,7 +82,7 @@
                 <EditText
                     android:id="@+id/edittext_proposer"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:hint="管理员真实姓名"
                     android:layout_marginTop="5dp"
@@ -101,14 +104,16 @@
                     android:layout_height="wrap_content"
                     android:text="申请人邮箱"
                     android:textSize="18sp"
+                    android:gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="8dp"
                     android:textColor="#525151"
                     android:layout_weight="1"/>
+
                 <EditText
                     android:id="@+id/edittext_youxiang"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:hint="请输常用邮箱"
                     android:layout_marginTop="5dp"
@@ -130,6 +135,7 @@
                     android:layout_height="wrap_content"
                     android:text="申请人手机号"
                     android:textSize="18sp"
+                    android:gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="8dp"
                     android:textColor="#525151"
@@ -137,7 +143,7 @@
                 <EditText
                     android:id="@+id/edittext_shoujihaoma"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:hint="请输管理人手机号码"
                     android:layout_marginTop="5dp"
@@ -158,6 +164,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="身份证号"
+                    android:gravity="center"
                     android:textSize="18sp"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="8dp"
@@ -166,7 +173,7 @@
                 <EditText
                     android:id="@+id/edittext_idCard"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:hint="请输有效证件号"
                     android:layout_marginTop="5dp"
@@ -188,6 +195,7 @@
                     android:layout_height="wrap_content"
                     android:text="紧急联系人姓名"
                     android:textSize="18sp"
+                    android:gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="8dp"
                     android:textColor="#525151"
@@ -195,7 +203,7 @@
                 <EditText
                     android:id="@+id/edittext_contacts"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:hint="不能与管理人为同一人"
                     android:layout_marginTop="5dp"
@@ -217,6 +225,7 @@
                     android:layout_height="wrap_content"
                     android:text="紧急联系人手机号"
                     android:textSize="18sp"
+                    android:gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="8dp"
                     android:textColor="#525151"
@@ -224,7 +233,7 @@
                 <EditText
                     android:id="@+id/edittext_contactshaoma"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="4"
                     android:hint="不能与管理人为同一手机号"
                     android:layout_marginTop="5dp"
@@ -238,21 +247,24 @@
                 android:layout_height="1dp"
                 android:background="#BABABA" />
             <LinearLayout
+                android:id="@+id/rlaymarket"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:orientation="horizontal">
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:text="所在市场"
                     android:textSize="18sp"
+                    android:gravity="center"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="8dp"
                     android:textColor="#525151"
                     android:layout_weight="1"/>
-                <EditText
+                <TextView
+                    android:id="@+id/tvmarket"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:hint="请输入您所在市场"
                     android:layout_marginTop="5dp"
@@ -265,10 +277,43 @@
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:background="#F1F1F2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="支付宝账号"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="8dp"
+                    android:textColor="#525151"
+                    android:layout_weight="1"/>
+                <EditText
+                    android:id="@+id/edAlipay"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:hint="请输入您的支付宝账号"
+                    android:layout_marginTop="5dp"
+                    android:textColorHint="#CDCDCD"
+                    android:background="@null"
+                    android:textSize="18sp"
+                    />
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#F1F1F2" />
+
             <TextView
                 android:id="@+id/textview_zizixingxishangchuan"
                 android:layout_width="180dp"
                 android:layout_height="50dp"
+                android:gravity="center"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:textColor="#303030"
@@ -291,6 +336,7 @@
                         android:layout_height="40dp"
                         android:text="法人身份证正面照片"
                         android:textSize="18sp"
+                        android:gravity="center"
                         android:layout_marginTop="5dp"
                         android:layout_marginLeft="8dp"
                         />
@@ -313,6 +359,7 @@
                     <TextView
                         android:layout_width="170dp"
                         android:layout_height="40dp"
+                        android:gravity="center"
                         android:text="法人身份证反面照片"
                         android:textSize="18sp"
                         android:layout_marginTop="5dp"
@@ -332,6 +379,7 @@
                 android:layout_width="170dp"
                 android:layout_height="40dp"
                 android:text="身份证有效期"
+                android:gravity="center"
                 android:textSize="18sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
@@ -358,6 +406,7 @@
                     android:layout_width="40dp"
                     android:layout_height="30dp"
                     android:text="至"
+                    android:gravity="center"
                     android:textSize="18sp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
@@ -387,6 +436,7 @@
                 android:layout_height="40dp"
                 android:text="营业执照"
                 android:textSize="18sp"
+                android:gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="30dp"
                 />
@@ -395,6 +445,7 @@
                 android:contentDescription="@string/app_name"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:background="@mipmap/xq_feedback"/>
@@ -402,6 +453,7 @@
                 android:layout_width="170dp"
                 android:layout_height="40dp"
                 android:text="营业执照有效期"
+                android:gravity="center"
                 android:textSize="18sp"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
@@ -428,6 +480,7 @@
                     android:layout_width="40dp"
                     android:layout_height="30dp"
                     android:text="至"
+                    android:gravity="center"
                     android:textSize="18sp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"

@@ -3,7 +3,7 @@ package com.zhongyaogang.ab.view;
 /**
  * The Class AbAppData.
  */
-public class AbAppData {
+public class  AbAppData {
 
 	/** 日志开关. */
 	public static  boolean DEBUG = false;

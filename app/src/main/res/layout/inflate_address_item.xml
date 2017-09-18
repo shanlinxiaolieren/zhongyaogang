@@ -9,26 +9,26 @@
         android:id="@+id/lladdress"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="@dimen/hundredandtwenty">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp" >
+            android:layout_height="@dimen/forty" >
 
             <TextView
                 android:id="@+id/tvConsigneeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:textSize="14sp"
+                android:layout_margin="@dimen/eight"
+                android:textSize="@dimen/small_text_size"
                 android:text="陈小龙" />
 
             <TextView
                 android:id="@+id/tvPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="@dimen/eight"
                 android:layout_alignParentRight="true"
-                android:textSize="14sp"
+                android:textSize="@dimen/small_text_size"
                 android:text="@string/shoujihaomaright" />
         </RelativeLayout>
 
@@ -36,7 +36,7 @@
             android:id="@+id/tvAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="@dimen/small_text_size"
             android:text="@string/address"
             />
 
@@ -45,9 +45,9 @@
             android:layout_height="wrap_content">
             <CheckBox
                 android:id="@+id/checkbox_morenadress"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="@dimen/twentyfive"
+                android:layout_height="@dimen/twentyfive"
+                android:layout_marginTop="@dimen/martopten"
                 android:background="@drawable/check_moren_address"
                 android:layout_alignParentLeft="true"
                 android:button="@null"
@@ -55,9 +55,9 @@
             <TextView
                 android:id="@+id/textview_moren"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginLeft="5dp"
-                android:textSize="18sp"
+                android:layout_height="@dimen/thirty"
+                android:layout_marginLeft="@dimen/martop"
+                android:textSize="@dimen/medium_text_size"
                 android:layout_toRightOf="@+id/checkbox_morenadress"
                 android:layout_alignTop="@+id/checkbox_morenadress"
                 android:text="@string/settingmoren"
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:text="编辑"
                 android:button="@null"
-                android:padding="8dp"
+                android:padding="@dimen/eight"
                 android:drawableLeft="@mipmap/xiugai"
                 android:layout_toLeftOf="@+id/cbDel"
                 />
@@ -78,13 +78,13 @@
                 android:layout_height="wrap_content"
                 android:text="删除"
                 android:button="@null"
-                android:padding="8dp"
+                android:padding="@dimen/eight"
                 android:layout_alignParentRight="true"
                 android:drawableLeft="@mipmap/shanchu"/>
         </RelativeLayout>
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/one"
             android:background="#888888"/>
     </LinearLayout>
 </LinearLayout>

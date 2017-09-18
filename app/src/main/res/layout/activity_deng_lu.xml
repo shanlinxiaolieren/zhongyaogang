@@ -8,10 +8,22 @@
     <RelativeLayout
         android:id="@+id/top_relativelayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/fifty"
         android:gravity="center_vertical"
         android:background="#9A0000"
         >
+
+        <ImageView
+            android:id="@+id/wodezhongxin_left"
+            android:layout_width="@dimen/forty_five"
+            android:layout_height="@dimen/thirty"
+            android:contentDescription="@string/app_name"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/martopten"
+            android:layout_marginTop="@dimen/martopten"
+            android:layout_marginBottom="@dimen/martopten"
+            android:src="@mipmap/btn_back_normal"
+            />
         <TextView
             android:id="@+id/index_search_yaocaiwang"
             android:layout_width="wrap_content"
@@ -19,70 +31,71 @@
             android:layout_centerInParent="true"
             android:text="登录"
             android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:textSize="@dimen/large_text_size" />
     </RelativeLayout>
     <!--  <include layout="@layout/index_top_relativelayout" /> -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_height="50dp"
+        android:layout_marginTop="@dimen/martopten"
+        android:layout_height="@dimen/fifty"
         android:orientation="horizontal">
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/shoujihaoma"
-            android:textSize="18sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
+            android:textSize="@dimen/medium_text_size"
+            android:layout_marginTop="@dimen/martop"
+            android:layout_marginLeft="@dimen/eight"
             android:layout_weight="1"/>
         <EditText
             android:id="@+id/usenameedit"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:hint="@string/qingshurunideshoujihaomahuoyonghuming"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/martop"
             android:textColorHint="#CDCDCD"
             android:singleLine="true"
             android:background="@null"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/one"
         android:background="#BABABA" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/fifty"
 
         android:orientation="horizontal">
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:text="@string/denglumima"
-            android:textSize="18sp"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="8dp"
+            android:textSize="@dimen/medium_text_size"
+            android:layout_marginTop="@dimen/martop"
+            android:layout_marginLeft="@dimen/eight"
             android:layout_weight="1"/>
         <EditText
             android:id="@+id/passwordedit"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/zero"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:hint="@string/qingshurudenglumima"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/martop"
             android:textColorHint="#CDCDCD"
             android:background="@null"
             android:inputType="textPassword"
-            android:textSize="18sp"
+            android:textSize="@dimen/medium_text_size"
             />
     </LinearLayout>
     <Button
         android:id="@+id/button_denglu"
-        android:layout_width="300dp"
-        android:layout_margin="10dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/threehundred"
+        android:layout_margin="@dimen/martopten"
+        android:layout_height="@dimen/fifty"
         android:background="@drawable/shape_button"
         android:layout_gravity="center_horizontal"
         android:text="@string/denglu"
@@ -95,18 +108,18 @@
 
         <CheckBox
             android:id="@+id/savePasswordCB"
-            android:layout_width="100dp"
-            android:layout_height="46dp"
+            android:layout_width="@dimen/hundred"
+            android:layout_height="@dimen/forty_five"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/twenty"
             android:text="@string/jizhumima" >
         </CheckBox>
         <TextView
-            android:layout_width="100dp"
-            android:layout_height="46dp"
+            android:layout_width="@dimen/hundred"
+            android:layout_height="@dimen/forty_five"
             android:text="@string/yangjimima"
-            android:textSize="18sp"
-            android:layout_marginTop="10dp"
+            android:textSize="@dimen/medium_text_size"
+            android:layout_marginTop="@dimen/martopten"
             android:textColor="#2F308C"
             android:layout_alignParentRight="true"
             />
